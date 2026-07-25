@@ -41,11 +41,11 @@ export const HeroContent: React.FC<HeroContentProps> = ({ isIntroComplete = true
       initial={{ opacity: 0, x: -20 }}
       animate={isIntroComplete ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
       transition={{ duration: 0.75, ease: EASE_CINEMATIC }}
-      className="lg:col-span-7 flex flex-col justify-center space-y-6 max-w-3xl"
+      className="lg:col-span-7 flex flex-col justify-center space-y-6 lg:space-y-7 max-w-3xl"
     >
       {/* Minimal Status Indicator */}
       <motion.div {...getItemMotion(2)}>
-        <div className="inline-flex items-center gap-2 text-[14px] font-mono font-medium text-status-success">
+        <div className="inline-flex items-center gap-2 text-[13px] sm:text-[14px] font-mono font-medium text-status-success">
           <span className="w-2 h-2 rounded-full bg-status-success animate-pulse shrink-0" />
           <span>{availability}</span>
         </div>
@@ -53,31 +53,32 @@ export const HeroContent: React.FC<HeroContentProps> = ({ isIntroComplete = true
 
       {/* Role & Subheading */}
       <motion.div {...getItemMotion(3)} className="overflow-hidden">
-        <p className="text-[14px] font-mono uppercase tracking-[0.15em] text-primary font-medium">
+        <p className="text-[13px] sm:text-[14px] font-mono uppercase tracking-[0.18em] text-primary font-medium">
           — {title} —
         </p>
       </motion.div>
 
       {/* Main Headline */}
-      <motion.div {...getItemMotion(4)} className="space-y-2">
-        <h1 className="text-4xl sm:text-6xl xl:text-[72px] font-display font-extrabold tracking-[-0.03em] text-text-primary leading-[1.02]">
+      <motion.div {...getItemMotion(4)} className="space-y-1.5 sm:space-y-2 relative">
+        <div className="absolute inset-0 bg-primary/[0.015] blur-3xl pointer-events-none -z-10" />
+        <h1 className="text-4xl sm:text-6xl xl:text-[72px] font-display font-extrabold tracking-[-0.035em] text-text-primary leading-[1.02]">
           Building
         </h1>
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-[68px] font-display font-extrabold tracking-[-0.03em] text-primary leading-[1.05] whitespace-nowrap pb-1">
+        <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-[68px] font-display font-extrabold tracking-[-0.035em] text-primary leading-[1.05] whitespace-nowrap pb-1">
           Meaningful Technology
         </h1>
       </motion.div>
 
-      {/* Lead Description */}
+      {/* Lead Description - Refined paragraph width and comfortable line-height for optimal reading rhythm */}
       <motion.p
         {...getItemMotion(5)}
-        className="text-base sm:text-[18px] font-normal text-text-secondary leading-[1.6] max-w-2xl font-sans pt-3 sm:pt-4"
+        className="text-base sm:text-[17px] lg:text-[18px] font-normal text-text-secondary leading-[1.65] max-w-xl font-sans pt-2 sm:pt-3"
       >
         {description}
       </motion.p>
 
-      {/* Action Controls */}
-      <motion.div {...getItemMotion(6)} className="flex flex-wrap items-center gap-3 pt-3">
+      {/* Action Controls - Effortless Negative Space Rhythm */}
+      <motion.div {...getItemMotion(6)} className="flex flex-wrap items-center gap-3.5 sm:gap-4 pt-2 sm:pt-3">
         <Button
           variant="primary"
           size="md"

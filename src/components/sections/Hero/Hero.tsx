@@ -30,17 +30,18 @@ export const Hero: React.FC<HeroProps> = ({ isIntroComplete = true }) => {
     <Section
       id="hero"
       padding="none"
-      background="accent-glow"
+      background="default"
       withContainer={false}
       className="relative z-10 min-h-screen flex flex-col justify-center items-center pt-20 pb-8 overflow-hidden"
     >
-      {/* 1. Two-Side Ambient Background Radial Glow System (z-0) */}
+      {/* Atmospheric Volumetric Stack: Multi-layer weak linear falloffs (1.5%-2.5% opacity each) with ZERO identifiable gradient shapes */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 select-none">
-        {/* Left Side Glow: Upper-left area shifted in from screen edge */}
-        <div className="absolute top-20 left-12 sm:left-24 w-[650px] h-[650px] rounded-full bg-[radial-gradient(circle,rgba(124,92,255,0.25)_0%,rgba(124,92,255,0.09)_40%,transparent_70%)] blur-[180px]" />
-
-        {/* Right Side Glow: Right side behind HeroPortrait balancing composition */}
-        <div className="absolute top-1/4 -right-20 sm:right-8 w-[650px] h-[650px] rounded-full bg-[radial-gradient(circle,rgba(124,92,255,0.22)_0%,rgba(124,92,255,0.06)_45%,transparent_75%)] blur-[160px]" />
+        {/* Layer A: Smooth Diagonal Studio Floor Tonal Shift */}
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,17,21,1)_0%,rgba(18,22,32,0.4)_50%,rgba(15,17,21,1)_100%)]" />
+        {/* Layer B: Ultra-faint 2.5% Top Atmospheric Ceiling Gradient */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(143,126,255,0.025)_0%,transparent_70%)]" />
+        {/* Layer C: Ultra-faint 2% Lateral Side Volume */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_left,rgba(56,189,248,0.02)_0%,transparent_60%)]" />
       </div>
 
       {/* 2. Ultra-Fine Noise Texture Overlay Layer (z-0) */}

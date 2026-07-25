@@ -53,7 +53,7 @@ export const HeroStatusBar: React.FC<HeroStatusBarProps> = ({ isIntroComplete = 
       initial={{ opacity: 0, y: 10 }}
       animate={isIntroComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
       transition={{ duration: 0.6, delay: 0.6, ease: EASE_EXPRESSIVE }}
-      className="w-full pt-6 border-t border-border/50 relative z-20 overflow-hidden select-none"
+      className="w-full pt-6 border-t border-white/[0.06] relative z-20 overflow-hidden select-none"
     >
       {/* Edge Gradient Mask for Soft Infinite Marquee Blending */}
       <div className="w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
