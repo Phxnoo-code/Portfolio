@@ -41,12 +41,15 @@ export const HeroContent: React.FC<HeroContentProps> = ({ isIntroComplete = true
       initial={{ opacity: 0, x: -20 }}
       animate={isIntroComplete ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
       transition={{ duration: 0.75, ease: EASE_CINEMATIC }}
-      className="lg:col-span-7 flex flex-col justify-center space-y-6 lg:space-y-7 max-w-3xl"
+      className="lg:col-span-7 flex flex-col justify-center space-y-6 lg:space-y-7 max-w-3xl relative"
     >
+      {/* Soft Ambient Purple Spotlight Light Bloom behind headline & CTA area (#7C5CFF, 15% opacity, blur-[90px]) */}
+      <div className="absolute top-12 left-4 sm:left-12 w-[420px] sm:w-[500px] h-[200px] sm:h-[240px] rounded-[100%] bg-[radial-gradient(ellipse_at_center,rgba(124,92,255,0.15)_0%,rgba(124,92,255,0.04)_45%,transparent_75%)] blur-[90px] pointer-events-none -z-10 select-none" />
+
       {/* Minimal Status Indicator */}
       <motion.div {...getItemMotion(2)}>
-        <div className="inline-flex items-center gap-2 text-[13px] sm:text-[14px] font-mono font-medium text-status-success">
-          <span className="w-2 h-2 rounded-full bg-status-success animate-pulse shrink-0" />
+        <div className="inline-flex items-center gap-2 text-[12px] sm:text-[13px] font-mono font-medium text-status-success">
+          <span className="w-1.5 h-1.5 rounded-full bg-status-success animate-pulse shrink-0" />
           <span>{availability}</span>
         </div>
       </motion.div>

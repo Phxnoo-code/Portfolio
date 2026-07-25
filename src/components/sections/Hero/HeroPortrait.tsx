@@ -33,8 +33,12 @@ export const HeroPortrait: React.FC<HeroPortraitProps> = ({ isIntroComplete = tr
       "
     >
       <div className="relative w-full max-w-[760px] lg:max-w-[900px] xl:max-w-[980px] aspect-[4/5] flex items-end justify-center pointer-events-none select-none -translate-y-12 lg:-translate-y-20">
-        {/* Ultra-faint linear atmospheric density field (3% opacity, zero visible gradient boundaries) */}
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(56,189,248,0.03)_0%,rgba(124,92,255,0.015)_50%,transparent_100%)] blur-3xl pointer-events-none" />
+        {/* Dual-Color Ambient Studio Glow System (#7C5CFF Dominant Purple + #38BDF8 Soft Cyan Offset) */}
+        {/* 1. Dominant Large Soft Purple Glow Bloom (#7C5CFF, blur-[100px]) */}
+        <div className="absolute top-8 left-1/2 -translate-x-1/2 w-[460px] sm:w-[560px] h-[320px] sm:h-[400px] rounded-[100%] bg-[radial-gradient(ellipse_at_center,rgba(124,92,255,0.16)_0%,rgba(124,92,255,0.04)_50%,transparent_75%)] blur-[100px] pointer-events-none select-none" />
+
+        {/* 2. Secondary Offset Soft Cyan Glow Bloom (#38BDF8, blur-[80px]) */}
+        <div className="absolute top-4 right-4 sm:right-10 w-[260px] sm:w-[320px] h-[180px] sm:h-[240px] rounded-[100%] bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.11)_0%,rgba(56,189,248,0.03)_45%,transparent_70%)] blur-[80px] pointer-events-none select-none" />
 
         {/* Editorial Integrated Portrait Image with Multi-Stop Bottom Dissolve & Edge Light Blend */}
         <img

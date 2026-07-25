@@ -1,68 +1,73 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Cpu, Sparkles } from 'lucide-react';
-import { Card } from '../../ui/Card';
+import { Globe, Bot, Layers } from 'lucide-react';
 
-export interface IdentityCardItem {
+export interface CapabilityCard {
   id: string;
   title: string;
   description: string;
   icon: React.ElementType;
 }
 
-const IDENTITY_CARDS: IdentityCardItem[] = [
+const CAPABILITY_CARDS: CapabilityCard[] = [
   {
-    id: 'developer',
-    title: 'Developer',
-    description: 'Crafting clean, scalable frontend architectures and modern web applications with precision.',
-    icon: Code2,
+    id: 'web-development',
+    title: 'Web Development',
+    description: 'Building modern, responsive, and scalable web applications.',
+    icon: Globe,
   },
   {
-    id: 'problem-solver',
-    title: 'Problem Solver',
-    description: 'Solving complex technical challenges through systematic thinking and AI workflow automation.',
-    icon: Cpu,
+    id: 'ai-automation',
+    title: 'AI Automation',
+    description: 'Creating intelligent workflows and automation solutions using modern AI technologies.',
+    icon: Bot,
   },
   {
-    id: 'continuous-learner',
-    title: 'Continuous Learner',
-    description: 'Constantly exploring new tools, modern frameworks, and emerging technology stacks.',
-    icon: Sparkles,
+    id: 'system-integration',
+    title: 'System Integration',
+    description: 'Connecting APIs, databases, and external services into complete solutions.',
+    icon: Layers,
   },
 ];
 
 const EASE_EXPRESSIVE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
+/**
+ * AboutCards Component - 3 Capability Cards Grid
+ * Glassmorphic cards (rgba 0.03 bg, rgba 0.08 border, 20px blur, 24px rounded radius)
+ * Features gray icon/text defaults and smooth #7C5CFF hover glow transition.
+ */
 export const AboutCards: React.FC = () => {
   return (
-    <div className="space-y-4">
-      {IDENTITY_CARDS.map((card, index) => {
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 w-full">
+      {CAPABILITY_CARDS.map((card, index) => {
         const Icon = card.icon;
         return (
           <motion.div
             key={card.id}
-            initial={{ opacity: 0, y: 16, filter: 'blur(4px)' }}
+            initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
             whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{
-              duration: 0.5,
+              duration: 0.55,
               delay: index * 0.12,
               ease: EASE_EXPRESSIVE,
             }}
+            className="group"
           >
-            <Card variant="interactive" className="p-5 flex items-start gap-4 border-border/50 group">
-              <div className="p-3 rounded-lg bg-surface-hover text-primary border border-border/60 group-hover:border-primary/40 transition-colors shrink-0">
-                <Icon size={22} />
-              </div>
-              <div className="space-y-1">
-                <h4 className="text-base font-display font-semibold text-text-primary group-hover:text-primary transition-colors">
+            <div className="h-full p-6 sm:p-7 rounded-[24px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] group-hover:border-[#7C5CFF]/60 group-hover:shadow-[0_0_30px_rgba(124,92,255,0.2)] transition-all duration-300 flex flex-col justify-between space-y-4">
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-text-muted group-hover:text-primary group-hover:border-[#7C5CFF]/40 transition-colors duration-300">
+                  <Icon size={24} />
+                </div>
+                <h4 className="text-lg sm:text-xl font-display font-bold text-text-primary group-hover:text-primary transition-colors duration-300">
                   {card.title}
                 </h4>
-                <p className="text-sm text-text-secondary leading-relaxed font-sans">
-                  {card.description}
-                </p>
               </div>
-            </Card>
+              <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-sans">
+                {card.description}
+              </p>
+            </div>
           </motion.div>
         );
       })}
