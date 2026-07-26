@@ -9,8 +9,9 @@ import { SECTION_LIST } from '@/constants/routes';
 // Dynamic lazy imports for portfolio sections
 const Hero = lazy(() => import('@/components/sections/Hero').then((m) => ({ default: m.Hero })));
 const About = lazy(() => import('@/components/sections/About').then((m) => ({ default: m.About })));
+const WhatIBuild = lazy(() => import('@/components/sections/WhatIBuild').then((m) => ({ default: m.WhatIBuild })));
+const SelectedWork = lazy(() => import('@/components/sections/SelectedWork').then((m) => ({ default: m.SelectedWork })));
 const Skills = lazy(() => import('@/components/sections/Skills').then((m) => ({ default: m.Skills })));
-const Projects = lazy(() => import('@/components/sections/Projects').then((m) => ({ default: m.Projects })));
 const Certificates = lazy(() => import('@/components/sections/Certificates').then((m) => ({ default: m.Certificates })));
 const Contact = lazy(() => import('@/components/sections/Contact').then((m) => ({ default: m.Contact })));
 
@@ -46,8 +47,9 @@ export const Home: React.FC = () => {
         <Suspense fallback={<Loading size="lg" label="Loading portfolio sections..." />}>
           <Hero isIntroComplete={isIntroComplete} />
           <About />
+          <WhatIBuild />
+          <SelectedWork />
           <Skills />
-          <Projects />
           <Certificates />
           <Contact />
         </Suspense>

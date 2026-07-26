@@ -5,63 +5,71 @@ import { Container } from '../../ui/Container';
 import { AboutContent } from './AboutContent';
 import { AboutVisual } from './AboutVisual';
 
-const EASE_EXPRESSIVE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+const EASE_SMOOTH: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
+// Shared ultra-fine noise texture matching Hero section
+const NOISE_TEXTURE_DATA_URI = `data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E`;
 
 /**
- * About Section Component - "The Person Behind The Code"
- * Dark luxury minimalist editorial portfolio layout aligning with Hero section design language.
+ * About Section Component - Personal Identity Editorial
+ * Refined vertical section padding with expansive bottom breathing room before the Projects transition.
  */
 export const About: React.FC = () => {
   return (
     <Section
       id="about"
-      padding="xl"
+      padding="none"
       background="default"
       withContainer={false}
-      className="relative z-10 overflow-hidden py-24 sm:py-32"
+      className="relative z-10 overflow-hidden pt-20 pb-28 sm:pt-28 sm:pb-36 lg:pb-44 bg-background w-full min-w-0"
     >
-      {/* Background Studio Ambient Lighting System (Purple #7C5CFF + Soft Cyan #38BDF8) */}
-      <div className="absolute top-1/4 left-0 sm:left-12 w-[520px] h-[360px] bg-[radial-gradient(ellipse_at_center,rgba(124,92,255,0.12)_0%,rgba(124,92,255,0.03)_50%,transparent_75%)] blur-[110px] pointer-events-none -z-10 select-none" />
-      <div className="absolute bottom-1/4 right-0 sm:right-12 w-[440px] h-[320px] bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.08)_0%,rgba(56,189,248,0.02)_45%,transparent_70%)] blur-[90px] pointer-events-none -z-10 select-none" />
+      {/* 1. Atmospheric Volumetric Continuation (Matching Hero Studio Floor & Depth) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 select-none">
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,17,21,1)_0%,rgba(18,22,32,0.3)_50%,rgba(15,17,21,1)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_0%,rgba(143,126,255,0.015)_50%,transparent_100%)]" />
+      </div>
 
-      <Container size="xl" className="w-full relative z-10">
-        <div className="flex flex-col space-y-16 sm:space-y-20 w-full">
+      {/* 2. Shared Ultra-Fine Noise Grain Texture Overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none z-0 opacity-20 select-none bg-repeat"
+        style={{ backgroundImage: `url("${NOISE_TEXTURE_DATA_URI}")` }}
+      />
+
+      <Container size="xl" className="w-full min-w-0 relative z-10">
+        <div className="flex flex-col space-y-12 sm:space-y-14 w-full min-w-0">
           
-          {/* 1. Editorial Section Header */}
-          <div className="relative max-w-3xl space-y-3">
-            {/* Subtle Purple Ambient Header Glow */}
-            <div className="absolute -top-6 left-12 w-[340px] h-[140px] bg-[#7C5CFF]/15 blur-[80px] pointer-events-none -z-10 rounded-full select-none" />
-
+          {/* PART 1 — Identity Introduction Header */}
+          <div className="space-y-2 max-w-3xl w-full min-w-0">
             <motion.p
-              initial={{ opacity: 0, y: 14, filter: 'blur(4px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.6, ease: EASE_EXPRESSIVE }}
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5, ease: EASE_SMOOTH }}
               className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-primary font-semibold"
             >
-              ABOUT ME
+              — ABOUT —
             </motion.p>
 
             <motion.h2
-              initial={{ opacity: 0, y: 16, filter: 'blur(4px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.6, delay: 0.08, ease: EASE_EXPRESSIVE }}
-              className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold text-text-primary tracking-[-0.03em] leading-[1.08]"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5, delay: 0.06, ease: EASE_SMOOTH }}
+              className="text-2xl sm:text-4xl lg:text-5xl font-display font-extrabold text-text-primary tracking-[-0.03em] leading-[1.12] break-words"
             >
-              Building Digital Experiences Through Code & Automation.
+              My story
             </motion.h2>
           </div>
 
-          {/* 2. Main Editorial Two-Column About Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center w-full">
-            {/* LEFT SIDE: Editorial Personal Identity Panel */}
-            <div className="lg:col-span-5 w-full">
+          {/* PART 2 — Portrait + Personal Information */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-20 items-start w-full min-w-0 pt-4 sm:pt-6">
+            {/* LEFT: Portrait Image */}
+            <div className="lg:col-span-4 w-full min-w-0">
               <AboutVisual />
             </div>
 
-            {/* RIGHT SIDE: Personal Introduction Narrative & Capabilities */}
-            <div className="lg:col-span-7 w-full">
+            {/* RIGHT: Identity Content & Personal Information Block (Shifted Down Further) */}
+            <div className="lg:col-span-8 w-full min-w-0 lg:pl-4 xl:pl-8 pt-5 sm:pt-8 lg:pt-14">
               <AboutContent />
             </div>
           </div>

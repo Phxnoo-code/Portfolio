@@ -1,118 +1,166 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Download } from 'lucide-react';
+import { resumeData } from '@/data/resume';
 
-export interface EditorialCapability {
-  index: string;
-  title: string;
-  description: string;
+export interface InfoItem {
+  number: string;
+  label: string;
+  value: string;
+  subValue?: string;
 }
 
-const CAPABILITIES: EditorialCapability[] = [
+const PERSONAL_INFO: InfoItem[] = [
   {
-    index: '01',
-    title: 'Product Design',
-    description: 'Creating meaningful digital experiences through intuitive interfaces and user-focused design.',
+    number: '01',
+    label: 'Age',
+    value: '21 Years Old',
   },
   {
-    index: '02',
-    title: 'Web Development',
-    description: 'Turning ideas and designs into functional digital products and web solutions.',
+    number: '02',
+    label: 'Education',
+    value: 'Information Technology',
+    subValue: 'Bangkok University',
   },
   {
-    index: '03',
-    title: 'AI Automation',
-    description: 'Building smarter workflows with connected AI-powered solutions.',
+    number: '03',
+    label: 'Location',
+    value: 'Thailand',
+  },
+  {
+    number: '04',
+    label: 'Focus',
+    value: 'Digital products & AI automation',
   },
 ];
 
-const EASE_EXPRESSIVE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+const EASE_SMOOTH: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 /**
- * AboutContent Subcomponent - Editorial Narrative, Capabilities & Metadata
- * "This is how I create"
+ * AboutContent - Personal Identity Editorial Narrative
+ * Clean typography hierarchy with prominent "Currently exploring:" title label.
  */
 export const AboutContent: React.FC = () => {
-  const getItemMotion = (delayIndex: number) => ({
-    initial: { opacity: 0, y: 16, filter: 'blur(4px)' },
-    whileInView: { opacity: 1, y: 0, filter: 'blur(0px)' },
-    viewport: { once: true, margin: '-50px' },
-    transition: {
-      duration: 0.6,
-      delay: delayIndex * 0.09,
-      ease: EASE_EXPRESSIVE,
-    },
-  });
+  const handleDownloadResume = () => {
+    const link = document.createElement('a');
+    link.href = resumeData.downloadUrl;
+    link.download = resumeData.fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
-    <div className="space-y-8 text-text-secondary font-sans">
-      {/* Title & Personal Story Narrative */}
-      <div className="space-y-4">
-        <motion.h3
-          {...getItemMotion(1)}
-          className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-text-primary tracking-[-0.03em]"
+    <div className="w-full min-w-0 space-y-8 text-text-secondary font-sans flex flex-col justify-between h-full">
+      {/* 1. Identity Name & Short Intro */}
+      <div className="w-full min-w-0 space-y-3">
+        <div className="space-y-1">
+          <motion.h3
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.5, ease: EASE_SMOOTH }}
+            className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-text-primary tracking-[-0.02em] uppercase break-words"
+          >
+            PHANOO NGAMCHALIAW
+          </motion.h3>
+
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.5, delay: 0.05, ease: EASE_SMOOTH }}
+            className="text-xs sm:text-sm font-mono text-primary uppercase tracking-[0.18em] font-semibold"
+          >
+            IT Student & Digital Product Builder
+          </motion.p>
+        </div>
+
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.5, delay: 0.1, ease: EASE_SMOOTH }}
+          className="text-base sm:text-lg text-text-secondary leading-relaxed font-normal w-full max-w-2xl break-words pt-1"
         >
-          Hi, I'm Phanoo.
-        </motion.h3>
-
-        <motion.p {...getItemMotion(2)} className="text-base sm:text-lg leading-[1.75]">
-          I'm an Information Technology student who enjoys building digital experiences through modern technologies.
-        </motion.p>
-
-        <motion.p {...getItemMotion(3)} className="text-base sm:text-lg leading-[1.75]">
-          My interest goes beyond writing code. I enjoy combining design, development, and automation to create practical solutions.
-        </motion.p>
-
-        <motion.p {...getItemMotion(4)} className="text-base sm:text-lg leading-[1.75]">
-          I work across frontend development, APIs, databases, and AI-powered workflows to build products that are useful, efficient, and user-focused.
+          I build digital experiences by connecting design, technology, and automation.
         </motion.p>
       </div>
 
-      {/* Editorial Numbered Capability List */}
-      <motion.div {...getItemMotion(5)} className="pt-2 space-y-3">
-        <span className="text-xs font-mono uppercase tracking-[0.2em] text-text-muted font-semibold block pb-1">
-          WHAT I BUILD
-        </span>
-
-        <div className="space-y-0">
-          {CAPABILITIES.map((item) => (
-            <div
-              key={item.index}
-              className="py-4 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4 group hover:border-[#7C5CFF]/40 transition-colors duration-300"
+      {/* 2. Balanced 2x2 Personal Information Grid */}
+      <div className="w-full min-w-0 pt-6 border-t border-white/[0.08]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8 w-full min-w-0">
+          {PERSONAL_INFO.map((info, idx) => (
+            <motion.div
+              key={info.number}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5, delay: 0.16 + idx * 0.06, ease: EASE_SMOOTH }}
+              className="space-y-1 text-left w-full min-w-0"
             >
-              <div className="flex items-center gap-3 sm:gap-4">
-                <span className="font-mono text-xs sm:text-sm text-primary font-bold tracking-wider">
-                  {item.index}
+              {/* Index (Accent Mono) + Label (Uppercase Secondary Mono) */}
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-mono text-primary font-semibold">
+                  {info.number}
                 </span>
-                <h4 className="text-base sm:text-lg font-display font-bold text-text-primary group-hover:text-primary transition-colors duration-300">
-                  {item.title}
-                </h4>
+                <span className="text-[11px] font-mono text-text-secondary uppercase tracking-[0.18em] font-medium">
+                  {info.label}
+                </span>
               </div>
-              <p className="text-xs sm:text-sm text-text-muted font-sans pl-7 sm:pl-0 sm:text-right max-w-sm sm:max-w-xs">
-                {item.description}
+
+              {/* Value (Larger Primary White Text) */}
+              <p className="text-base sm:text-lg font-display font-bold text-text-primary leading-snug">
+                {info.value}
               </p>
-            </div>
+
+              {/* Optional SubValue */}
+              {info.subValue && (
+                <p className="text-xs sm:text-sm text-text-muted font-sans leading-snug pt-0.5">
+                  {info.subValue}
+                </p>
+              )}
+            </motion.div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
-      {/* Minimal Personal Metadata Footer Row */}
-      <motion.div
-        {...getItemMotion(6)}
-        className="pt-6 border-t border-white/[0.08] grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono select-none"
-      >
-        <div className="space-y-0.5">
-          <span className="text-text-muted tracking-wider uppercase block text-[11px]">BASED IN</span>
-          <span className="text-text-primary font-medium text-xs sm:text-sm">Thailand</span>
-        </div>
-        <div className="space-y-0.5">
-          <span className="text-text-muted tracking-wider uppercase block text-[11px]">FOCUS</span>
-          <span className="text-text-primary font-medium text-xs sm:text-sm">Design / Web / AI</span>
-        </div>
-        <div className="space-y-0.5">
-          <span className="text-text-muted tracking-wider uppercase block text-[11px]">AVAILABLE</span>
-          <span className="text-primary font-medium text-xs sm:text-sm">Internship Opportunities</span>
-        </div>
-      </motion.div>
+      {/* 3. PART 3 — Prominent "Currently exploring:" Label with Soft List Items */}
+      <div className="w-full min-w-0 pt-6 border-t border-white/[0.06] space-y-5 sm:space-y-6">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.5, delay: 0.35, ease: EASE_SMOOTH }}
+          className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm font-mono"
+        >
+          <span className="text-primary font-semibold tracking-wide uppercase">Currently exploring:</span>
+          <span className="text-text-muted font-normal">Product Design</span>
+          <span className="text-white/20">•</span>
+          <span className="text-text-muted font-normal">Digital Development</span>
+          <span className="text-white/20">•</span>
+          <span className="text-text-muted font-normal">AI Automation</span>
+        </motion.div>
+
+        {/* Dedicated Borderless Download Resume Trigger */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.5, delay: 0.4, ease: EASE_SMOOTH }}
+          className="pt-2 sm:pt-3"
+        >
+          <button
+            onClick={handleDownloadResume}
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono text-text-secondary hover:text-primary transition-colors duration-300 group cursor-pointer"
+          >
+            <Download size={16} className="text-primary group-hover:translate-y-0.5 transition-transform duration-300" />
+            <span className="underline underline-offset-4 decoration-white/20 group-hover:decoration-primary font-medium">
+              Download Resume
+            </span>
+          </button>
+        </motion.div>
+      </div>
     </div>
   );
 };
