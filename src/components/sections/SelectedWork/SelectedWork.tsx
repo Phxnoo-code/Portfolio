@@ -262,41 +262,41 @@ export const SelectedWork: React.FC = () => {
                       >
                         {/* Refined Top Metadata (Clean & Quiet, No Heavy Line) */}
                         <div className="flex items-center gap-3">
-                          <span className="text-xs font-mono text-primary font-semibold tracking-wider">
+                          <span className="text-sm font-mono text-primary font-bold tracking-wider">
                             {project.number}
                           </span>
                           <span className="text-white/20 font-mono text-xs">•</span>
-                          <span className="text-[10px] sm:text-[11px] font-mono text-text-muted/70 uppercase tracking-[0.2em] font-medium">
+                          <span className="text-xs sm:text-sm font-mono text-text-muted/70 uppercase tracking-[0.2em] font-medium">
                             {project.category}
                           </span>
                         </div>
 
                         {/* Title & Short Description (2-3 lines) */}
                         <div className="space-y-3">
-                          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-text-primary tracking-[-0.02em] leading-tight group-hover:text-primary transition-colors duration-300">
+                          <h3 className="text-3xl sm:text-4xl lg:text-4xl font-display font-extrabold text-text-primary tracking-[-0.02em] leading-tight group-hover:text-primary transition-colors duration-300">
                             {project.title}
                           </h3>
-                          <p className="text-xs sm:text-sm text-text-secondary/80 leading-relaxed font-normal">
+                          <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-normal">
                             {project.shortDescription}
                           </p>
                         </div>
 
                         {/* Quiet Supporting Role & Technologies */}
-                        <div className="space-y-3.5 pt-1">
+                        <div className="space-y-4 pt-1">
                           <div className="space-y-1">
-                            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted/60 font-normal block">
+                            <span className="text-xs font-mono uppercase tracking-[0.2em] text-text-muted/60 font-semibold block">
                               ROLE
                             </span>
-                            <p className="text-xs font-sans text-text-primary/90 font-medium">
+                            <p className="text-sm sm:text-base font-sans text-text-primary/90 font-medium">
                               {project.roles.join('  •  ')}
                             </p>
                           </div>
 
                           <div className="space-y-1">
-                            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted/60 font-normal block">
+                            <span className="text-xs font-mono uppercase tracking-[0.2em] text-text-muted/60 font-semibold block">
                               TECHNOLOGY
                             </span>
-                            <p className="text-[11px] sm:text-xs font-mono text-text-muted/80 leading-relaxed">
+                            <p className="text-xs sm:text-sm font-mono text-text-muted/80 leading-relaxed">
                               {project.technologies.join('  •  ')}
                             </p>
                           </div>
@@ -307,11 +307,11 @@ export const SelectedWork: React.FC = () => {
                           <button
                             type="button"
                             onClick={() => setActiveCaseStudyId(project.id)}
-                            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-mono text-primary font-semibold group/btn cursor-pointer py-1 text-left"
+                            className="inline-flex items-center gap-2 text-sm sm:text-base font-mono text-primary font-semibold group/btn cursor-pointer py-1 text-left"
                           >
                             <span>View Case Study</span>
                             <ArrowRight
-                              size={14}
+                              size={16}
                               className="group-hover/btn:translate-x-1.5 transition-transform duration-300 ease-out text-primary"
                             />
                           </button>
@@ -406,64 +406,64 @@ export const SelectedWork: React.FC = () => {
 
               {/* 1. Header: Index, Category & Large Title */}
               <div className="space-y-2 pr-8 border-b border-white/[0.08] pb-5">
-                <div className="flex items-center gap-2 text-xs font-mono">
+                <div className="flex items-center gap-2 text-xs sm:text-sm font-mono">
                   <span className="text-primary font-semibold">{currentCaseStudy.number} —</span>
                   <span className="text-text-muted uppercase tracking-[0.2em]">{currentCaseStudy.category}</span>
                 </div>
-                <h3 className="text-2xl sm:text-4xl font-display font-extrabold text-text-primary tracking-[-0.03em] leading-tight">
+                <h3 className="text-2xl sm:text-4xl lg:text-5xl font-display font-extrabold text-text-primary tracking-[-0.03em] leading-tight">
                   {currentCaseStudy.title}
                 </h3>
               </div>
 
               {/* 2. OVERVIEW */}
               <div className="space-y-2">
-                <h4 className="text-[11px] font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
+                <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
                   OVERVIEW
                 </h4>
-                <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-normal">
+                <p className="text-base sm:text-lg text-text-secondary leading-relaxed font-normal">
                   {currentCaseStudy.overview}
                 </p>
               </div>
 
               {/* 3. PROBLEM */}
               <div className="space-y-2 pt-4 border-t border-white/[0.08]">
-                <h4 className="text-[11px] font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
+                <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
                   PROBLEM
                 </h4>
-                <p className="text-xs sm:text-sm text-text-secondary leading-relaxed font-sans">
+                <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-sans">
                   {currentCaseStudy.problem}
                 </p>
               </div>
 
               {/* 4. SOLUTION */}
               <div className="space-y-2 pt-4 border-t border-white/[0.08]">
-                <h4 className="text-[11px] font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
+                <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
                   SOLUTION
                 </h4>
-                <p className="text-xs sm:text-sm text-text-secondary leading-relaxed font-sans">
+                <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-sans">
                   {currentCaseStudy.solution}
                 </p>
               </div>
 
               {/* 5. MY ROLE */}
               <div className="space-y-2 pt-4 border-t border-white/[0.08]">
-                <h4 className="text-[11px] font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
+                <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
                   MY ROLE
                 </h4>
-                <p className="text-xs sm:text-sm text-text-primary font-sans font-medium">
+                <p className="text-sm sm:text-base text-text-primary font-sans font-medium">
                   {currentCaseStudy.roles.join('  •  ')}
                 </p>
               </div>
 
               {/* 6. KEY FEATURES */}
               <div className="space-y-3 pt-4 border-t border-white/[0.08]">
-                <h4 className="text-[11px] font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
+                <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
                   KEY FEATURES
                 </h4>
                 <div className="space-y-2">
                   {currentCaseStudy.keyFeatures.map((feature, idx) => (
-                    <p key={idx} className="text-xs sm:text-sm text-text-primary font-sans leading-relaxed flex items-start gap-2.5">
-                      <span className="text-primary font-mono text-xs pt-0.5">•</span>
+                    <p key={idx} className="text-sm sm:text-base text-text-primary font-sans leading-relaxed flex items-start gap-2.5">
+                      <span className="text-primary font-mono text-sm pt-0.5">•</span>
                       <span>{feature}</span>
                     </p>
                   ))}
@@ -472,17 +472,17 @@ export const SelectedWork: React.FC = () => {
 
               {/* 7. TECHNOLOGY */}
               <div className="space-y-2 pt-4 border-t border-white/[0.08]">
-                <h4 className="text-[11px] font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
+                <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
                   TECHNOLOGY
                 </h4>
-                <p className="text-xs font-mono text-text-secondary leading-relaxed">
+                <p className="text-xs sm:text-sm font-mono text-text-secondary leading-relaxed">
                   {currentCaseStudy.technologies.join('  •  ')}
                 </p>
               </div>
 
               {/* 8. GALLERY PREVIEW (macOS Browser Frame) */}
               <div className="space-y-3 pt-4 border-t border-white/[0.08]">
-                <h4 className="text-[11px] font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
+                <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
                   GALLERY
                 </h4>
                 <div className="w-full rounded-xl border border-white/[0.12] overflow-hidden bg-[#0B0C10] shadow-xl">
@@ -501,10 +501,10 @@ export const SelectedWork: React.FC = () => {
 
               {/* 9. LINKS */}
               <div className="space-y-3 pt-4 border-t border-white/[0.08]">
-                <h4 className="text-[11px] font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
+                <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
                   LINKS
                 </h4>
-                <div className="flex flex-wrap items-center gap-5 text-xs font-mono">
+                <div className="flex flex-wrap items-center gap-5 text-sm font-mono">
                   {currentCaseStudy.demoUrl && (
                     <a
                       href={currentCaseStudy.demoUrl}
@@ -513,7 +513,7 @@ export const SelectedWork: React.FC = () => {
                       className="text-primary hover:underline font-semibold flex items-center gap-1.5"
                     >
                       <span>Live Case Study</span>
-                      <ExternalLink size={13} />
+                      <ExternalLink size={14} />
                     </a>
                   )}
                   {currentCaseStudy.githubUrl && (
@@ -523,7 +523,7 @@ export const SelectedWork: React.FC = () => {
                       rel="noopener noreferrer"
                       className="text-text-secondary hover:text-text-primary transition-colors flex items-center gap-1.5"
                     >
-                      <Github size={14} />
+                      <Github size={15} />
                       <span>Source Code</span>
                     </a>
                   )}
