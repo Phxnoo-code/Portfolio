@@ -37,7 +37,7 @@ export const SELECTED_PROJECTS: ProjectCaseStudy[] = [
     shortDescription:
       'A personal digital product showcase built with high editorial precision, responsive typography, and fluid micro-interactions.',
     technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vite'],
-    image: '/images/projects/portfolio_website.png',
+    image: '/images/projects/portfolio.png',
     overview:
       'Designed and engineered as a personal digital identity platform. The goal was to replace traditional resume templates with a minimalist, Apple-inspired editorial reading experience that highlights capability, precision, and craft.',
     problem:
@@ -63,7 +63,7 @@ export const SELECTED_PROJECTS: ProjectCaseStudy[] = [
     shortDescription:
       'An intelligent HR assistant bot integrated into LINE Messenger that automates employee leave management, policy Q&A, and HR workflow notifications.',
     technologies: ['Node.js', 'Python', 'LINE Messaging API', 'OpenAI API', 'Webhooks'],
-    image: '/images/projects/line_hr_assistant.png',
+    image: '/images/projects/chat_bot.png',
     overview:
       'Built to streamline internal human resource inquiries within organizations using LINE, Thailand’s primary messaging interface. The bot serves as an instant self-service portal for employees.',
     problem:
@@ -85,53 +85,28 @@ export const SELECTED_PROJECTS: ProjectCaseStudy[] = [
     number: '03',
     category: 'Business Website',
     title: 'Barber Booking System',
-    roles: ['Website Development', 'Booking System', 'WordPress Customization'],
+    roles: ['Web Development', 'System Integration', 'WordPress Customization'],
     shortDescription:
-      'A modern appointment booking system designed for barbershops, managing customer scheduling, service menus, and barber availability.',
-    technologies: ['PHP', 'MySQL', 'JavaScript', 'WordPress', 'REST APIs'],
-    image: '/images/projects/barber_booking.png',
+      'Developed a digital booking solution for barbershop businesses, improving appointment management and creating a smoother customer scheduling experience.',
+    technologies: ['WordPress', 'PHP', 'MySQL', 'JavaScript', 'Booking Plugin'],
+    image: '/images/projects/barber.png',
     overview:
-      'Developed for barbershop businesses seeking an elegant, mobile-first scheduling interface that eliminates double-booking and reduces customer wait times.',
+      'Developed a digital booking solution for barbershop businesses, improving appointment management and creating a smoother customer scheduling experience.',
     problem:
-      'Traditional manual phone bookings led to schedule conflicts, missed appointments, and inefficient queue management during peak business hours.',
+      'Many small barbershops still manage appointments manually, which can lead to scheduling conflicts, unclear availability, and inefficient customer management.',
     solution:
-      'Engineered a custom booking pipeline with real-time slot verification, automated SMS/email reminders, and a clean admin calendar dashboard for barbers.',
+      'Implemented a WordPress-based booking system with customized workflows, enabling customers to select services, schedule appointments, and allowing staff to manage bookings more efficiently.',
     keyFeatures: [
-      'Real-time barber availability calendar with conflict-free slot lock',
-      'Interactive service selection menu with duration & pricing estimates',
-      'Automated appointment confirmation & reminder notification engine',
-      'Mobile-optimized client checkout & schedule management portal',
+      'Online appointment booking system for customers',
+      'Service selection and booking information management',
+      'Appointment scheduling and calendar management',
+      'Responsive experience optimized for mobile users',
     ],
     demoUrl: 'https://example.com/barber-booking',
     githubUrl: 'https://github.com/phanoo/barber-booking',
     isImageRight: true,
   },
-  {
-    id: 'it-equipment-management-system',
-    number: '04',
-    category: 'Business System',
-    title: 'IT Equipment Management System',
-    roles: ['Full-stack Development', 'Database Design', 'System Architecture'],
-    shortDescription:
-      'An internal enterprise asset tracking platform for managing hardware inventory, device checkouts, maintenance logs, and audit records.',
-    technologies: ['PHP', 'MySQL', 'Bootstrap', 'REST APIs', 'Docker'],
-    image: '/images/projects/it_equipment_system.png',
-    overview:
-      'Created for organizational IT departments to maintain complete oversight of hardware inventory, device checkouts, repair history, and audit compliance.',
-    problem:
-      'Tracking company laptops, monitors, and peripherals using fragmented spreadsheets resulted in lost equipment, unrecorded handovers, and stock discrepancies.',
-    solution:
-      'Built a centralized relational database architecture with barcode scanning, role-based asset authorization, and real-time stock allocation analytics.',
-    keyFeatures: [
-      'Centralized hardware asset tracking with barcode & serial number lookup',
-      'Role-based equipment checkout & automated return deadline alerts',
-      'Maintenance & repair lifecycle history logging per device',
-      'Exportable PDF & Excel audit logs for organizational compliance',
-    ],
-    demoUrl: 'https://example.com/it-equipment-system',
-    githubUrl: 'https://github.com/phanoo/it-equipment-system',
-    isImageRight: false,
-  },
+
 ];
 
 /**
@@ -165,22 +140,14 @@ export const SelectedWork: React.FC = () => {
 
   return (
     <Section
-      id="selected-work"
+      id="projects"
       padding="none"
       background="default"
       withContainer={false}
       className="relative z-10 overflow-hidden py-20 sm:py-28 lg:py-36 bg-background w-full min-w-0"
     >
-      {/* Also anchor #projects for navigation consistency */}
-      <div id="projects" className="absolute top-0 left-0 w-0 h-0 pointer-events-none" />
 
-      {/* 1. Atmospheric Volumetric Continuation (Matching Hero, About, What I Build & Skills) */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 select-none">
-        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,17,21,1)_0%,rgba(18,22,32,0.3)_50%,rgba(15,17,21,1)_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_0%,rgba(143,126,255,0.015)_50%,transparent_100%)]" />
-      </div>
-
-      {/* 2. Shared Ultra-Fine Noise Grain Texture Overlay */}
+      {/* 1. Shared Ultra-Fine Noise Grain Texture Overlay */}
       <div
         className="absolute inset-0 pointer-events-none z-0 opacity-20 select-none bg-repeat"
         style={{ backgroundImage: `url("${NOISE_TEXTURE_DATA_URI}")` }}

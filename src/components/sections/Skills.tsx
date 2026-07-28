@@ -1,73 +1,250 @@
-import React from 'react';
-import { skillsData } from '@/data/skills';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  Code2,
+  FileCode,
+  Atom,
+  Zap,
+  Layers,
+  Wind,
+  Sparkles,
+  Server,
+  Cpu,
+  Database,
+  Workflow,
+  GitBranch,
+  Bot,
+  Anchor,
+  Network,
+  Palette,
+  Layout,
+  Play,
+  Box,
+  Terminal,
+  Package,
+  LucideIcon,
+} from 'lucide-react';
+import { toolkitCategoriesData, ToolkitCategory, ToolkitSkillItem } from '@/data/skills';
 import { Section } from '../layout/Section';
-import { SectionTitle } from '../ui/SectionTitle';
-import { Card } from '../ui/Card';
-import { Badge } from '../ui/Badge';
 import { Container } from '../ui/Container';
 
-// Shared ultra-fine noise texture matching About and Hero section
+const EASE_SMOOTH: [number, number, number, number] = [0.16, 1, 0.3, 1];
+const TOTAL_MATRIX_SLOTS = 16; // 8 columns x 2 rows = 16 matrix slots
+
+// Shared ultra-fine noise texture matching Hero, Selected Work, About & Contact sections
 const NOISE_TEXTURE_DATA_URI = `data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E`;
 
+// Icon mapping per tech iconKey
+const TECH_ICONS: Record<string, LucideIcon | string> = {
+  html5: FileCode,
+  css3: Layout,
+  javascript: Code2,
+  typescript: Code2,
+  react: Atom,
+  vite: Zap,
+  nextjs: Layers,
+  tailwind: Wind,
+  framer: Sparkles,
+  php: Server,
+  python: Cpu,
+  sql: Database,
+  mysql: Database,
+  postgresql: Server,
+  nodejs: Cpu,
+  api: Workflow,
+  workflow: GitBranch,
+  linebot: Bot,
+  webhooks: Anchor,
+  n8n: Network,
+  llm: Sparkles,
+  prompt: Terminal,
+  chatbot: Bot,
+  rag: Cpu,
+  agents: Sparkles,
+  figma: Palette,
+  'design-systems': Layers,
+  wireframe: Layout,
+  prototype: Play,
+  git: GitBranch,
+  docker: Box,
+  linux: Terminal,
+  vscode: Code2,
+  npm: Package,
+};
+
+// Tech brand short badge text fallback if icon is rendered
+const TECH_BADGES: Record<string, { bg: string; text: string; label: string }> = {
+  html5: { bg: 'bg-orange-950/40 border-orange-500/40', text: 'text-orange-400', label: '5' },
+  css3: { bg: 'bg-blue-950/40 border-blue-500/40', text: 'text-blue-400', label: '3' },
+  javascript: { bg: 'bg-yellow-950/40 border-yellow-500/40', text: 'text-yellow-400', label: 'JS' },
+  typescript: { bg: 'bg-blue-950/40 border-blue-500/40', text: 'text-blue-400', label: 'TS' },
+  react: { bg: 'bg-cyan-950/40 border-cyan-500/40', text: 'text-cyan-400', label: '⚛' },
+  vite: { bg: 'bg-purple-950/40 border-purple-500/40', text: 'text-purple-400', label: 'V' },
+  nextjs: { bg: 'bg-zinc-900 border-white/20', text: 'text-white', label: 'N' },
+  tailwind: { bg: 'bg-sky-950/40 border-sky-500/40', text: 'text-sky-400', label: '≈' },
+  framer: { bg: 'bg-purple-950/40 border-purple-500/40', text: 'text-purple-400', label: 'F' },
+};
+
 /**
- * Skills Section Component
- * Uses background matching About & Hero sections for atmospheric continuity.
+ * Technology Stack Toolkit Component
+ * Seamlessly matches the portfolio's native background & surface palette (bg-background & bg-surface/80).
  */
 export const Skills: React.FC = () => {
+  const [activeTabId, setActiveTabId] = useState<string>('frontend');
+
+  const activeCategory =
+    toolkitCategoriesData.find((cat) => cat.id === activeTabId) ||
+    toolkitCategoriesData[0];
+
+  const activeSkills = activeCategory.skills;
+  const emptySlotsCount = Math.max(0, TOTAL_MATRIX_SLOTS - activeSkills.length);
+
   return (
     <Section
       id="skills"
       padding="none"
       background="default"
       withContainer={false}
-      className="relative z-10 overflow-hidden py-24 sm:py-32 bg-background w-full min-w-0"
+      className="relative z-10 overflow-hidden py-16 sm:py-24 lg:py-28 bg-background w-full min-w-0"
     >
-      {/* 1. Atmospheric Volumetric Continuation (Matching About & Hero Depth) */}
+      {/* 1. Volumetric Backlight Continuation matching portfolio */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 select-none">
         <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,17,21,1)_0%,rgba(18,22,32,0.3)_50%,rgba(15,17,21,1)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_0%,rgba(143,126,255,0.015)_50%,transparent_100%)]" />
       </div>
 
-      {/* 2. Shared Ultra-Fine Noise Grain Texture Overlay */}
+      {/* 2. Noise Grain Texture Overlay */}
       <div
         className="absolute inset-0 pointer-events-none z-0 opacity-20 select-none bg-repeat"
         style={{ backgroundImage: `url("${NOISE_TEXTURE_DATA_URI}")` }}
       />
 
       <Container size="xl" className="w-full min-w-0 relative z-10">
-        <SectionTitle
-          badge="Technical Expertise"
-          title="Skills & Technology"
-          titleGradient="Stack"
-          subtitle="Categorized proficiency across modern frontend engineering, backend services, AI workflows, and databases."
-        />
+        <div className="flex flex-col space-y-8 sm:space-y-10 w-full min-w-0">
+          
+          {/* ============================================================ */}
+          {/* TOP HEADER: 06 / TOOLKIT + Technology Stack + Top-Right Tabs */}
+          {/* ============================================================ */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 w-full min-w-0">
+            
+            {/* LEFT SIDE: EYEBROW & TITLE */}
+            <div className="space-y-1.5 max-w-xl w-full min-w-0 text-left">
+              <motion.p
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.5, ease: EASE_SMOOTH }}
+                className="text-xs font-mono uppercase tracking-[0.2em] text-primary font-semibold text-left"
+              >
+                06 / TOOLKIT
+              </motion.p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillsData.map((group, idx) => (
-            <Card key={idx} variant="bordered" className="space-y-4">
-              <div className="flex items-center justify-between border-b border-border/50 pb-3">
-                <h3 className="text-base font-display font-semibold text-text-primary">
-                  {group.category}
-                </h3>
-                <Badge variant="soft" color="neutral" size="sm">
-                  {group.skills.length} Technologies
-                </Badge>
-              </div>
+              <motion.h2
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.55, ease: EASE_SMOOTH, delay: 0.05 }}
+                className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-text-primary leading-none text-left"
+              >
+                Technology Stack
+              </motion.h2>
+            </div>
 
-              <div className="flex flex-wrap gap-2 pt-1">
-                {group.skills.map((skill) => (
-                  <Badge
-                    key={skill.id}
-                    variant="glass"
-                    color="neutral"
-                    size="md"
+            {/* RIGHT SIDE: TOP-RIGHT SEGMENTED TAB CONTROL */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: EASE_SMOOTH, delay: 0.15 }}
+              className="inline-flex items-center bg-[#10131B] border border-white/[0.12] p-1 select-none font-mono text-xs overflow-x-auto max-w-full shrink-0 self-start md:self-end"
+            >
+              {toolkitCategoriesData.map((cat: ToolkitCategory) => {
+                const isActive = cat.id === activeTabId;
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => setActiveTabId(cat.id)}
+                    className={`px-4 py-2 sm:px-5 sm:py-2 font-mono text-xs font-semibold border-r border-white/[0.08] last:border-r-0 transition-all duration-200 whitespace-nowrap ${
+                      isActive
+                        ? 'bg-white text-black font-bold shadow-[0_0_20px_rgba(255,255,255,0.3)]'
+                        : 'text-text-secondary hover:text-text-primary hover:bg-white/[0.05]'
+                    }`}
                   >
-                    {skill.name}
-                  </Badge>
+                    {cat.tabName}
+                  </button>
+                );
+              })}
+            </motion.div>
+
+          </div>
+
+          {/* ============================================================ */}
+          {/* ONE LARGE OUTER CONTAINER WRAPPING 8-COLUMN CONNECTED MATRIX */}
+          {/* ============================================================ */}
+          <div className="w-full border border-white/[0.12] bg-[#10131B] rounded-none overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.8)] select-none">
+            
+            {/* 8-COLUMN CONNECTED MATRIX (8 columns x 2 rows = 16 slots) */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeCategory.id}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.25, ease: EASE_SMOOTH }}
+                className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 w-full min-w-0"
+              >
+                {/* 1. ACTIVE SKILL CELLS */}
+                {activeSkills.map((skill: ToolkitSkillItem) => {
+                  const badge = TECH_BADGES[skill.iconKey];
+                  const IconComponent = TECH_ICONS[skill.iconKey] as LucideIcon | undefined;
+
+                  return (
+                    <div
+                      key={skill.id}
+                      className="border-r border-b border-white/[0.08] h-32 sm:h-36 flex flex-col justify-between items-start p-4 sm:p-5 text-left bg-[#141824] hover:bg-[#1C2234] transition-colors duration-200 group select-none overflow-hidden"
+                    >
+                      {/* TOP: TECH ICON BADGE */}
+                      <div
+                        className={`w-8 h-8 sm:w-9 sm:h-9 rounded-sm border flex items-center justify-center font-mono font-bold text-xs sm:text-sm ${
+                          badge
+                            ? `${badge.bg} ${badge.text}`
+                            : 'bg-white/[0.04] border-white/20 text-primary-light'
+                        }`}
+                      >
+                        {badge ? (
+                          <span>{badge.label}</span>
+                        ) : IconComponent ? (
+                          <IconComponent className="w-4 h-4 text-primary-light" />
+                        ) : (
+                          <Code2 className="w-4 h-4 text-primary-light" />
+                        )}
+                      </div>
+
+                      {/* BOTTOM: TECH TITLE & SUB-TAG */}
+                      <div className="pt-2">
+                        <h4 className="font-display font-bold text-sm sm:text-base text-text-primary group-hover:text-white transition-colors tracking-tight leading-tight">
+                          {skill.name}
+                        </h4>
+                        <p className="font-mono text-[9px] text-text-tertiary uppercase tracking-wider mt-1 group-hover:text-primary-light/80 transition-colors font-medium">
+                          {skill.tag}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+
+                {/* 2. UNUSED/EMPTY MATRIX CELLS (Seamless Surface Background without divider lines) */}
+                {Array.from({ length: emptySlotsCount }).map((_, emptyIdx) => (
+                  <div
+                    key={`empty-${emptyIdx}`}
+                    className="h-32 sm:h-36 bg-[#0E1017] select-none pointer-events-none"
+                  />
                 ))}
-              </div>
-            </Card>
-          ))}
+              </motion.div>
+            </AnimatePresence>
+
+          </div>
+
         </div>
       </Container>
     </Section>

@@ -12,3 +12,19 @@ export interface SkillGroup {
   category: SkillCategory;
   skills: Skill[];
 }
+
+export interface SkillSubGroup {
+  title: string;
+  technologies: string[];
+}
+
+export interface SkillCategoryItem {
+  number: string;
+  id: string;
+  title: string;
+  description: string;
+  isKeyStrength?: boolean;
+  technologies: string[];
+  subGroups?: SkillSubGroup[];
+}
+

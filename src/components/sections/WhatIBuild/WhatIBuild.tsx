@@ -38,7 +38,7 @@ const CAPABILITY_DETAILS: Record<string, DetailContent> = {
       { number: '04', title: 'Launch', desc: 'Refining performance, reliability, and user experience.' },
     ],
     technologies: ['React', 'TypeScript', 'Tailwind CSS', 'APIs', 'Databases', 'Docker'],
-    relatedProjects: ['Portfolio Website', 'Nexora Platform', 'IT Equipment System'],
+    relatedProjects: ['Portfolio Website', 'Barber Booking System'],
   },
   'interface-engineering': {
     id: 'interface-engineering',
@@ -76,7 +76,7 @@ const CAPABILITY_DETAILS: Record<string, DetailContent> = {
       { number: '04', title: 'Improve', desc: 'Refining performance and system stability.' },
     ],
     technologies: ['REST APIs', 'PHP', 'MySQL', 'PostgreSQL', 'Docker', 'Webhooks'],
-    relatedProjects: ['IT Equipment System', 'LINE HR Bot'],
+    relatedProjects: ['LINE HR Bot', 'Barber Booking System'],
   },
   'automation-workflows': {
     id: 'automation-workflows',

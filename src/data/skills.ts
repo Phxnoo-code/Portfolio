@@ -1,52 +1,87 @@
-import { SkillGroup } from '@/types/skill';
+export interface ToolkitSkillItem {
+  id: string;
+  name: string;
+  tag: 'MAIN STACK' | 'FREQUENTLY USED' | 'CORE ENGINE' | 'PRIMARY' | 'CREATIVE';
+  iconKey: string;
+}
 
-export const skillsData: SkillGroup[] = [
+export interface ToolkitCategory {
+  id: string;
+  tabName: string;
+  skills: ToolkitSkillItem[];
+}
+
+export const toolkitCategoriesData: ToolkitCategory[] = [
   {
-    category: 'Frontend',
+    id: 'frontend',
+    tabName: 'Frontend',
     skills: [
-      { id: 'react', name: 'React 18+', category: 'Frontend', level: 'Expert' },
-      { id: 'typescript', name: 'TypeScript', category: 'Frontend', level: 'Expert' },
-      { id: 'nextjs', name: 'Next.js', category: 'Frontend', level: 'Advanced' },
-      { id: 'tailwindcss', name: 'Tailwind CSS', category: 'Frontend', level: 'Expert' },
-      { id: 'framer-motion', name: 'Framer Motion', category: 'Frontend', level: 'Advanced' },
-      { id: 'vite', name: 'Vite', category: 'Frontend', level: 'Expert' },
+      { id: 'html5', name: 'HTML5', tag: 'MAIN STACK', iconKey: 'html5' },
+      { id: 'css3', name: 'CSS3', tag: 'MAIN STACK', iconKey: 'css3' },
+      { id: 'javascript', name: 'JavaScript', tag: 'MAIN STACK', iconKey: 'javascript' },
+      { id: 'typescript', name: 'TypeScript', tag: 'MAIN STACK', iconKey: 'typescript' },
+      { id: 'react', name: 'React', tag: 'MAIN STACK', iconKey: 'react' },
+      { id: 'vite', name: 'Vite', tag: 'FREQUENTLY USED', iconKey: 'vite' },
+      { id: 'nextjs', name: 'Next.js', tag: 'FREQUENTLY USED', iconKey: 'nextjs' },
+      { id: 'tailwind', name: 'Tailwind CSS', tag: 'FREQUENTLY USED', iconKey: 'tailwind' },
+      { id: 'framer', name: 'Framer Motion', tag: 'CREATIVE', iconKey: 'framer' },
     ],
   },
   {
-    category: 'Backend',
+    id: 'backend',
+    tabName: 'Backend',
     skills: [
-      { id: 'nodejs', name: 'Node.js', category: 'Backend', level: 'Advanced' },
-      { id: 'express', name: 'Express.js', category: 'Backend', level: 'Advanced' },
-      { id: 'python', name: 'Python', category: 'Backend', level: 'Advanced' },
-      { id: 'fastapi', name: 'FastAPI', category: 'Backend', level: 'Intermediate' },
-      { id: 'rest-api', name: 'REST APIs', category: 'Backend', level: 'Expert' },
+      { id: 'php', name: 'PHP', tag: 'MAIN STACK', iconKey: 'php' },
+      { id: 'python', name: 'Python', tag: 'MAIN STACK', iconKey: 'python' },
+      { id: 'sql', name: 'SQL', tag: 'MAIN STACK', iconKey: 'sql' },
+      { id: 'mysql', name: 'MySQL', tag: 'MAIN STACK', iconKey: 'mysql' },
+      { id: 'postgresql', name: 'PostgreSQL', tag: 'FREQUENTLY USED', iconKey: 'postgresql' },
+      { id: 'nodejs', name: 'Node.js', tag: 'FREQUENTLY USED', iconKey: 'nodejs' },
     ],
   },
   {
-    category: 'AI & Automation',
+    id: 'automation',
+    tabName: 'Automation',
     skills: [
-      { id: 'openai-api', name: 'OpenAI API Integration', category: 'AI & Automation', level: 'Advanced' },
-      { id: 'line-bot', name: 'LINE Messaging API', category: 'AI & Automation', level: 'Expert' },
-      { id: 'llm-workflows', name: 'LLM Prompt Engineering', category: 'AI & Automation', level: 'Advanced' },
-      { id: 'webhooks', name: 'Automation & Webhooks', category: 'AI & Automation', level: 'Expert' },
+      { id: 'api', name: 'API Integration', tag: 'MAIN STACK', iconKey: 'api' },
+      { id: 'workflow', name: 'Workflow Engine', tag: 'MAIN STACK', iconKey: 'workflow' },
+      { id: 'linebot', name: 'LINE Bot API', tag: 'MAIN STACK', iconKey: 'linebot' },
+      { id: 'webhooks', name: 'Webhooks', tag: 'FREQUENTLY USED', iconKey: 'webhooks' },
+      { id: 'n8n', name: 'n8n Pipelines', tag: 'FREQUENTLY USED', iconKey: 'n8n' },
     ],
   },
   {
-    category: 'Database',
+    id: 'ai',
+    tabName: 'AI Integration',
     skills: [
-      { id: 'postgresql', name: 'PostgreSQL', category: 'Database', level: 'Advanced' },
-      { id: 'mongodb', name: 'MongoDB', category: 'Database', level: 'Intermediate' },
-      { id: 'prisma', name: 'Prisma ORM', category: 'Database', level: 'Advanced' },
-      { id: 'sql-design', name: 'SQL Schema Design', category: 'Database', level: 'Advanced' },
+      { id: 'llm', name: 'LLM APIs', tag: 'MAIN STACK', iconKey: 'llm' },
+      { id: 'prompt', name: 'Prompt Eng.', tag: 'MAIN STACK', iconKey: 'prompt' },
+      { id: 'chatbot', name: 'AI Chatbot', tag: 'MAIN STACK', iconKey: 'chatbot' },
+      { id: 'rag', name: 'RAG Systems', tag: 'FREQUENTLY USED', iconKey: 'rag' },
+      { id: 'agents', name: 'AI Agents', tag: 'CREATIVE', iconKey: 'agents' },
     ],
   },
   {
-    category: 'Tools & DevOps',
+    id: 'ui-ux',
+    tabName: 'UI / UX',
     skills: [
-      { id: 'git', name: 'Git & GitHub', category: 'Tools & DevOps', level: 'Expert' },
-      { id: 'docker', name: 'Docker', category: 'Tools & DevOps', level: 'Intermediate' },
-      { id: 'eslint-prettier', name: 'ESLint & Prettier', category: 'Tools & DevOps', level: 'Expert' },
-      { id: 'npm-vite', name: 'Build Tools & Bundlers', category: 'Tools & DevOps', level: 'Advanced' },
+      { id: 'figma', name: 'Figma', tag: 'MAIN STACK', iconKey: 'figma' },
+      { id: 'design-systems', name: 'Design Systems', tag: 'MAIN STACK', iconKey: 'design-systems' },
+      { id: 'wireframe', name: 'Wireframing', tag: 'MAIN STACK', iconKey: 'wireframe' },
+      { id: 'prototype', name: 'Prototyping', tag: 'FREQUENTLY USED', iconKey: 'prototype' },
+    ],
+  },
+  {
+    id: 'tools',
+    tabName: 'Tools',
+    skills: [
+      { id: 'git', name: 'Git', tag: 'MAIN STACK', iconKey: 'git' },
+      { id: 'docker', name: 'Docker', tag: 'MAIN STACK', iconKey: 'docker' },
+      { id: 'linux', name: 'Linux', tag: 'MAIN STACK', iconKey: 'linux' },
+      { id: 'vscode', name: 'VS Code', tag: 'MAIN STACK', iconKey: 'vscode' },
+      { id: 'npm', name: 'npm', tag: 'FREQUENTLY USED', iconKey: 'npm' },
     ],
   },
 ];
+
+export const skillsData = toolkitCategoriesData;
