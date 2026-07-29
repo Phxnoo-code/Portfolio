@@ -13,6 +13,7 @@ const WhatIBuild = lazy(() => import('@/components/sections/WhatIBuild').then((m
 const SelectedWork = lazy(() => import('@/components/sections/SelectedWork').then((m) => ({ default: m.SelectedWork })));
 const Skills = lazy(() => import('@/components/sections/Skills').then((m) => ({ default: m.Skills })));
 const Certificates = lazy(() => import('@/components/sections/Certificates').then((m) => ({ default: m.Certificates })));
+const BeyondProjects = lazy(() => import('@/components/sections/BeyondProjects/BeyondProjects').then((m) => ({ default: m.BeyondProjects })));
 const Contact = lazy(() => import('@/components/sections/Contact').then((m) => ({ default: m.Contact })));
 
 /**
@@ -51,6 +52,7 @@ export const Home: React.FC = () => {
           <SelectedWork />
           <Skills />
           <Certificates />
+          <BeyondProjects />
           <Contact />
         </Suspense>
       </PageLayout>

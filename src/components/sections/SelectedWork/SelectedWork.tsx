@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, X, ExternalLink, Github } from 'lucide-react';
+import { createPortal } from 'react-dom';
+import { ArrowRight, X } from 'lucide-react';
 import { Section } from '../../layout/Section';
 import { Container } from '../../ui/Container';
 
@@ -35,20 +36,21 @@ export const SELECTED_PROJECTS: ProjectCaseStudy[] = [
     title: 'Portfolio Website',
     roles: ['Product Design', 'Frontend Development', 'Motion Design'],
     shortDescription:
-      'A personal digital product showcase built with high editorial precision, responsive typography, and fluid micro-interactions.',
+      'A personal portfolio website designed and developed to showcase projects, skills, and experiences through modern UI and interactive motion.',
     technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vite'],
     image: '/images/projects/portfolio.png',
     overview:
-      'Designed and engineered as a personal digital identity platform. The goal was to replace traditional resume templates with a minimalist, Apple-inspired editorial reading experience that highlights capability, precision, and craft.',
+      'Designed and developed my personal portfolio website to showcase my projects, skills, and experience through a modern and interactive digital experience. The website focuses on clean layouts, clear content structure, and smooth animations to create an engaging user experience.',
     problem:
-      'Standard developer portfolios often feel overcrowded with generic SaaS cards, excessive glow effects, and loud animations that distract from the work itself.',
+      'Many developer portfolios focus mainly on listing skills and projects but often lack a clear personal identity and meaningful presentation. I wanted to create a portfolio that communicates not only what I can build, but also how I think about design and user experience.',
     solution:
-      'Constructed an editorial bento architecture with strict typographic hierarchy, subtle volumetric dark lighting, and fluid glass overlays for deep project storytelling.',
+      'Created a custom portfolio experience using a dark minimalist design system, responsive layouts, and interactive animations. The website combines modern UI patterns, reusable components, and motion design to present projects in a more engaging and structured way.',
     keyFeatures: [
-      'Editorial vertical information architecture with 1:1 visual ratio',
-      'Asymmetrical bento capability grid with floating glass editorial overlays',
-      'Sticky Apple Wallet style stacked project case study presentation',
-      'Ultra-fine noise grain textures and atmospheric lighting continuation',
+      'Responsive Portfolio Experience: Designed a responsive interface that adapts across different screen sizes.',
+      'Modern UI Design System: Built reusable components and consistent design patterns for the entire website.',
+      'Interactive Motion Design: Implemented smooth animations and transitions using Framer Motion.',
+      'Project Case Study Presentation: Created structured project sections to showcase process, technologies, and outcomes.',
+      'Modern Frontend Architecture: Built with React, TypeScript, and Vite using reusable components and maintainable structure.',
     ],
     demoUrl: 'https://phanoo-portfolio.vercel.app',
     githubUrl: 'https://github.com/phanoo/portfolio',
@@ -61,20 +63,21 @@ export const SELECTED_PROJECTS: ProjectCaseStudy[] = [
     title: 'LINE HR Assistant',
     roles: ['System Integration', 'Workflow Automation', 'AI Integration'],
     shortDescription:
-      'An intelligent HR assistant bot integrated into LINE Messenger that automates employee leave management, policy Q&A, and HR workflow notifications.',
-    technologies: ['Node.js', 'Python', 'LINE Messaging API', 'OpenAI API', 'Webhooks'],
+      'AI-powered HR assistant built on LINE that helps employees get answers to common HR questions while reducing repetitive HR support tasks through generative AI.',
+    technologies: ['LINE Messaging API', 'n8n', 'Google Gemini API', 'Webhooks'],
     image: '/images/projects/chat_bot.png',
     overview:
-      'Built to streamline internal human resource inquiries within organizations using LINE, Thailand’s primary messaging interface. The bot serves as an instant self-service portal for employees.',
+      'An AI-powered HR assistant built on LINE that helps employees get answers to common HR questions. The system uses LINE Messaging API, webhooks, and n8n to automate the workflow, while Google Gemini generates responses based on user inquiries.',
     problem:
-      'HR personnel spent significant manual hours answering repetitive leave balance questions, policy inquiries, and processing routine employee request forms.',
+      'Employees often need to ask HR the same questions about company policies, onboarding information, and workplace guidelines. Handling these repetitive questions manually takes time and prevents HR teams from focusing on more important tasks.',
     solution:
-      'Integrated OpenAI’s structured prompt pipeline with the LINE Messaging API and backend webhooks, enabling automated natural language policy querying and leave verification.',
+      'Built an automated workflow where employee messages from LINE trigger a webhook connected to n8n. The workflow processes the request, sends the user inquiry to Google Gemini for response generation, and delivers the answer back through LINE.',
     keyFeatures: [
-      'Automated conversational AI Q&A for internal company policies',
-      'Instant leave balance verification & automated request submission',
-      'Event-driven webhook routing for HR manager approval notifications',
-      'Structured prompt engineering for deterministic, policy-accurate responses',
+      'AI-powered HR Q&A: Provides automated answers for common HR questions and workplace information.',
+      'LINE Messaging Integration: Allows employees to communicate with the HR assistant directly through LINE.',
+      'Workflow Automation with n8n: Connects LINE, webhooks, and Gemini into an automated message processing workflow.',
+      'Gemini AI Integration: Uses Google Gemini to generate natural language responses based on user questions.',
+      'Webhook Event Processing: Receives LINE message events and triggers automated workflows.',
     ],
     demoUrl: 'https://example.com/line-hr-assistant',
     githubUrl: 'https://github.com/phanoo/line-hr-assistant',
@@ -116,6 +119,12 @@ export const SELECTED_PROJECTS: ProjectCaseStudy[] = [
  */
 export const SelectedWork: React.FC = () => {
   const [activeCaseStudyId, setActiveCaseStudyId] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
 
   // Close modal on Escape key press
   useEffect(() => {
@@ -341,166 +350,138 @@ export const SelectedWork: React.FC = () => {
       </Container>
 
       {/* FLOATING GLASS EDITORIAL OVERLAY (Case Study Modal) */}
-      <AnimatePresence>
-        {activeCaseStudyId && currentCaseStudy && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
-            {/* Backdrop Blur & Dimmed Layer */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3, ease: EASE_SMOOTH }}
-              onClick={() => setActiveCaseStudyId(null)}
-              className="absolute inset-0 bg-black/80 backdrop-blur-xl"
-            />
-
-            {/* Compact Floating Glass Editorial Panel (max-w-[780px], single-viewport desktop fit) */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96, y: 15 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.96, y: 15 }}
-              transition={{ duration: 0.35, ease: EASE_SMOOTH }}
-              className="relative w-full max-w-[780px] max-h-[84vh] overflow-y-auto rounded-none bg-[#0B0C10]/98 border border-white/[0.14] shadow-2xl shadow-black/95 p-6 sm:p-10 space-y-7 z-10 scrollbar-thin scrollbar-thumb-white/10"
-            >
-              {/* Close Button Trigger */}
-              <button
+      {mounted && createPortal(
+        <AnimatePresence>
+          {activeCaseStudyId && currentCaseStudy && (
+            <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6">
+              {/* Backdrop Blur & Dimmed Layer */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3, ease: EASE_SMOOTH }}
                 onClick={() => setActiveCaseStudyId(null)}
-                aria-label="Close case study"
-                className="absolute top-5 right-5 text-text-muted hover:text-text-primary transition-colors duration-200 cursor-pointer p-1"
+                className="absolute inset-0 bg-black/80 backdrop-blur-xl"
+              />
+
+              {/* Compact Floating Glass Editorial Panel (max-w-[780px], single-viewport desktop fit) */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.96, y: 15 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.96, y: 15 }}
+                transition={{ duration: 0.35, ease: EASE_SMOOTH }}
+                className="relative w-full max-w-[780px] max-h-[84vh] overflow-y-auto rounded-none bg-[#0B0C10]/98 border border-white/[0.14] shadow-2xl shadow-black/95 p-6 sm:p-10 space-y-7 z-10 scrollbar-thin scrollbar-thumb-white/10"
               >
-                <X size={18} />
-              </button>
+                {/* Close Button Trigger */}
+                <button
+                  onClick={() => setActiveCaseStudyId(null)}
+                  aria-label="Close case study"
+                  className="absolute top-5 right-5 text-text-muted hover:text-text-primary transition-colors duration-200 cursor-pointer p-1"
+                >
+                  <X size={18} />
+                </button>
 
-              {/* 1. Header: Index, Category & Large Title */}
-              <div className="space-y-2 pr-8 border-b border-white/[0.08] pb-5">
-                <div className="flex items-center gap-2 text-xs sm:text-sm font-mono">
-                  <span className="text-primary font-semibold">{currentCaseStudy.number} —</span>
-                  <span className="text-text-muted uppercase tracking-[0.2em]">{currentCaseStudy.category}</span>
-                </div>
-                <h3 className="text-2xl sm:text-4xl lg:text-5xl font-display font-extrabold text-text-primary tracking-[-0.03em] leading-tight">
-                  {currentCaseStudy.title}
-                </h3>
-              </div>
-
-              {/* 2. OVERVIEW */}
-              <div className="space-y-2">
-                <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
-                  OVERVIEW
-                </h4>
-                <p className="text-base sm:text-lg text-text-secondary leading-relaxed font-normal">
-                  {currentCaseStudy.overview}
-                </p>
-              </div>
-
-              {/* 3. PROBLEM */}
-              <div className="space-y-2 pt-4 border-t border-white/[0.08]">
-                <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
-                  PROBLEM
-                </h4>
-                <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-sans">
-                  {currentCaseStudy.problem}
-                </p>
-              </div>
-
-              {/* 4. SOLUTION */}
-              <div className="space-y-2 pt-4 border-t border-white/[0.08]">
-                <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
-                  SOLUTION
-                </h4>
-                <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-sans">
-                  {currentCaseStudy.solution}
-                </p>
-              </div>
-
-              {/* 5. MY ROLE */}
-              <div className="space-y-2 pt-4 border-t border-white/[0.08]">
-                <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
-                  MY ROLE
-                </h4>
-                <p className="text-sm sm:text-base text-text-primary font-sans font-medium">
-                  {currentCaseStudy.roles.join('  •  ')}
-                </p>
-              </div>
-
-              {/* 6. KEY FEATURES */}
-              <div className="space-y-3 pt-4 border-t border-white/[0.08]">
-                <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
-                  KEY FEATURES
-                </h4>
-                <div className="space-y-2">
-                  {currentCaseStudy.keyFeatures.map((feature, idx) => (
-                    <p key={idx} className="text-sm sm:text-base text-text-primary font-sans leading-relaxed flex items-start gap-2.5">
-                      <span className="text-primary font-mono text-sm pt-0.5">•</span>
-                      <span>{feature}</span>
-                    </p>
-                  ))}
-                </div>
-              </div>
-
-              {/* 7. TECHNOLOGY */}
-              <div className="space-y-2 pt-4 border-t border-white/[0.08]">
-                <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
-                  TECHNOLOGY
-                </h4>
-                <p className="text-xs sm:text-sm font-mono text-text-secondary leading-relaxed">
-                  {currentCaseStudy.technologies.join('  •  ')}
-                </p>
-              </div>
-
-              {/* 8. GALLERY PREVIEW (macOS Browser Frame) */}
-              <div className="space-y-3 pt-4 border-t border-white/[0.08]">
-                <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
-                  GALLERY
-                </h4>
-                <div className="w-full rounded-xl border border-white/[0.12] overflow-hidden bg-[#0B0C10] shadow-xl">
-                  <div className="bg-[#141620] border-b border-white/[0.08] px-3.5 py-2 flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]/80 inline-block" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]/80 inline-block" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]/80 inline-block" />
+                {/* 1. Header: Index, Category & Large Title */}
+                <div className="space-y-2 pr-8 border-b border-white/[0.08] pb-5">
+                  <div className="flex items-center gap-2 text-xs sm:text-sm font-mono">
+                    <span className="text-primary font-semibold">{currentCaseStudy.number} —</span>
+                    <span className="text-text-muted uppercase tracking-[0.2em]">{currentCaseStudy.category}</span>
                   </div>
-                  <img
-                    src={currentCaseStudy.image}
-                    alt={`${currentCaseStudy.title} Preview`}
-                    className="w-full h-auto max-h-[360px] object-cover object-top"
-                  />
+                  <h3 className="text-2xl sm:text-4xl lg:text-5xl font-display font-extrabold text-text-primary tracking-[-0.03em] leading-tight">
+                    {currentCaseStudy.title}
+                  </h3>
                 </div>
-              </div>
 
-              {/* 9. LINKS */}
-              <div className="space-y-3 pt-4 border-t border-white/[0.08]">
-                <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
-                  LINKS
+                {/* 2. OVERVIEW */}
+                <div className="space-y-2">
+                  <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
+                    OVERVIEW
+                  </h4>
+                  <p className="text-base sm:text-lg text-text-secondary leading-relaxed font-normal">
+                    {currentCaseStudy.overview}
+                  </p>
+                </div>
+
+                {/* 3. PROBLEM */}
+                <div className="space-y-2 pt-4 border-t border-white/[0.08]">
+                  <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
+                    PROBLEM
+                  </h4>
+                  <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-sans">
+                    {currentCaseStudy.problem}
+                  </p>
+                </div>
+
+                {/* 4. SOLUTION */}
+                <div className="space-y-2 pt-4 border-t border-white/[0.08]">
+                  <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
+                    SOLUTION
+                  </h4>
+                  <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-sans">
+                    {currentCaseStudy.solution}
+                  </p>
+                </div>
+
+                {/* 5. MY ROLE */}
+                <div className="space-y-2 pt-4 border-t border-white/[0.08]">
+                  <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
+                    MY ROLE
+                  </h4>
+                  <p className="text-sm sm:text-base text-text-primary font-sans font-medium">
+                    {currentCaseStudy.roles.join('  •  ')}
+                  </p>
+                </div>
+
+                {/* 6. KEY FEATURES */}
+                <div className="space-y-3 pt-4 border-t border-white/[0.08]">
+                  <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
+                    KEY FEATURES
                 </h4>
-                <div className="flex flex-wrap items-center gap-5 text-sm font-mono">
-                  {currentCaseStudy.demoUrl && (
-                    <a
-                      href={currentCaseStudy.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary hover:underline font-semibold flex items-center gap-1.5"
-                    >
-                      <span>Live Case Study</span>
-                      <ExternalLink size={14} />
-                    </a>
-                  )}
-                  {currentCaseStudy.githubUrl && (
-                    <a
-                      href={currentCaseStudy.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-text-secondary hover:text-text-primary transition-colors flex items-center gap-1.5"
-                    >
-                      <Github size={15} />
-                      <span>Source Code</span>
-                    </a>
-                  )}
+                  <div className="space-y-2">
+                    {currentCaseStudy.keyFeatures.map((feature, idx) => (
+                      <p key={idx} className="text-sm sm:text-base text-text-primary font-sans leading-relaxed flex items-start gap-2.5">
+                        <span className="text-primary font-mono text-sm pt-0.5">•</span>
+                        <span>{feature}</span>
+                      </p>
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+                {/* 7. TECHNOLOGY */}
+                <div className="space-y-2 pt-4 border-t border-white/[0.08]">
+                  <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
+                    TECHNOLOGY
+                  </h4>
+                  <p className="text-xs sm:text-sm font-mono text-text-secondary leading-relaxed">
+                    {currentCaseStudy.technologies.join('  •  ')}
+                  </p>
+                </div>
+
+                {/* 8. GALLERY PREVIEW (macOS Browser Frame) */}
+                <div className="space-y-3 pt-4 border-t border-white/[0.08]">
+                  <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
+                    GALLERY
+                  </h4>
+                  <div className="w-full rounded-xl border border-white/[0.12] overflow-hidden bg-[#0B0C10] shadow-xl">
+                    <div className="bg-[#141620] border-b border-white/[0.08] px-3.5 py-2 flex items-center gap-1.5">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]/80 inline-block" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]/80 inline-block" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]/80 inline-block" />
+                    </div>
+                    <img
+                      src={currentCaseStudy.image}
+                      alt={`${currentCaseStudy.title} Preview`}
+                      className="w-full h-auto max-h-[360px] object-cover object-top"
+                    />
+                  </div>
+                </div>
+
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </Section>
   );
 };

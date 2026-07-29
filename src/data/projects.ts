@@ -5,11 +5,11 @@ export const projectsData: Project[] = [
     id: 'ai-hr-line-bot',
     title: 'AI HR LINE Bot',
     description:
-      'AI-powered conversational HR assistant on LINE that automates employee policy Q&A and message workflow routing using OpenAI and event-driven webhooks.',
+      'AI-powered HR assistant built on LINE that helps employees get answers to common HR questions while reducing repetitive HR support tasks through generative AI.',
     image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80',
     category: 'AI & Automation',
     status: 'Completed',
-    technologies: ['LINE Messaging API', 'Node.js', 'TypeScript', 'OpenAI API', 'Python', 'Webhooks'],
+    technologies: ['LINE Messaging API', 'n8n', 'Google Gemini API', 'Webhooks'],
     githubUrl: 'https://github.com/example/ai-hr-line-bot',
     demoUrl: 'https://example.com/demo/hr-bot',
     featured: true,
