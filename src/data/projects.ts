@@ -5,7 +5,7 @@ export const projectsData: Project[] = [
     id: 'ai-hr-line-bot',
     title: 'AI HR LINE Bot',
     description:
-      'Intelligent HR assistant integrated with LINE Messaging API. Automates employee policy Q&A, leave balance inquiries, and automated HR workflow routing using AI.',
+      'AI-powered conversational HR assistant on LINE that automates employee policy Q&A and message workflow routing using OpenAI and event-driven webhooks.',
     image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80',
     category: 'AI & Automation',
     status: 'Completed',

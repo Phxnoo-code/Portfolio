@@ -51,6 +51,364 @@
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-text-primary via-primary to-text-primary;
   }
+
+  .icon-html5 {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/html5/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-css3 {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/css3/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-css-modules {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/css-modules/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-javascript {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/javascript/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-typescript {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/typescript/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-react {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/react/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-vite,
+  .icon-vitejs {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/vitejs/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-framer {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/framer/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-tailwind,
+  .icon-tailwind-css {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/tailwind-css/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-bootstrap {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/bootstrap/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-chakra-ui {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/chakra-ui/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-php {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/php/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-python {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/python/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-sql,
+  .icon-azure-sql-database {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/azure-sql-database/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-mysql {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/mysql/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-postgresql {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/postgresql/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-nodejs,
+  .icon-nodedotjs {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/nodedotjs/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-openai {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/openai/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-gemini,
+  .icon-google-gemini {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/google-gemini/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-line {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/line/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-n8n {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/n8n/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-supabase {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/supabase/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-google-drive {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/google-drive/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-prompt,
+  .icon-promptfoo {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/promptfoo/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-workflow,
+  .icon-gcp-workflows {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/gcp-workflows/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-api,
+  .icon-azure-api-center {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/azure-api-center/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-figma {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/figma/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-git {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/git/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-github {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/github/dark.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-docker {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/docker/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-nginx {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/nginx/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-apache {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/apache/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-vscode {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/visual-studio-code/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-webstorm {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/webstorm/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .icon-canva {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/canva/default.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
 }
 
 /* Custom Scrollbar */
