@@ -1,7 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Download } from 'lucide-react';
-import { resumeData } from '@/data/resume';
 
 export interface InfoItem {
   number: string;
@@ -41,15 +39,6 @@ const EASE_SMOOTH: [number, number, number, number] = [0.16, 1, 0.3, 1];
  * Clean typography hierarchy with prominent "Currently exploring:" title label.
  */
 export const AboutContent: React.FC = () => {
-  const handleDownloadResume = () => {
-    const link = document.createElement('a');
-    link.href = resumeData.downloadUrl;
-    link.download = resumeData.fileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   return (
     <div className="w-full min-w-0 space-y-8 text-text-secondary font-sans flex flex-col justify-between h-full">
       {/* 1. Identity Name & Short Intro */}
@@ -140,25 +129,6 @@ export const AboutContent: React.FC = () => {
           <span className="text-text-muted font-normal">Digital Development</span>
           <span className="text-white/20">•</span>
           <span className="text-text-muted font-normal">AI Automation</span>
-        </motion.div>
-
-        {/* Dedicated Borderless Download Resume Trigger */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-40px' }}
-          transition={{ duration: 0.5, delay: 0.4, ease: EASE_SMOOTH }}
-          className="pt-2 sm:pt-3"
-        >
-          <button
-            onClick={handleDownloadResume}
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono text-text-secondary hover:text-primary transition-colors duration-300 group cursor-pointer"
-          >
-            <Download size={16} className="text-primary group-hover:translate-y-0.5 transition-transform duration-300" />
-            <span className="underline underline-offset-4 decoration-white/20 group-hover:decoration-primary font-medium">
-              Download Resume
-            </span>
-          </button>
         </motion.div>
       </div>
     </div>

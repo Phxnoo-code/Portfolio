@@ -1,8 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Download, MapPin, Github } from 'lucide-react';
+import { ArrowRight, MapPin, Github } from 'lucide-react';
 import { profileData } from '@/data/profile';
-import { resumeData } from '@/data/resume';
 import { Button } from '../../ui/Button';
 
 export interface HeroContentProps {
@@ -14,15 +13,6 @@ const EASE_CINEMATIC: [number, number, number, number] = [0.25, 1, 0.35, 1];
 
 export const HeroContent: React.FC<HeroContentProps> = ({ isIntroComplete = true }) => {
   const { title, description, availability, location } = profileData;
-
-  const handleDownloadResume = () => {
-    const link = document.createElement('a');
-    link.href = resumeData.downloadUrl;
-    link.download = resumeData.fileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
 
   const getItemMotion = (stepIndex: number) => ({
     initial: { opacity: 0, y: 14, filter: 'blur(4px)' },
@@ -99,16 +89,6 @@ export const HeroContent: React.FC<HeroContentProps> = ({ isIntroComplete = true
           onClick={() => (window.location.href = '#contact')}
         >
           Contact Me
-        </Button>
-
-        <Button
-          variant="ghost"
-          size="md"
-          className="text-[16px] font-medium"
-          leftIcon={<Download size={18} />}
-          onClick={handleDownloadResume}
-        >
-          Download Resume
         </Button>
       </motion.div>
 
