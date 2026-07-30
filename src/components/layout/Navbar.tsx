@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import { navigationData } from '@/data/navigation';
+import { useTheme } from '@/hooks';
 import { Button } from '../ui/Button';
 import { IconButton } from '../ui/IconButton';
 import { Container } from '../ui/Container';
@@ -26,6 +27,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   activeSectionId = 'hero',
   isIntroComplete = true,
 }) => {
+  const { isDarkMode, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -93,7 +95,17 @@ export const Navbar: React.FC<NavbarProps> = ({
         </nav>
 
         {/* Action Controls & Right Buttons */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          {/* Minimal Theme Toggle */}
+          <IconButton
+            icon={isDarkMode ? Sun : Moon}
+            aria-label="Toggle Color Theme"
+            variant="ghost"
+            size="md"
+            onClick={toggleTheme}
+            className="text-text-secondary hover:text-text-primary"
+          />
+
           <div className="hidden sm:block">
             <Button
               variant="primary"

@@ -80,11 +80,11 @@ export const Certificates: React.FC = () => {
                   className="group cursor-pointer animate-gpu"
                   onClick={() => setActiveCertImage(item.image)}
                 >
-                  {/* Clean Dark Surface Card */}
-                  <div className="flex flex-col h-full rounded-none border border-white/[0.04] bg-neutral-950 p-4 sm:p-5 transition-all duration-300 group-hover:border-white/[0.1] group-hover:-translate-y-1.5 space-y-4">
+                  {/* Clean Surface Card */}
+                  <div className="flex flex-col h-full rounded-none border border-border bg-surface p-4 sm:p-5 transition-all duration-300 group-hover:border-primary/50 group-hover:-translate-y-1.5 space-y-4">
                     
                     {/* Certificate Image Frame */}
-                    <div className="relative aspect-[16/10] w-full rounded-none overflow-hidden bg-neutral-900 border border-white/[0.02]">
+                    <div className="relative aspect-[16/10] w-full rounded-none overflow-hidden bg-background border border-border/50">
                       <img
                         src={item.image}
                         alt={item.title}
@@ -96,16 +96,16 @@ export const Certificates: React.FC = () => {
                     {/* Metadata Content */}
                     <div className="flex-1 flex flex-col justify-between space-y-4 pt-1">
                       <div className="space-y-1">
-                        <h3 className="text-base sm:text-lg font-display font-semibold tracking-tight text-white leading-snug group-hover:text-primary transition-colors duration-300">
+                        <h3 className="text-base sm:text-lg font-display font-semibold tracking-tight text-text-primary leading-snug group-hover:text-primary transition-colors duration-300">
                           {item.title}
                         </h3>
-                        <p className="text-sm font-sans text-white/50">
+                        <p className="text-sm font-sans text-text-secondary">
                           {item.issuer}
                         </p>
                       </div>
 
                       {/* Unified Single-line Metadata */}
-                      <div className="flex items-center gap-2 text-xs font-mono text-white/30">
+                      <div className="flex items-center gap-2 text-xs font-mono text-text-muted">
                         <span>{item.category || 'Certification'}</span>
                         <span>•</span>
                         <span>{item.date}</span>

@@ -5,6 +5,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
+  <script>
+    (function() {
+      try {
+        var theme = localStorage.getItem('portfolio-theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (theme === 'dark' || (!theme && prefersDark)) {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+        } else if (theme === 'light') {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <!-- Primary SEO Meta Tags -->
   <title>Phanoo Ngamchaliaw — Frontend Developer & Digital Product Builder</title>
   <meta name="title" content="Phanoo Ngamchaliaw — Frontend Developer & Digital Product Builder" />

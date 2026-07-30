@@ -5,6 +5,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
+  <script>
+    (function() {
+      try {
+        var theme = localStorage.getItem('portfolio-theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (theme === 'dark' || (!theme && prefersDark)) {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+        } else if (theme === 'light') {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <!-- Primary SEO Meta Tags -->
   <title>Phanoo Ngamchaliaw — Frontend Developer & Digital Product Builder</title>
   <meta name="title" content="Phanoo Ngamchaliaw — Frontend Developer & Digital Product Builder" />
@@ -37,8 +53,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
     rel="stylesheet">
-  <script type="module" crossorigin src="/assets/index-CCWCJd-h.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-D8aOLRe0.css">
+  <script type="module" crossorigin src="/assets/index-BEfBJVmu.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-CN7DiJtR.css">
 </head>
 
 <body style="background-color: #030303;" class="bg-background text-text-primary antialiased selection:bg-primary/30 selection:text-primary">

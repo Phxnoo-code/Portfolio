@@ -140,40 +140,40 @@ export const Contact: React.FC = () => {
                 <div className="space-y-5 font-sans">
                   {/* Email */}
                   <div className="flex items-start gap-4">
-                    <div className="w-9 h-9 border border-white/10 bg-white/[0.02] flex items-center justify-center text-primary shrink-0 mt-0.5">
+                    <div className="w-9 h-9 border border-border bg-surface flex items-center justify-center text-primary shrink-0 mt-0.5">
                       <Mail size={16} />
                     </div>
                     <div className="space-y-0.5">
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-white/50 block">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-text-secondary block">
                         Email Address
                       </span>
                       <a
                         href={`mailto:${email}`}
-                        className="text-sm sm:text-base font-mono font-medium text-white hover:text-primary transition-colors duration-300 flex items-center gap-1.5 group"
+                        className="text-sm sm:text-base font-mono font-medium text-text-primary hover:text-primary transition-colors duration-300 flex items-center gap-1.5 group"
                       >
                         <span>{email}</span>
-                        <ArrowUpRight size={14} className="text-white/50 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                        <ArrowUpRight size={14} className="text-text-muted group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                       </a>
                     </div>
                   </div>
 
                   {/* GitHub */}
                   <div className="flex items-start gap-4">
-                    <div className="w-9 h-9 border border-white/10 bg-white/[0.02] flex items-center justify-center text-primary shrink-0 mt-0.5">
+                    <div className="w-9 h-9 border border-border bg-surface flex items-center justify-center text-primary shrink-0 mt-0.5">
                       <Github size={16} />
                     </div>
                     <div className="space-y-0.5">
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-white/50 block">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-text-secondary block">
                         GitHub Profile
                       </span>
                       <a
                         href="https://github.com"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm sm:text-base font-mono font-medium text-white hover:text-primary transition-colors duration-300 flex items-center gap-1.5 group"
+                        className="text-sm sm:text-base font-mono font-medium text-text-primary hover:text-primary transition-colors duration-300 flex items-center gap-1.5 group"
                       >
                         <span>github.com</span>
-                        <ArrowUpRight size={14} className="text-white/50 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                        <ArrowUpRight size={14} className="text-text-muted group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                       </a>
                     </div>
                   </div>
@@ -281,7 +281,7 @@ export const Contact: React.FC = () => {
 
                     {/* Field 1: Name */}
                     <div className="relative space-y-1">
-                      <label htmlFor="contact-name" className="text-xs font-mono text-white/50 uppercase tracking-wider block">
+                      <label htmlFor="contact-name" className="text-xs font-mono text-text-secondary uppercase tracking-wider block">
                         Your Name <span className="text-[#7C5CFF]">*</span>
                       </label>
                       <input
@@ -295,7 +295,7 @@ export const Contact: React.FC = () => {
                           setFormData({ ...formData, name: e.target.value });
                           if (errors.name) setErrors({ ...errors, name: undefined });
                         }}
-                        className="w-full bg-transparent border-b border-white/15 py-3 text-sm font-sans text-white placeholder:text-white/20 outline-none transition-colors duration-300"
+                        className="w-full bg-transparent border-b border-border py-3 text-sm font-sans text-text-primary placeholder:text-text-muted outline-none transition-colors duration-300"
                       />
                       {/* Animated Purple Focus Line */}
                       <motion.div
@@ -311,7 +311,7 @@ export const Contact: React.FC = () => {
 
                     {/* Field 2: Email */}
                     <div className="relative space-y-1">
-                      <label htmlFor="contact-email" className="text-xs font-mono text-white/50 uppercase tracking-wider block">
+                      <label htmlFor="contact-email" className="text-xs font-mono text-text-secondary uppercase tracking-wider block">
                         Your Email <span className="text-[#7C5CFF]">*</span>
                       </label>
                       <input
@@ -325,7 +325,7 @@ export const Contact: React.FC = () => {
                           setFormData({ ...formData, email: e.target.value });
                           if (errors.email) setErrors({ ...errors, email: undefined });
                         }}
-                        className="w-full bg-transparent border-b border-white/15 py-3 text-sm font-sans text-white placeholder:text-white/20 outline-none transition-colors duration-300"
+                        className="w-full bg-transparent border-b border-border py-3 text-sm font-sans text-text-primary placeholder:text-text-muted outline-none transition-colors duration-300"
                       />
                       <motion.div
                         initial={false}
@@ -340,7 +340,7 @@ export const Contact: React.FC = () => {
 
                     {/* Field 3: Message */}
                     <div className="relative space-y-1">
-                      <label htmlFor="contact-message" className="text-xs font-mono text-white/50 uppercase tracking-wider block">
+                      <label htmlFor="contact-message" className="text-xs font-mono text-text-secondary uppercase tracking-wider block">
                         Your Message <span className="text-[#7C5CFF]">*</span>
                       </label>
                       <input
@@ -354,7 +354,7 @@ export const Contact: React.FC = () => {
                           setFormData({ ...formData, message: e.target.value });
                           if (errors.message) setErrors({ ...errors, message: undefined });
                         }}
-                        className="w-full bg-transparent border-b border-white/15 py-3 text-sm font-sans text-white placeholder:text-white/20 outline-none transition-colors duration-300"
+                        className="w-full bg-transparent border-b border-border py-3 text-sm font-sans text-text-primary placeholder:text-text-muted outline-none transition-colors duration-300"
                       />
                       <motion.div
                         initial={false}

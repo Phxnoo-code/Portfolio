@@ -5,32 +5,22 @@
     --font-display: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-    /* Color Semantics System - Softened Minimal Palette */
-    /* Primary Accent - Electric Purple (#7C5CFF) */
-    --color-primary: 253 100% 68%;
+    /* Luxury Ivory Titanium Light Theme Palette Tokens */
+    --color-primary: 253 100% 68%; /* #7C5CFF */
     --color-primary-hover: 253 100% 74%;
+    --color-secondary: 0 0% 36%; /* #5C5C5C */
+    --color-muted: 0 0% 54%; /* #8A8A8A */
 
-    /* Monochromatic Soft Grays */
-    --color-secondary: 220 10% 68%;
-    --color-muted: 220 8% 46%;
-
-    /* Deep Soft Charcoal Slate Background & Surface Panels */
-    --color-bg: 220 14% 6%;
-    /* #0F1115 - Soft Deep Background */
-    --color-surface: 220 14% 9.5%;
-    /* #171A21 - Soft Surface Panels */
-    --color-surface-hover: 220 14% 13%;
-    --color-border: 220 12% 14%;
+    --color-bg: 36 18% 96%; /* #F7F5F2 - Luxury Warm Ivory Titanium Background */
+    --color-surface: 0 0% 100%; /* #FFFFFF - Crisp Pure Surface */
+    --color-surface-hover: 40 25% 98.5%; /* #FCFBF9 - Elevated Ivory Surface */
+    --color-border: 37 23% 88%; /* #E7E2DA - Warm Architectural Border */
     --color-border-hover: 253 100% 68%;
 
-    /* Typography Semantics - Soft Off-White & Calm Zinc Tones */
-    --color-text-primary: 0 0% 100%;
-    /* #FFFFFF - Pure clean white heading text */
-    --color-text-secondary: 220 10% 68%;
-    /* #A0A7B5 - Soft secondary paragraph text */
-    --color-text-muted: 220 8% 48%;
+    --color-text-primary: 0 0% 6.7%; /* #111111 - Rich Obsidian Primary Text */
+    --color-text-secondary: 0 0% 36%; /* #5C5C5C - Warm Charcoal Secondary Text */
+    --color-text-muted: 0 0% 54%; /* #8A8A8A - Subtle Muted Text */
 
-    /* System Status Semantics - Soft Sage Green & Warm Amber */
     --color-success: 150 48% 48%;
     --color-warning: 38 75% 52%;
     --color-error: 0 70% 62%;
@@ -41,18 +31,22 @@
     --font-display: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-    --color-primary: 253 100% 68%;
+    /* Dark Theme Palette Tokens */
+    --color-primary: 253 100% 68%; /* #7C5CFF */
     --color-primary-hover: 253 100% 74%;
     --color-secondary: 220 10% 68%;
     --color-muted: 220 8% 46%;
-    --color-bg: 220 14% 6%;
-    --color-surface: 220 14% 9.5%;
+
+    --color-bg: 220 14% 6%; /* #0F1115 / #080808 */
+    --color-surface: 220 17% 8%; /* #111318 */
     --color-surface-hover: 220 14% 13%;
-    --color-border: 220 12% 14%;
+    --color-border: 0 0% 100% / 0.08; /* rgba(255,255,255,0.08) */
     --color-border-hover: 253 100% 68%;
-    --color-text-primary: 0 0% 100%;
-    --color-text-secondary: 220 10% 68%;
-    --color-text-muted: 220 8% 48%;
+
+    --color-text-primary: 0 0% 100%; /* #FFFFFF */
+    --color-text-secondary: 0 0% 100% / 0.65; /* rgba(255,255,255,0.65) */
+    --color-text-muted: 0 0% 100% / 0.45; /* rgba(255,255,255,0.45) */
+
     --color-success: 150 48% 48%;
     --color-warning: 38 75% 52%;
     --color-error: 0 70% 62%;
