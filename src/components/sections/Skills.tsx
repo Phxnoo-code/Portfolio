@@ -236,7 +236,7 @@ export const Skills: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: EASE_SMOOTH, delay: 0.15 }}
-              className="inline-flex items-center bg-surface border border-border p-1 select-none font-mono text-xs overflow-x-auto max-w-full shrink-0 self-start md:self-end"
+              className="inline-flex items-center bg-neutral-950 border border-white/[0.08] p-1 select-none font-mono text-xs overflow-x-auto max-w-full shrink-0 self-start md:self-end"
             >
               {toolkitCategoriesData.map((cat: ToolkitCategory) => {
                 const isActive = cat.id === activeTabId;
@@ -244,9 +244,9 @@ export const Skills: React.FC = () => {
                   <button
                     key={cat.id}
                     onClick={() => setActiveTabId(cat.id)}
-                    className={`px-4 py-2 sm:px-5 sm:py-2 font-mono text-xs font-semibold border-r border-border last:border-r-0 transition-all duration-200 whitespace-nowrap ${isActive
-                        ? 'bg-text-primary text-background font-bold shadow-[0_0_20px_rgba(124,92,255,0.2)]'
-                        : 'text-text-secondary hover:text-text-primary hover:bg-border/30'
+                    className={`px-4 py-2 sm:px-5 sm:py-2 font-mono text-xs font-semibold border-r border-white/[0.08] last:border-r-0 transition-all duration-200 whitespace-nowrap ${isActive
+                        ? 'bg-white text-black font-bold shadow-[0_0_20px_rgba(255,255,255,0.3)]'
+                        : 'text-text-secondary hover:text-text-primary hover:bg-white/[0.05]'
                       }`}
                   >
                     {cat.tabName}
@@ -260,7 +260,7 @@ export const Skills: React.FC = () => {
           {/* ============================================================ */}
           {/* ONE LARGE OUTER CONTAINER WRAPPING 8-COLUMN CONNECTED MATRIX */}
           {/* ============================================================ */}
-          <div className="w-full border border-border bg-surface rounded-none overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.4)] select-none">
+          <div className="w-full border border-white/[0.08] bg-neutral-950 rounded-none overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.8)] select-none">
 
             {/* 8-COLUMN CONNECTED MATRIX (8 columns x 2 rows = 16 slots) */}
             <AnimatePresence mode="wait">
@@ -280,11 +280,11 @@ export const Skills: React.FC = () => {
                   return (
                     <div
                       key={skill.id}
-                      className="border-r border-b border-border h-32 sm:h-36 flex flex-col justify-between items-start p-4 sm:p-5 text-left bg-surface/50 hover:bg-border/30 transition-colors duration-200 group select-none overflow-hidden"
+                      className="border-r border-b border-white/[0.08] h-32 sm:h-36 flex flex-col justify-between items-start p-4 sm:p-5 text-left bg-neutral-900/60 hover:bg-neutral-800/80 transition-colors duration-200 group select-none overflow-hidden"
                     >
                       {/* TOP: TECH ICON BADGE */}
                       <div
-                        className="w-8 h-8 sm:w-9 sm:h-9 rounded-sm border border-border bg-background text-text-primary flex items-center justify-center font-mono font-bold text-xs sm:text-sm group-hover:border-primary/50 group-hover:text-primary group-hover:shadow-[0_0_15px_rgba(124,92,255,0.2)] transition-all duration-300"
+                        className="w-8 h-8 sm:w-9 sm:h-9 rounded-sm border border-white/10 bg-white/[0.03] text-white flex items-center justify-center font-mono font-bold text-xs sm:text-sm group-hover:border-[#7C5CFF]/50 group-hover:text-[#7C5CFF] group-hover:shadow-[0_0_15px_rgba(124,92,255,0.2)] transition-all duration-300"
                       >
                         {CUSTOM_ICON_CLASSES[skill.iconKey] ? (
                           <span className={`${CUSTOM_ICON_CLASSES[skill.iconKey]} shrink-0`} />
@@ -311,7 +311,7 @@ export const Skills: React.FC = () => {
                 {Array.from({ length: emptySlotsCount }).map((_, emptyIdx) => (
                   <div
                     key={`empty-${emptyIdx}`}
-                    className="h-32 sm:h-36 bg-surface select-none pointer-events-none"
+                    className="h-32 sm:h-36 bg-neutral-950 select-none pointer-events-none"
                   />
                 ))}
               </motion.div>

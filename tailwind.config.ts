@@ -51,7 +51,6 @@ const config: Config = {
         text: {
           primary: 'hsl(var(--color-text-primary) / <alpha-value>)',
           secondary: 'hsl(var(--color-text-secondary) / <alpha-value>)',
-          muted: 'hsl(var(--color-text-muted) / <alpha-value>)',
         },
         status: {
           success: 'hsl(var(--color-success) / <alpha-value>)',
