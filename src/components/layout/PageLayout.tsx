@@ -6,8 +6,6 @@ import { Footer } from './Footer';
 export interface PageLayoutProps {
   children: React.ReactNode;
   activeSectionId?: string;
-  isDarkMode?: boolean;
-  onToggleTheme?: () => void;
   isIntroComplete?: boolean;
 }
 
@@ -18,8 +16,6 @@ export interface PageLayoutProps {
 export const PageLayout: React.FC<PageLayoutProps> = ({
   children,
   activeSectionId = 'about',
-  isDarkMode = true,
-  onToggleTheme,
   isIntroComplete = true,
 }) => {
   return (
@@ -29,8 +25,6 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
 
       <Navbar
         activeSectionId={activeSectionId}
-        isDarkMode={isDarkMode}
-        onToggleTheme={onToggleTheme}
         isIntroComplete={isIntroComplete}
       />
       <main className="flex-1 w-full">{children}</main>

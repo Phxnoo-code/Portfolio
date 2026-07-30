@@ -60,7 +60,7 @@ export const AboutContent: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.5, ease: EASE_SMOOTH }}
-            className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-text-primary tracking-[-0.02em] uppercase break-words"
+            className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-text-primary tracking-[-0.02em] uppercase break-words"
           >
             PHANOO NGAMCHALIAW
           </motion.h3>
@@ -70,7 +70,7 @@ export const AboutContent: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.5, delay: 0.05, ease: EASE_SMOOTH }}
-            className="text-xs sm:text-sm font-mono text-primary uppercase tracking-[0.18em] font-semibold"
+            className="text-xs sm:text-sm font-mono text-white/60 uppercase tracking-[0.18em] font-semibold"
           >
             IT Student & Digital Product Builder
           </motion.p>

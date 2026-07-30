@@ -1,7 +1,7 @@
 export interface ToolkitSkillItem {
   id: string;
   name: string;
-  tag: 'MAIN STACK' | 'FREQUENTLY USED' | 'CORE ENGINE' | 'PRIMARY' | 'CREATIVE';
+  tag?: string;
   iconKey: string;
 }
 

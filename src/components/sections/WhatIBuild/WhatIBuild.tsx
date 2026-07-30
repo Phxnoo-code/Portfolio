@@ -218,7 +218,7 @@ export const WhatIBuild: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.5, ease: EASE_SMOOTH }}
-              className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-primary font-semibold"
+              className="text-xs font-mono uppercase tracking-[0.2em] text-primary font-semibold"
             >
               — WHAT I BUILD —
             </motion.p>
@@ -228,7 +228,7 @@ export const WhatIBuild: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.5, delay: 0.06, ease: EASE_SMOOTH }}
-              className="text-2xl sm:text-4xl lg:text-5xl font-display font-extrabold text-text-primary tracking-[-0.03em] leading-[1.12] break-words"
+              className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-text-primary tracking-tight leading-tight break-words uppercase"
             >
               Designing and building connected digital systems
             </motion.h2>
@@ -263,7 +263,7 @@ export const WhatIBuild: React.FC = () => {
                 {/* Bottom Content Area */}
                 <div className="space-y-6 relative z-10">
                   <div className="space-y-3">
-                    <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-text-primary tracking-[-0.02em] leading-snug group-hover:text-primary transition-colors duration-300">
+                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-display font-bold text-text-primary tracking-tight leading-snug group-hover:text-primary transition-colors duration-300">
                       Digital Products & Systems
                     </h3>
                     <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-normal">
@@ -317,7 +317,7 @@ export const WhatIBuild: React.FC = () => {
 
                       {/* Title & Description */}
                       <div className="space-y-2">
-                        <h4 className="text-base sm:text-lg font-display font-bold tracking-wide text-text-primary group-hover:text-primary transition-colors duration-300">
+                        <h4 className="text-base sm:text-lg font-display font-semibold tracking-wide text-text-primary group-hover:text-primary transition-colors duration-300">
                           {block.title}
                         </h4>
                         <p className="text-xs sm:text-sm text-text-muted font-sans leading-relaxed">

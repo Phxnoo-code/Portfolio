@@ -45,7 +45,7 @@ export const Certificates: React.FC = () => {
               transition={{ duration: 0.5, ease: EASE_SMOOTH }}
               className="text-xs font-mono uppercase tracking-[0.2em] text-primary font-semibold"
             >
-              — Credentials —
+              — CERTIFICATES —
             </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 12 }}
@@ -96,7 +96,7 @@ export const Certificates: React.FC = () => {
                     {/* Metadata Content */}
                     <div className="flex-1 flex flex-col justify-between space-y-4 pt-1">
                       <div className="space-y-1">
-                        <h3 className="text-lg sm:text-xl font-display font-bold tracking-tight text-white leading-snug group-hover:text-primary transition-colors duration-300">
+                        <h3 className="text-base sm:text-lg font-display font-semibold tracking-tight text-white leading-snug group-hover:text-primary transition-colors duration-300">
                           {item.title}
                         </h3>
                         <p className="text-sm font-sans text-white/50">

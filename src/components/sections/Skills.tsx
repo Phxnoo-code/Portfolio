@@ -216,7 +216,7 @@ export const Skills: React.FC = () => {
                 transition={{ duration: 0.5, ease: EASE_SMOOTH }}
                 className="text-xs font-mono uppercase tracking-[0.2em] text-primary font-semibold text-left"
               >
-                — Toolkit —
+                — SKILLS —
               </motion.p>
 
               <motion.h2
@@ -224,7 +224,7 @@ export const Skills: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.55, ease: EASE_SMOOTH, delay: 0.05 }}
-                className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-text-primary leading-none text-left"
+                className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-text-primary uppercase leading-none text-left"
               >
                 Technology Stack
               </motion.h2>
@@ -236,7 +236,7 @@ export const Skills: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: EASE_SMOOTH, delay: 0.15 }}
-              className="inline-flex items-center bg-[#10131B] border border-white/[0.12] p-1 select-none font-mono text-xs overflow-x-auto max-w-full shrink-0 self-start md:self-end"
+              className="inline-flex items-center bg-neutral-950 border border-white/[0.08] p-1 select-none font-mono text-xs overflow-x-auto max-w-full shrink-0 self-start md:self-end"
             >
               {toolkitCategoriesData.map((cat: ToolkitCategory) => {
                 const isActive = cat.id === activeTabId;
@@ -260,7 +260,7 @@ export const Skills: React.FC = () => {
           {/* ============================================================ */}
           {/* ONE LARGE OUTER CONTAINER WRAPPING 8-COLUMN CONNECTED MATRIX */}
           {/* ============================================================ */}
-          <div className="w-full border border-white/[0.12] bg-[#10131B] rounded-none overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.8)] select-none">
+          <div className="w-full border border-white/[0.08] bg-neutral-950 rounded-none overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.8)] select-none">
 
             {/* 8-COLUMN CONNECTED MATRIX (8 columns x 2 rows = 16 slots) */}
             <AnimatePresence mode="wait">
@@ -280,44 +280,38 @@ export const Skills: React.FC = () => {
                   return (
                     <div
                       key={skill.id}
-                      className="border-r border-b border-white/[0.08] h-32 sm:h-36 flex flex-col justify-between items-start p-4 sm:p-5 text-left bg-[#141824] hover:bg-[#1C2234] transition-colors duration-200 group select-none overflow-hidden"
+                      className="border-r border-b border-white/[0.08] h-32 sm:h-36 flex flex-col justify-between items-start p-4 sm:p-5 text-left bg-neutral-900/60 hover:bg-neutral-800/80 transition-colors duration-200 group select-none overflow-hidden"
                     >
                       {/* TOP: TECH ICON BADGE */}
                       <div
-                        className={`w-8 h-8 sm:w-9 sm:h-9 rounded-sm border flex items-center justify-center font-mono font-bold text-xs sm:text-sm ${badge
-                            ? `${badge.bg} ${badge.text}`
-                            : 'bg-white/[0.04] border-white/20 text-primary-light'
-                          }`}
+                        className="w-8 h-8 sm:w-9 sm:h-9 rounded-sm border border-white/10 bg-white/[0.03] text-white flex items-center justify-center font-mono font-bold text-xs sm:text-sm group-hover:border-[#7C5CFF]/50 group-hover:text-[#7C5CFF] group-hover:shadow-[0_0_15px_rgba(124,92,255,0.2)] transition-all duration-300"
                       >
                         {CUSTOM_ICON_CLASSES[skill.iconKey] ? (
                           <span className={`${CUSTOM_ICON_CLASSES[skill.iconKey]} shrink-0`} />
                         ) : badge ? (
                           <span>{badge.label}</span>
                         ) : IconComponent ? (
-                          <IconComponent className="w-4 h-4 text-primary-light" />
+                          <IconComponent className="w-4 h-4 text-white group-hover:text-[#7C5CFF] transition-colors" />
                         ) : (
-                          <Code2 className="w-4 h-4 text-primary-light" />
+                          <Code2 className="w-4 h-4 text-white group-hover:text-[#7C5CFF] transition-colors" />
                         )}
                       </div>
 
-                      {/* BOTTOM: TECH TITLE & SUB-TAG */}
+                      {/* BOTTOM: TECH TITLE */}
                       <div className="pt-2 min-w-0 w-full">
                         <h4 className="font-display font-bold text-xs sm:text-sm lg:text-sm text-text-primary group-hover:text-white transition-colors tracking-tight leading-snug truncate" title={skill.name}>
                           {skill.name}
                         </h4>
-                        <p className="font-mono text-[9px] text-text-tertiary uppercase tracking-wider mt-1 group-hover:text-primary-light/80 transition-colors font-medium truncate">
-                          {skill.tag}
-                        </p>
                       </div>
                     </div>
                   );
                 })}
 
-                {/* 2. UNUSED/EMPTY MATRIX CELLS (Seamless Surface Background without divider lines) */}
+                {/* 2. UNUSED/EMPTY MATRIX CELLS */}
                 {Array.from({ length: emptySlotsCount }).map((_, emptyIdx) => (
                   <div
                     key={`empty-${emptyIdx}`}
-                    className="h-32 sm:h-36 bg-[#0E1017] select-none pointer-events-none"
+                    className="h-32 sm:h-36 bg-neutral-950 select-none pointer-events-none"
                   />
                 ))}
               </motion.div>

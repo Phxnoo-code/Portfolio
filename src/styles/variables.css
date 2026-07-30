@@ -6,9 +6,9 @@
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
     /* Color Semantics System - Softened Minimal Palette */
-    /* Primary Accent - Soft Lavender Indigo (#8F7EFF) */
-    --color-primary: 245 70% 72%;
-    --color-primary-hover: 245 75% 78%;
+    /* Primary Accent - Electric Purple (#7C5CFF) */
+    --color-primary: 253 100% 68%;
+    --color-primary-hover: 253 100% 74%;
 
     /* Monochromatic Soft Grays */
     --color-secondary: 220 10% 68%;
@@ -21,11 +21,11 @@
     /* #171A21 - Soft Surface Panels */
     --color-surface-hover: 220 14% 13%;
     --color-border: 220 12% 14%;
-    --color-border-hover: 245 70% 72%;
+    --color-border-hover: 253 100% 68%;
 
     /* Typography Semantics - Soft Off-White & Calm Zinc Tones */
-    --color-text-primary: 220 20% 93%;
-    /* #EAECEF - Soft readable heading text */
+    --color-text-primary: 0 0% 100%;
+    /* #FFFFFF - Pure clean white heading text */
     --color-text-secondary: 220 10% 68%;
     /* #A0A7B5 - Soft secondary paragraph text */
     --color-text-muted: 220 8% 48%;
@@ -41,16 +41,16 @@
     --font-display: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-    --color-primary: 245 70% 72%;
-    --color-primary-hover: 245 75% 78%;
+    --color-primary: 253 100% 68%;
+    --color-primary-hover: 253 100% 74%;
     --color-secondary: 220 10% 68%;
     --color-muted: 220 8% 46%;
     --color-bg: 220 14% 6%;
     --color-surface: 220 14% 9.5%;
     --color-surface-hover: 220 14% 13%;
     --color-border: 220 12% 14%;
-    --color-border-hover: 245 70% 72%;
-    --color-text-primary: 220 20% 93%;
+    --color-border-hover: 253 100% 68%;
+    --color-text-primary: 0 0% 100%;
     --color-text-secondary: 220 10% 68%;
     --color-text-muted: 220 8% 48%;
     --color-success: 150 48% 48%;

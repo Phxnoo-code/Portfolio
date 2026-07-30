@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { navigationData } from '@/data/navigation';
 import { Button } from '../ui/Button';
 import { IconButton } from '../ui/IconButton';
@@ -9,8 +9,6 @@ import { MobileMenu } from './MobileMenu';
 
 export interface NavbarProps {
   activeSectionId?: string;
-  isDarkMode?: boolean;
-  onToggleTheme?: () => void;
   isIntroComplete?: boolean;
 }
 
@@ -26,8 +24,6 @@ const EASE_EXPRESSIVE: [number, number, number, number] = [0.16, 1, 0.3, 1];
  */
 export const Navbar: React.FC<NavbarProps> = ({
   activeSectionId = 'hero',
-  isDarkMode = true,
-  onToggleTheme,
   isIntroComplete = true,
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -98,16 +94,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Action Controls & Right Buttons */}
         <div className="flex items-center gap-3">
-          {onToggleTheme && (
-            <IconButton
-              icon={isDarkMode ? Sun : Moon}
-              aria-label="Toggle Color Theme"
-              variant="ghost"
-              size="md"
-              onClick={onToggleTheme}
-            />
-          )}
-
           <div className="hidden sm:block">
             <Button
               variant="primary"

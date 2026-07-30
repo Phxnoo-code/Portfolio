@@ -3,7 +3,7 @@ import { PageLayout } from '@/components/layout';
 import { SEO } from '@/components/common/SEO';
 import { Loading } from '@/components/ui/Loading';
 import { IntroOverlay } from '@/components/motion/IntroOverlay';
-import { useTheme, useActiveSection } from '@/hooks';
+import { useActiveSection } from '@/hooks';
 import { SECTION_LIST } from '@/constants/routes';
 
 // Dynamic lazy imports for portfolio sections
@@ -21,7 +21,6 @@ const Contact = lazy(() => import('@/components/sections/Contact').then((m) => (
  * Performance-optimized page view using React.lazy code-splitting, Suspense fallbacks, and luxury IntroOverlay preloader.
  */
 export const Home: React.FC = () => {
-  const { isDarkMode, toggleTheme } = useTheme();
   const activeSection = useActiveSection([...SECTION_LIST], 'hero');
 
   const [isIntroComplete, setIsIntroComplete] = useState<boolean>(() => {
@@ -40,8 +39,6 @@ export const Home: React.FC = () => {
       <IntroOverlay onComplete={() => setIsIntroComplete(true)} />
       <PageLayout
         activeSectionId={activeSection}
-        isDarkMode={isDarkMode}
-        onToggleTheme={toggleTheme}
         isIntroComplete={isIntroComplete}
       >
         <SEO />

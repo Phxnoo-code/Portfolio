@@ -56,7 +56,7 @@ export const HeroContent: React.FC<HeroContentProps> = ({ isIntroComplete = true
 
       {/* Role & Subheading */}
       <motion.div {...getItemMotion(3)} className="overflow-hidden">
-        <p className="text-[13px] sm:text-[14px] font-mono uppercase tracking-[0.18em] text-primary font-medium">
+        <p className="text-[13px] sm:text-[14px] font-mono uppercase tracking-[0.18em] text-white/60 font-medium">
           — {title} —
         </p>
       </motion.div>

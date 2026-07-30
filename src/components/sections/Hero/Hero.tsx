@@ -40,8 +40,8 @@ export const Hero: React.FC<HeroProps> = ({ isIntroComplete = true }) => {
         <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,17,21,1)_0%,rgba(18,22,32,0.4)_50%,rgba(15,17,21,1)_100%)]" />
         {/* Layer B: Ultra-faint 2.5% Top Atmospheric Ceiling Gradient */}
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(143,126,255,0.025)_0%,transparent_70%)]" />
-        {/* Layer C: Ultra-faint 2% Lateral Side Volume */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_left,rgba(56,189,248,0.02)_0%,transparent_60%)]" />
+        {/* Layer C: Ultra-faint 1.5% Purple Lateral Side Volume */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_left,rgba(124,92,255,0.015)_0%,transparent_60%)]" />
       </div>
 
       {/* 2. Ultra-Fine Noise Texture Overlay Layer (z-0) */}

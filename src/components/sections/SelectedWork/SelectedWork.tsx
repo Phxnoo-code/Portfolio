@@ -79,7 +79,6 @@ export const SELECTED_PROJECTS: ProjectCaseStudy[] = [
       'Gemini AI Integration: Uses Google Gemini to generate natural language responses based on user questions.',
       'Webhook Event Processing: Receives LINE message events and triggers automated workflows.',
     ],
-    demoUrl: 'https://example.com/line-hr-assistant',
     githubUrl: 'https://github.com/phanoo/line-hr-assistant',
     isImageRight: false,
   },
@@ -172,7 +171,7 @@ export const SelectedWork: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.5, ease: EASE_SMOOTH }}
-              className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-primary font-semibold"
+              className="text-xs font-mono uppercase tracking-[0.2em] text-primary font-semibold"
             >
               — SELECTED WORK —
             </motion.p>
@@ -182,7 +181,7 @@ export const SelectedWork: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.5, delay: 0.06, ease: EASE_SMOOTH }}
-              className="text-2xl sm:text-4xl lg:text-5xl font-display font-extrabold text-text-primary tracking-[-0.03em] leading-[1.12] break-words"
+              className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-text-primary tracking-tight leading-tight break-words uppercase"
             >
               Real products built through design, engineering, and automation
             </motion.h2>
@@ -249,7 +248,7 @@ export const SelectedWork: React.FC = () => {
 
                         {/* Title & Short Description (2-3 lines) */}
                         <div className="space-y-3">
-                          <h3 className="text-3xl sm:text-4xl lg:text-4xl font-display font-extrabold text-text-primary tracking-[-0.02em] leading-tight group-hover:text-primary transition-colors duration-300">
+                          <h3 className="text-xl sm:text-2xl lg:text-3xl font-display font-bold text-text-primary tracking-tight leading-tight group-hover:text-primary transition-colors duration-300">
                             {project.title}
                           </h3>
                           <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-normal">

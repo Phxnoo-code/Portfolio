@@ -7,9 +7,9 @@
 export const colorTokens = {
   dark: {
     primary: {
-      hsl: '245 70% 72%',
-      hex: '#8F7EFF',
-      hover: '245 75% 78%',
+      hsl: '253 100% 68%',
+      hex: '#7C5CFF',
+      hover: '253 100% 74%',
     },
     secondary: {
       hsl: '220 10% 68%',
