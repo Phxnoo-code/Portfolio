@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Code2, Monitor, Server, Workflow, Bot, ArrowRight, X } from 'lucide-react';
+import { useLanguage } from '@/hooks/useLanguage';
 import { Section } from '../../layout/Section';
 import { Container } from '../../ui/Container';
 
@@ -20,154 +21,117 @@ export interface DetailContent {
   relatedProjects: string[];
 }
 
-const CAPABILITY_DETAILS: Record<string, DetailContent> = {
-  'digital-products-systems': {
-    id: 'digital-products-systems',
-    indexNumber: '00',
-    title: 'Digital Products & Systems',
-    philosophy: 'Creating digital products by connecting design, technology, and intelligent systems.',
-    focusItems: [
-      'Designing digital experiences with scalable interface systems',
-      'Building connected applications through APIs and structured data',
-      'Automating workflows with intelligent tools and AI capabilities',
-    ],
-    processSteps: [
-      { number: '01', title: 'Discover', desc: 'Understanding problems, goals, and product direction.' },
-      { number: '02', title: 'Design', desc: 'Creating intuitive interfaces and system structures.' },
-      { number: '03', title: 'Build', desc: 'Transforming ideas into scalable digital products.' },
-      { number: '04', title: 'Launch', desc: 'Refining performance, reliability, and user experience.' },
-    ],
-    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'APIs', 'Databases', 'Docker'],
-    relatedProjects: ['Portfolio Website', 'Barber Booking System'],
-  },
-  'interface-engineering': {
-    id: 'interface-engineering',
-    indexNumber: '01',
-    title: 'Interface Engineering',
-    philosophy: 'Creating digital interfaces where user experience, visual systems, and technology come together.',
-    focusItems: [
-      'Designing scalable interface systems and reusable components',
-      'Building accessible and intuitive user experiences',
-      'Creating consistent visual systems across products',
-    ],
-    processSteps: [
-      { number: '01', title: 'Define', desc: 'Understanding users, goals, and product requirements.' },
-      { number: '02', title: 'Design', desc: 'Creating visual systems and interaction patterns.' },
-      { number: '03', title: 'Build', desc: 'Transforming concepts into scalable interfaces.' },
-      { number: '04', title: 'Refine', desc: 'Improving usability, performance, and experience.' },
-    ],
-    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vite'],
-    relatedProjects: ['Portfolio Website', 'Design System'],
-  },
-  'system-integration': {
-    id: 'system-integration',
-    indexNumber: '02',
-    title: 'System Integration',
-    philosophy: 'Connecting products, services, and data into seamless digital experiences.',
-    focusItems: [
-      'Connecting applications through APIs and external services',
-      'Designing structured data flows and system architecture',
-      'Creating reliable experiences across connected platforms',
-    ],
-    processSteps: [
-      { number: '01', title: 'Map', desc: 'Understanding systems, requirements, and data relationships.' },
-      { number: '02', title: 'Connect', desc: 'Integrating APIs, services, and application layers.' },
-      { number: '03', title: 'Validate', desc: 'Testing reliability, data flow, and user experience.' },
-      { number: '04', title: 'Improve', desc: 'Refining performance and system stability.' },
-    ],
-    technologies: ['REST APIs', 'PHP', 'MySQL', 'PostgreSQL', 'Docker', 'Webhooks'],
-    relatedProjects: ['LINE HR Bot', 'Barber Booking System'],
-  },
-  'automation-workflows': {
-    id: 'automation-workflows',
-    indexNumber: '03',
-    title: 'Automation Workflows',
-    philosophy: 'Designing automated systems that reduce complexity and help digital products operate more efficiently.',
-    focusItems: [
-      'Designing workflows that connect tools, data, and services',
-      'Automating repetitive processes through intelligent systems',
-      'Improving efficiency by reducing manual operations',
-    ],
-    processSteps: [
-      { number: '01', title: 'Audit', desc: 'Understanding repetitive tasks and opportunities for automation.' },
-      { number: '02', title: 'Map', desc: 'Creating workflow logic between systems and services.' },
-      { number: '03', title: 'Automate', desc: 'Connecting APIs, tools, and automated processes.' },
-      { number: '04', title: 'Monitor', desc: 'Improving reliability and workflow performance.' },
-    ],
-    technologies: ['n8n', 'Webhooks', 'APIs', 'Python', 'Docker', 'Automation Systems'],
-    relatedProjects: ['LINE HR Bot', 'AI Workflow Integration'],
-  },
-  'ai-integration': {
-    id: 'ai-integration',
-    indexNumber: '04',
-    title: 'AI Integration',
-    philosophy: 'Integrating AI capabilities into digital products to enhance workflows, experiences, and user interactions.',
-    focusItems: [
-      'Integrating AI features into real-world applications',
-      'Designing AI-assisted workflows and user experiences',
-      'Creating structured prompts for consistent AI responses',
-    ],
-    processSteps: [
-      { number: '01', title: 'Identify', desc: 'Finding opportunities where AI can improve user workflows.' },
-      { number: '02', title: 'Design', desc: 'Creating prompts, logic, and interaction patterns.' },
-      { number: '03', title: 'Integrate', desc: 'Connecting AI models with applications and services.' },
-      { number: '04', title: 'Refine', desc: 'Improving response quality and user experience.' },
-    ],
-    technologies: ['OpenAI API', 'Gemini API', 'Claude API', 'Python', 'TypeScript', 'APIs'],
-    relatedProjects: ['LINE HR Bot', 'AI Workflow Integration'],
-  },
-};
-
-export interface SupportingBlock {
-  id: string;
-  numberLabel: string;
-  title: string;
-  description: string;
-  icon: React.ElementType;
-  tag: string;
-}
-
-const RIGHT_BLOCKS: SupportingBlock[] = [
-  {
-    id: 'interface-engineering',
-    numberLabel: '01',
-    title: 'Interface Engineering',
-    description: 'Creating responsive interfaces where design thinking meets modern frontend technology.',
-    icon: Monitor,
-    tag: 'View details',
-  },
-  {
-    id: 'system-integration',
-    numberLabel: '02',
-    title: 'System Integration',
-    description: 'Connecting products, services, and data into seamless digital experiences.',
-    icon: Server,
-    tag: 'View details',
-  },
-  {
-    id: 'automation-workflows',
-    numberLabel: '03',
-    title: 'Automation Workflows',
-    description: 'Designing automated systems that reduce complexity and help digital products operate more efficiently.',
-    icon: Workflow,
-    tag: 'View details',
-  },
-  {
-    id: 'ai-integration',
-    numberLabel: '04',
-    title: 'AI Integration',
-    description: 'Integrating AI capabilities into digital products to enhance workflows, experiences, and user interactions.',
-    icon: Bot,
-    tag: 'View details',
-  },
-];
-
-/**
- * WhatIBuild Section Component
- * Shares exact atmospheric volumetric gradient background and noise texture with About & Skills.
- */
 export const WhatIBuild: React.FC = () => {
+  const { t } = useLanguage();
   const [activeDetailId, setActiveDetailId] = useState<string | null>(null);
+
+  const capabilityDetails: Record<string, DetailContent> = {
+    'digital-products-systems': {
+      id: 'digital-products-systems',
+      indexNumber: '00',
+      title: t.whatIBuild.details['digital-products-systems'].title,
+      philosophy: t.whatIBuild.details['digital-products-systems'].philosophy,
+      focusItems: t.whatIBuild.details['digital-products-systems'].focusItems,
+      processSteps: t.whatIBuild.details['digital-products-systems'].processSteps.map((step, idx) => ({
+        number: `0${idx + 1}`,
+        title: step.title,
+        desc: step.desc,
+      })),
+      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'APIs', 'Databases', 'Docker'],
+      relatedProjects: ['Portfolio Website', 'Barber Booking System'],
+    },
+    'interface-engineering': {
+      id: 'interface-engineering',
+      indexNumber: '01',
+      title: t.whatIBuild.details['interface-engineering'].title,
+      philosophy: t.whatIBuild.details['interface-engineering'].philosophy,
+      focusItems: t.whatIBuild.details['interface-engineering'].focusItems,
+      processSteps: t.whatIBuild.details['interface-engineering'].processSteps.map((step, idx) => ({
+        number: `0${idx + 1}`,
+        title: step.title,
+        desc: step.desc,
+      })),
+      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vite'],
+      relatedProjects: ['Portfolio Website', 'Design System'],
+    },
+    'system-integration': {
+      id: 'system-integration',
+      indexNumber: '02',
+      title: t.whatIBuild.details['system-integration'].title,
+      philosophy: t.whatIBuild.details['system-integration'].philosophy,
+      focusItems: t.whatIBuild.details['system-integration'].focusItems,
+      processSteps: t.whatIBuild.details['system-integration'].processSteps.map((step, idx) => ({
+        number: `0${idx + 1}`,
+        title: step.title,
+        desc: step.desc,
+      })),
+      technologies: ['REST APIs', 'PHP', 'MySQL', 'PostgreSQL', 'Docker', 'Webhooks'],
+      relatedProjects: ['LINE HR Bot', 'Barber Booking System'],
+    },
+    'automation-workflows': {
+      id: 'automation-workflows',
+      indexNumber: '03',
+      title: t.whatIBuild.details['automation-workflows'].title,
+      philosophy: t.whatIBuild.details['automation-workflows'].philosophy,
+      focusItems: t.whatIBuild.details['automation-workflows'].focusItems,
+      processSteps: t.whatIBuild.details['automation-workflows'].processSteps.map((step, idx) => ({
+        number: `0${idx + 1}`,
+        title: step.title,
+        desc: step.desc,
+      })),
+      technologies: ['n8n', 'Webhooks', 'APIs', 'Python', 'Docker', 'Automation Systems'],
+      relatedProjects: ['LINE HR Bot', 'AI Workflow Integration'],
+    },
+    'ai-integration': {
+      id: 'ai-integration',
+      indexNumber: '04',
+      title: t.whatIBuild.details['ai-integration'].title,
+      philosophy: t.whatIBuild.details['ai-integration'].philosophy,
+      focusItems: t.whatIBuild.details['ai-integration'].focusItems,
+      processSteps: t.whatIBuild.details['ai-integration'].processSteps.map((step, idx) => ({
+        number: `0${idx + 1}`,
+        title: step.title,
+        desc: step.desc,
+      })),
+      technologies: ['OpenAI API', 'Gemini API', 'Claude API', 'Python', 'TypeScript', 'APIs'],
+      relatedProjects: ['LINE HR Bot', 'AI Workflow Integration'],
+    },
+  };
+
+  const rightBlocks = [
+    {
+      id: 'interface-engineering',
+      numberLabel: '01',
+      title: t.whatIBuild.details['interface-engineering'].title,
+      description: t.whatIBuild.details['interface-engineering'].description,
+      icon: Monitor,
+      tag: t.whatIBuild.viewDetails,
+    },
+    {
+      id: 'system-integration',
+      numberLabel: '02',
+      title: t.whatIBuild.details['system-integration'].title,
+      description: t.whatIBuild.details['system-integration'].description,
+      icon: Server,
+      tag: t.whatIBuild.viewDetails,
+    },
+    {
+      id: 'automation-workflows',
+      numberLabel: '03',
+      title: t.whatIBuild.details['automation-workflows'].title,
+      description: t.whatIBuild.details['automation-workflows'].description,
+      icon: Workflow,
+      tag: t.whatIBuild.viewDetails,
+    },
+    {
+      id: 'ai-integration',
+      numberLabel: '04',
+      title: t.whatIBuild.details['ai-integration'].title,
+      description: t.whatIBuild.details['ai-integration'].description,
+      icon: Bot,
+      tag: t.whatIBuild.viewDetails,
+    },
+  ];
 
   // Close detail panel on Escape key
   useEffect(() => {
@@ -186,7 +150,7 @@ export const WhatIBuild: React.FC = () => {
     };
   }, [activeDetailId]);
 
-  const currentDetail = activeDetailId ? CAPABILITY_DETAILS[activeDetailId] : null;
+  const currentDetail = activeDetailId ? capabilityDetails[activeDetailId] : null;
 
   return (
     <Section
@@ -197,7 +161,7 @@ export const WhatIBuild: React.FC = () => {
       className="relative z-10 overflow-hidden py-16 sm:py-24 bg-background w-full min-w-0"
     >
       {/* 1. Atmospheric Volumetric Continuation (Matching About & Hero Depth) */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 select-none">
+      <div className="hidden dark:block absolute inset-0 pointer-events-none overflow-hidden z-0 select-none">
         <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,17,21,1)_0%,rgba(18,22,32,0.3)_50%,rgba(15,17,21,1)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_0%,rgba(143,126,255,0.015)_50%,transparent_100%)]" />
       </div>
@@ -220,7 +184,7 @@ export const WhatIBuild: React.FC = () => {
               transition={{ duration: 0.5, ease: EASE_SMOOTH }}
               className="text-xs font-mono uppercase tracking-[0.2em] text-primary font-semibold"
             >
-              — WHAT I BUILD —
+              {t.whatIBuild.eyebrow}
             </motion.p>
 
             <motion.h2
@@ -230,7 +194,7 @@ export const WhatIBuild: React.FC = () => {
               transition={{ duration: 0.5, delay: 0.06, ease: EASE_SMOOTH }}
               className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-text-primary tracking-tight leading-tight break-words uppercase"
             >
-              Designing and building connected digital systems
+              {t.whatIBuild.title}
             </motion.h2>
           </div>
 
@@ -246,13 +210,13 @@ export const WhatIBuild: React.FC = () => {
               onClick={() => setActiveDetailId('digital-products-systems')}
               className="lg:col-span-5 w-full min-w-0 group flex cursor-pointer"
             >
-              <div className="relative w-full pt-3 sm:pt-4 px-8 sm:px-10 pb-8 sm:pb-10 rounded-none bg-[radial-gradient(ellipse_at_top_left,rgba(124,92,255,0.06)_0%,rgba(16,18,25,0.98)_60%,rgba(10,11,15,1)_100%)] border border-white/[0.12] shadow-[inset_0_1px_1px_rgba(255,255,255,0.08),0_12px_32px_rgba(0,0,0,0.5)] group-hover:bg-[radial-gradient(ellipse_at_top_left,rgba(124,92,255,0.12)_0%,rgba(20,23,32,0.99)_65%,rgba(12,14,20,1)_100%)] group-hover:border-[#7C5CFF]/60 group-hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_0_35px_rgba(124,92,255,0.18)] transition-all duration-500 flex flex-col justify-between space-y-10 sm:space-y-12 min-h-[380px] sm:min-h-[420px] overflow-hidden">
+              <div className="relative w-full pt-3 sm:pt-4 px-8 sm:px-10 pb-8 sm:pb-10 rounded-none bg-surface dark:bg-[radial-gradient(ellipse_at_top_left,rgba(124,92,255,0.06)_0%,rgba(16,18,25,0.98)_60%,rgba(10,11,15,1)_100%)] border border-border shadow-md dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.08),0_12px_32px_rgba(0,0,0,0.5)] group-hover:border-border-hover transition-all duration-500 flex flex-col justify-between space-y-10 sm:space-y-12 min-h-[380px] sm:min-h-[420px] overflow-hidden">
                 {/* Ultra-faint Mood Atmosphere Ring */}
-                <div className="absolute -top-16 -left-16 w-56 h-56 bg-[#7C5CFF]/08 blur-3xl pointer-events-none select-none rounded-full" />
+                <div className="absolute -top-16 -left-16 w-56 h-56 bg-primary/10 blur-3xl pointer-events-none select-none rounded-full" />
 
                 {/* Top Row: Left Code Icon & Right Index Number "00" */}
                 <div className="flex items-center justify-between w-full relative z-10">
-                  <div className="w-12 h-12 rounded-none bg-black/40 border border-white/[0.12] flex items-center justify-center text-primary group-hover:border-[#7C5CFF]/50 group-hover:bg-[#7C5CFF]/15 transition-all duration-300 shadow-md">
+                  <div className="w-12 h-12 rounded-none bg-surface-subtle border border-border flex items-center justify-center text-primary group-hover:border-border-hover group-hover:bg-primary/15 transition-all duration-300 shadow-sm">
                     <Code2 size={26} strokeWidth={1.75} />
                   </div>
                   <span className="text-xs font-mono text-primary font-semibold">
@@ -264,25 +228,28 @@ export const WhatIBuild: React.FC = () => {
                 <div className="space-y-6 relative z-10">
                   <div className="space-y-3">
                     <h3 className="text-xl sm:text-2xl lg:text-3xl font-display font-bold text-text-primary tracking-tight leading-snug group-hover:text-primary transition-colors duration-300">
-                      Digital Products & Systems
+                      {t.whatIBuild.details['digital-products-systems'].title}
                     </h3>
                     <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-normal">
-                      Creating digital products by connecting design, technology, and intelligent systems.
+                      {t.whatIBuild.details['digital-products-systems'].philosophy}
                     </p>
                   </div>
 
                   {/* Footer Action Trigger */}
-                  <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between text-xs font-mono">
+                  <div className="pt-4 border-t border-border-subtle flex items-center justify-between text-xs font-mono">
                     <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-text-muted">
-                      <span className="text-text-primary font-medium">Web Applications</span>
-                      <span className="text-primary/70">•</span>
-                      <span className="text-text-primary font-medium">System Integration</span>
-                      <span className="text-primary/70">•</span>
-                      <span className="text-text-primary font-medium">Automation</span>
+                      {t.whatIBuild.details['digital-products-systems'].keywords.map((kw, kwIdx) => (
+                        <React.Fragment key={kw}>
+                          <span className="text-text-primary font-medium">{kw}</span>
+                          {kwIdx < t.whatIBuild.details['digital-products-systems'].keywords.length - 1 && (
+                            <span className="text-primary/70">•</span>
+                          )}
+                        </React.Fragment>
+                      ))}
                     </div>
 
                     <div className="flex items-center gap-1.5 text-xs font-mono text-primary font-semibold shrink-0 pl-2">
-                      <span>View details</span>
+                      <span>{t.whatIBuild.viewDetails}</span>
                       <ArrowRight size={12} className="group-hover:translate-x-1.5 transition-transform duration-300 text-primary" />
                     </div>
                   </div>
@@ -292,7 +259,7 @@ export const WhatIBuild: React.FC = () => {
 
             {/* RIGHT: 4 Supporting Capability Cards (01, 02, 03, 04) (55% Width / lg:col-span-7) */}
             <div className="lg:col-span-7 w-full min-w-0 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-              {RIGHT_BLOCKS.map((block, idx) => {
+              {rightBlocks.map((block, idx) => {
                 const IconComponent = block.icon;
                 return (
                   <motion.div
@@ -304,10 +271,10 @@ export const WhatIBuild: React.FC = () => {
                     onClick={() => setActiveDetailId(block.id)}
                     className="w-full min-w-0 group flex cursor-pointer"
                   >
-                    <div className="w-full p-6 sm:p-7 rounded-none bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.03)_0%,rgba(17,19,26,0.98)_65%,rgba(12,13,18,1)_100%)] border border-white/[0.09] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_8px_24px_rgba(0,0,0,0.4)] group-hover:bg-[radial-gradient(ellipse_at_top_left,rgba(124,92,255,0.08)_0%,rgba(21,24,34,0.98)_70%,rgba(13,15,22,1)_100%)] group-hover:border-[#7C5CFF]/55 group-hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.12),0_10px_30px_rgba(124,92,255,0.14)] transition-all duration-300 flex flex-col justify-between space-y-6">
+                    <div className="w-full p-6 sm:p-7 rounded-none bg-surface dark:bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.03)_0%,rgba(17,19,26,0.98)_65%,rgba(12,13,18,1)_100%)] border border-border shadow-sm dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_8px_24px_rgba(0,0,0,0.4)] group-hover:border-border-hover transition-all duration-300 flex flex-col justify-between space-y-6">
                       {/* Top Header: Icon & Number Label */}
                       <div className="flex items-center justify-between w-full">
-                        <div className="w-10 h-10 rounded-none bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-primary group-hover:border-[#7C5CFF]/50 group-hover:bg-[#7C5CFF]/12 transition-colors duration-300 shadow-sm">
+                        <div className="w-10 h-10 rounded-none bg-surface-subtle border border-border-subtle flex items-center justify-center text-primary group-hover:border-border-hover group-hover:bg-primary/12 transition-colors duration-300 shadow-sm">
                           <IconComponent size={20} strokeWidth={1.75} />
                         </div>
                         <span className="text-xs font-mono text-primary font-semibold">
@@ -352,7 +319,7 @@ export const WhatIBuild: React.FC = () => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3, ease: EASE_SMOOTH }}
               onClick={() => setActiveDetailId(null)}
-              className="absolute inset-0 bg-black/75 backdrop-blur-xl"
+              className="absolute inset-0 bg-overlay-backdrop/75 backdrop-blur-xl"
             />
 
             {/* Compact Floating Glass Editorial Panel (max-w-[760px]) */}
@@ -361,7 +328,7 @@ export const WhatIBuild: React.FC = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.96, y: 15 }}
               transition={{ duration: 0.35, ease: EASE_SMOOTH }}
-              className="relative w-full max-w-[760px] max-h-[82vh] overflow-y-auto rounded-none bg-[#0B0C10]/96 border border-white/[0.12] shadow-2xl shadow-black/90 p-6 sm:p-8 space-y-6 sm:space-y-7 z-10 scrollbar-thin scrollbar-thumb-white/10"
+              className="relative w-full max-w-[760px] max-h-[82vh] overflow-y-auto rounded-none bg-surface/96 border border-border shadow-2xl p-6 sm:p-8 space-y-6 sm:space-y-7 z-10 scrollbar-thin"
             >
               {/* Close Button Trigger */}
               <button
@@ -388,9 +355,9 @@ export const WhatIBuild: React.FC = () => {
               </p>
 
               {/* 3. WHAT I FOCUS ON (Pure Typography Bullet Lines) */}
-              <div className="space-y-3 pt-4 border-t border-white/[0.08]">
+              <div className="space-y-3 pt-4 border-t border-border-subtle">
                 <h4 className="text-[11px] font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
-                  WHAT I FOCUS ON
+                  {t.whatIBuild.modal.whatIFocusOn}
                 </h4>
                 <div className="space-y-2">
                   {currentDetail.focusItems.map((item, idx) => (
@@ -403,9 +370,9 @@ export const WhatIBuild: React.FC = () => {
               </div>
 
               {/* 4. PROCESS (Clean Numbered Sequence) */}
-              <div className="space-y-3 pt-4 border-t border-white/[0.08]">
+              <div className="space-y-3 pt-4 border-t border-border-subtle">
                 <h4 className="text-[11px] font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
-                  PROCESS
+                  {t.whatIBuild.modal.process}
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
                   {currentDetail.processSteps.map((step) => (
@@ -423,9 +390,9 @@ export const WhatIBuild: React.FC = () => {
               </div>
 
               {/* 5. TECHNOLOGIES (Pure Inline Dot Stream) */}
-              <div className="space-y-2 pt-4 border-t border-white/[0.08]">
+              <div className="space-y-2 pt-4 border-t border-border-subtle">
                 <h4 className="text-[11px] font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
-                  TECHNOLOGIES
+                  {t.whatIBuild.modal.technologies}
                 </h4>
                 <p className="text-xs font-mono text-text-secondary leading-relaxed">
                   {currentDetail.technologies.join('  •  ')}
@@ -433,9 +400,9 @@ export const WhatIBuild: React.FC = () => {
               </div>
 
               {/* 6. RELATED PROJECTS (Clean Minimal Text Links) */}
-              <div className="space-y-2 pt-4 border-t border-white/[0.08]">
+              <div className="space-y-2 pt-4 border-t border-border-subtle">
                 <h4 className="text-[11px] font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
-                  RELATED PROJECTS
+                  {t.whatIBuild.modal.relatedProjects}
                 </h4>
                 <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs font-mono">
                   {currentDetail.relatedProjects.map((proj) => (

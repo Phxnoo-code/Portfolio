@@ -1,7 +1,10 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { NavItem, SocialLink } from '@/types/navigation';
+import { useLanguage } from '@/hooks/useLanguage';
 import { Button } from '../ui/Button';
+import { ThemeToggle } from '../ui/ThemeToggle';
+import { LanguageToggle } from '../ui/LanguageToggle';
 
 export interface MobileMenuProps {
   isOpen: boolean;
@@ -21,10 +24,11 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
   isOpen,
   onClose,
   items,
-  ctaLabel,
   ctaHref,
   activeId,
 }) => {
+  const { t } = useLanguage();
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -43,6 +47,8 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
                   (item.id === 'home' && (activeId === 'hero' || !activeId)) ||
                   (item.id === 'hero' && activeId === 'home');
 
+                const label = t.nav[item.id as keyof typeof t.nav] || item.label;
+
                 return (
                   <a
                     key={item.id}
@@ -54,7 +60,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
                         : 'text-text-secondary hover:text-text-primary hover:bg-surface-hover font-normal'
                     }`}
                   >
-                    <span>{item.label}</span>
+                    <span>{label}</span>
                     {isActive && (
                       <span className="w-2 h-2 rounded-full bg-primary" />
                     )}
@@ -63,7 +69,11 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
               })}
             </nav>
 
-            <div className="pt-4 border-t border-border/60">
+            <div className="pt-4 border-t border-border flex flex-col gap-3">
+              <div className="grid grid-cols-2 gap-2">
+                <ThemeToggle showLabel className="w-full justify-center py-2.5" />
+                <LanguageToggle showLabel className="w-full justify-center py-2.5" />
+              </div>
               <Button
                 variant="primary"
                 fullWidth
@@ -72,7 +82,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
                   window.location.href = ctaHref;
                 }}
               >
-                {ctaLabel}
+                {t.nav.contact}
               </Button>
             </div>
           </div>

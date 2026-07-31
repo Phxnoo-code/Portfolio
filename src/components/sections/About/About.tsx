@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/hooks/useLanguage';
 import { Section } from '../../layout/Section';
 import { Container } from '../../ui/Container';
 import { AboutContent } from './AboutContent';
@@ -15,6 +16,8 @@ const NOISE_TEXTURE_DATA_URI = `data:image/svg+xml,%3Csvg viewBox='0 0 200 200' 
  * Refined vertical section padding with expansive bottom breathing room before the Projects transition.
  */
 export const About: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <Section
       id="about"
@@ -24,7 +27,7 @@ export const About: React.FC = () => {
       className="relative z-10 overflow-hidden pt-20 pb-28 sm:pt-28 sm:pb-36 lg:pb-44 bg-background w-full min-w-0"
     >
       {/* 1. Atmospheric Volumetric Continuation (Matching Hero Studio Floor & Depth) */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 select-none">
+      <div className="hidden dark:block absolute inset-0 pointer-events-none overflow-hidden z-0 select-none">
         <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,17,21,1)_0%,rgba(18,22,32,0.3)_50%,rgba(15,17,21,1)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_0%,rgba(143,126,255,0.015)_50%,transparent_100%)]" />
       </div>
@@ -47,7 +50,7 @@ export const About: React.FC = () => {
               transition={{ duration: 0.5, ease: EASE_SMOOTH }}
               className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-primary font-semibold"
             >
-              — ABOUT —
+              {t.about.eyebrow}
             </motion.p>
 
             <motion.h2

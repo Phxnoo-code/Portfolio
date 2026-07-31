@@ -5,35 +5,38 @@
     --font-display: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-    /* Color Semantics System - Softened Minimal Palette */
-    /* Primary Accent - Electric Purple (#7C5CFF) */
-    --color-primary: 253 100% 68%;
-    --color-primary-hover: 253 100% 74%;
+    /* Primary Accent - Electric Blue (#2563EB) */
+    --color-primary: 221 83% 53%;
+    --color-primary-hover: 221 83% 48%;
 
-    /* Monochromatic Soft Grays */
-    --color-secondary: 220 10% 68%;
-    --color-muted: 220 8% 46%;
+    /* Monochromatic Soft Slate Tones */
+    --color-secondary: 220 12% 42%;
+    --color-muted: 220 10% 60%;
 
-    /* Deep Soft Charcoal Slate Background & Surface Panels */
-    --color-bg: 220 14% 6%;
-    /* #0F1115 - Soft Deep Background */
-    --color-surface: 220 14% 9.5%;
-    /* #171A21 - Soft Surface Panels */
-    --color-surface-hover: 220 14% 13%;
-    --color-border: 220 12% 14%;
-    --color-border-hover: 253 100% 68%;
+    /* Apple / Linear Minimal Editorial Background & Surface Panels */
+    --color-bg: 220 20% 97%;          /* #F8FAFC - Crisp Soft Slate Background */
+    --color-surface: 0 0% 100%;       /* #FFFFFF - Pure Clean White Cards */
+    --color-surface-hover: 220 14% 95%; /* #F1F5F9 - Subtle Surface Hover */
+    --color-surface-subtle: 220 16% 96%;/* #F1F5F9 - Light Contrast Panel */
 
-    /* Typography Semantics - Soft Off-White & Calm Zinc Tones */
-    --color-text-primary: 0 0% 100%;
-    /* #FFFFFF - Pure clean white heading text */
-    --color-text-secondary: 220 10% 68%;
-    /* #A0A7B5 - Soft secondary paragraph text */
-    --color-text-muted: 220 8% 48%;
+    /* Delicate Minimal Borders */
+    --color-border: 220 13% 90%;      /* #E2E8F0 - Crisp Light Border */
+    --color-border-subtle: 220 13% 94%;/* #F1F5F9 - Inner Faint Divider */
+    --color-border-hover: 221 83% 53%;
 
-    /* System Status Semantics - Soft Sage Green & Warm Amber */
-    --color-success: 150 48% 48%;
-    --color-warning: 38 75% 52%;
-    --color-error: 0 70% 62%;
+    /* Editorial High-Contrast Typography Semantics */
+    --color-text-primary: 220 24% 10%; /* #0F172A - Deep Ink Heading Text */
+    --color-text-secondary: 220 12% 42%;/* #475569 - Refined Muted Body Text */
+    --color-text-muted: 220 10% 60%;   /* #94A3B8 - Soft Caption Text */
+
+    /* Glass & Overlay Semantics */
+    --color-glass-bg: 0 0% 100%;       /* #FFFFFF Glass Base */
+    --color-overlay-backdrop: 220 24% 10%; /* Deep Slate Modal Backdrop */
+
+    /* System Status Semantics */
+    --color-success: 150 60% 38%;
+    --color-warning: 38 92% 44%;
+    --color-error: 0 72% 51%;
   }
 
   .dark {
@@ -41,18 +44,28 @@
     --font-display: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
+    /* Production Approved Dark Theme Values (LOCKED) */
     --color-primary: 253 100% 68%;
     --color-primary-hover: 253 100% 74%;
     --color-secondary: 220 10% 68%;
     --color-muted: 220 8% 46%;
-    --color-bg: 220 14% 6%;
-    --color-surface: 220 14% 9.5%;
+
+    --color-bg: 220 14% 6%;           /* #0F1115 */
+    --color-surface: 220 14% 9.5%;    /* #171A21 */
     --color-surface-hover: 220 14% 13%;
+    --color-surface-subtle: 220 14% 8%; /* #13161D */
+
     --color-border: 220 12% 14%;
+    --color-border-subtle: 220 12% 10%;
     --color-border-hover: 253 100% 68%;
-    --color-text-primary: 0 0% 100%;
-    --color-text-secondary: 220 10% 68%;
-    --color-text-muted: 220 8% 48%;
+
+    --color-text-primary: 0 0% 100%;    /* #FFFFFF */
+    --color-text-secondary: 220 10% 68%;/* #A0A7B5 */
+    --color-text-muted: 220 8% 48%;     /* #6B7280 */
+
+    --color-glass-bg: 220 14% 9.5%;
+    --color-overlay-backdrop: 0 0% 0%;
+
     --color-success: 150 48% 48%;
     --color-warning: 38 75% 52%;
     --color-error: 0 70% 62%;

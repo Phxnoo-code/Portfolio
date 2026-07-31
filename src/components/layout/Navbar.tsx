@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { navigationData } from '@/data/navigation';
-import { Button } from '../ui/Button';
 import { IconButton } from '../ui/IconButton';
 import { Container } from '../ui/Container';
 import { MobileMenu } from './MobileMenu';
+
+import { ThemeToggle } from '../ui/ThemeToggle';
+import { LanguageToggle } from '../ui/LanguageToggle';
+import { useLanguage } from '@/hooks/useLanguage';
 
 export interface NavbarProps {
   activeSectionId?: string;
@@ -26,6 +29,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   activeSectionId = 'hero',
   isIntroComplete = true,
 }) => {
+  const { t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -70,11 +74,13 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Minimal Typography Navigation (Inter 15px/16px Font Scale) */}
         <nav className="hidden md:flex items-center gap-2 lg:gap-3">
-          {navItems.map((item) => {
+          {navItems.filter((item) => item.id !== 'contact').map((item) => {
             const isActive =
               activeSectionId === item.id ||
               (item.id === 'home' && (activeSectionId === 'hero' || !activeSectionId)) ||
               (item.id === 'hero' && activeSectionId === 'home');
+
+            const label = t.nav[item.id as keyof typeof t.nav] || item.label;
 
             return (
               <a
@@ -86,24 +92,27 @@ export const Navbar: React.FC<NavbarProps> = ({
                     : 'text-text-secondary hover:text-text-primary font-normal'
                 }`}
               >
-                {item.label}
+                {label}
               </a>
             );
           })}
         </nav>
 
         {/* Action Controls & Right Buttons */}
-        <div className="flex items-center gap-3">
-          <div className="hidden sm:block">
-            <Button
-              variant="primary"
-              size="md"
-              className="text-[14px] sm:text-[15px] font-semibold px-5 h-10"
-              onClick={() => (window.location.href = ctaButton.href)}
-            >
-              {ctaButton.label}
-            </Button>
-          </div>
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          <ThemeToggle />
+          <LanguageToggle />
+
+          <a
+            href="#contact"
+            className={`hidden sm:inline-flex items-center justify-center px-3.5 py-1.5 rounded-lg border border-border bg-surface hover:bg-surface-hover hover:border-border-hover transition-all duration-200 font-['Inter',sans-serif] text-[14px] lg:text-[15px] select-none ${
+              activeSectionId === 'contact'
+                ? 'text-primary border-primary font-bold'
+                : 'text-text-primary hover:text-primary font-semibold'
+            }`}
+          >
+            {t.nav.contact}
+          </a>
 
           {/* Mobile Menu Toggle */}
           <div className="md:hidden">

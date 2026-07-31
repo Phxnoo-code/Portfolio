@@ -32,7 +32,7 @@ export const AboutStats: React.FC = () => {
         delay: 0.45,
         ease: EASE_EXPRESSIVE,
       }}
-      className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 pt-8 sm:pt-10 border-t border-white/[0.06] w-full"
+      className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 pt-8 sm:pt-10 border-t border-border-subtle w-full"
     >
       {STATS_DATA.map((stat) => (
         <div key={stat.id} className="flex flex-col space-y-1">

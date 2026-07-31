@@ -1,14 +1,17 @@
 import Home from '@/pages/Home';
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
+import { LanguageProvider } from '@/context/LanguageContext';
 
 /**
  * App Entry Root Component
- * Wraps Home page with ErrorBoundary error protection.
+ * Wraps Home page with ErrorBoundary error protection & LanguageProvider.
  */
 export function App() {
   return (
     <ErrorBoundary>
-      <Home />
+      <LanguageProvider>
+        <Home />
+      </LanguageProvider>
     </ErrorBoundary>
   );
 }

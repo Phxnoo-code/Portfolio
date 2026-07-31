@@ -37,7 +37,7 @@ export const Hero: React.FC<HeroProps> = ({ isIntroComplete = true }) => {
       {/* Atmospheric Volumetric Stack: Multi-layer weak linear falloffs (1.5%-2.5% opacity each) with ZERO identifiable gradient shapes */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 select-none">
         {/* Layer A: Smooth Diagonal Studio Floor Tonal Shift */}
-        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,17,21,1)_0%,rgba(18,22,32,0.4)_50%,rgba(15,17,21,1)_100%)]" />
+        <div className="absolute inset-0 bg-background dark:bg-[linear-gradient(135deg,rgba(15,17,21,1)_0%,rgba(18,22,32,0.4)_50%,rgba(15,17,21,1)_100%)]" />
         {/* Layer B: Ultra-faint 2.5% Top Atmospheric Ceiling Gradient */}
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(143,126,255,0.025)_0%,transparent_70%)]" />
         {/* Layer C: Ultra-faint 1.5% Purple Lateral Side Volume */}

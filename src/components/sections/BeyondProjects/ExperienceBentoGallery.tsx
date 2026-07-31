@@ -33,7 +33,7 @@ export const ExperienceBentoGallery: React.FC<ExperienceBentoGalleryProps> = ({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.6, ease: EASE_SMOOTH }}
-            className="lg:col-span-7 group relative aspect-[4/3] lg:aspect-[16/11] overflow-hidden bg-neutral-950 border border-white/[0.08] hover:border-[#7C5CFF]/40 transition-colors duration-500 cursor-pointer"
+            className="lg:col-span-7 group relative aspect-[4/3] lg:aspect-[16/11] overflow-hidden bg-surface-subtle border border-border hover:border-primary/40 transition-colors duration-500 cursor-pointer shadow-sm"
             onClick={() => onImageClick(0)}
           >
             <img
@@ -44,10 +44,14 @@ export const ExperienceBentoGallery: React.FC<ExperienceBentoGalleryProps> = ({
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-            {/* Maximize Icon Indicator */}
-            <div className="absolute top-4 right-4 z-10 w-8 h-8 rounded-none border border-white/20 bg-black/60 backdrop-blur-xs flex items-center justify-center text-white/70 group-hover:text-white group-hover:border-[#7C5CFF]/60 transition-all duration-300">
-              <Maximize2 size={14} />
-            </div>
+            {/* Floating Zoom Indicator Button */}
+            <button
+              onClick={() => onImageClick(0)}
+              className="absolute top-4 right-4 z-10 p-2.5 rounded-none bg-black/60 backdrop-blur-md border border-white/20 text-white/70 group-hover:text-white group-hover:border-primary/60 transition-all duration-300 active:scale-95"
+              aria-label="Enlarge image"
+            >
+              <Maximize2 size={15} />
+            </button>
           </motion.div>
         )}
 
@@ -59,7 +63,7 @@ export const ExperienceBentoGallery: React.FC<ExperienceBentoGalleryProps> = ({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.6, delay: 0.1, ease: EASE_SMOOTH }}
-              className="group relative aspect-[16/10] overflow-hidden bg-neutral-950 border border-white/[0.08] hover:border-[#7C5CFF]/40 transition-colors duration-500 cursor-pointer"
+              className="group relative aspect-[16/10] overflow-hidden bg-surface-subtle border border-border hover:border-primary/40 transition-colors duration-500 cursor-pointer shadow-sm"
               onClick={() => onImageClick(1)}
             >
               <img
@@ -70,7 +74,7 @@ export const ExperienceBentoGallery: React.FC<ExperienceBentoGalleryProps> = ({
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-              <div className="absolute top-3 right-3 z-10 w-7 h-7 border border-white/20 bg-black/60 flex items-center justify-center text-white/70 group-hover:text-white transition-all duration-300">
+              <div className="absolute top-3 right-3 z-10 w-7 h-7 border border-border bg-overlay-backdrop/60 flex items-center justify-center text-text-muted group-hover:text-text-primary transition-all duration-300">
                 <Maximize2 size={12} />
               </div>
             </motion.div>
@@ -82,7 +86,7 @@ export const ExperienceBentoGallery: React.FC<ExperienceBentoGalleryProps> = ({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.6, delay: 0.2, ease: EASE_SMOOTH }}
-              className="group relative aspect-[16/10] overflow-hidden bg-neutral-950 border border-white/[0.08] hover:border-[#7C5CFF]/40 transition-colors duration-500 cursor-pointer"
+              className="group relative aspect-[16/10] overflow-hidden bg-surface-subtle border border-border hover:border-primary/40 transition-colors duration-500 cursor-pointer shadow-sm"
               onClick={() => onImageClick(2)}
             >
               <img
@@ -93,7 +97,7 @@ export const ExperienceBentoGallery: React.FC<ExperienceBentoGalleryProps> = ({
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-              <div className="absolute top-3 right-3 z-10 w-7 h-7 border border-white/20 bg-black/60 flex items-center justify-center text-white/70 group-hover:text-white transition-all duration-300">
+              <div className="absolute top-3 right-3 z-10 w-7 h-7 border border-border bg-overlay-backdrop/60 flex items-center justify-center text-text-muted group-hover:text-text-primary transition-all duration-300">
                 <Maximize2 size={12} />
               </div>
             </motion.div>
@@ -118,7 +122,7 @@ export const ExperienceBentoGallery: React.FC<ExperienceBentoGalleryProps> = ({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.6, ease: EASE_SMOOTH }}
-            className="lg:col-span-5 group relative aspect-[4/3] lg:aspect-[16/11] overflow-hidden bg-neutral-950 border border-white/[0.08] hover:border-[#7C5CFF]/40 transition-colors duration-500 cursor-pointer"
+            className="lg:col-span-5 group relative aspect-[4/3] lg:aspect-[16/11] overflow-hidden bg-surface-subtle border border-border hover:border-primary/40 transition-colors duration-500 cursor-pointer shadow-sm"
             onClick={() => onImageClick(0)}
           >
             <img
@@ -129,7 +133,7 @@ export const ExperienceBentoGallery: React.FC<ExperienceBentoGalleryProps> = ({
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-            <div className="absolute top-4 right-4 z-10 w-8 h-8 border border-white/20 bg-black/60 flex items-center justify-center text-white/70 group-hover:text-white transition-all duration-300">
+            <div className="absolute top-4 right-4 z-10 w-8 h-8 border border-border bg-overlay-backdrop/60 flex items-center justify-center text-text-muted group-hover:text-text-primary transition-all duration-300">
               <Maximize2 size={14} />
             </div>
           </motion.div>
@@ -141,7 +145,7 @@ export const ExperienceBentoGallery: React.FC<ExperienceBentoGalleryProps> = ({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.6, delay: 0.1, ease: EASE_SMOOTH }}
-            className="lg:col-span-7 group relative aspect-[4/3] lg:aspect-[16/11] overflow-hidden bg-neutral-950 border border-white/[0.08] hover:border-[#7C5CFF]/40 transition-colors duration-500 cursor-pointer"
+            className="lg:col-span-7 group relative aspect-[4/3] lg:aspect-[16/11] overflow-hidden bg-surface-subtle border border-border hover:border-primary/40 transition-colors duration-500 cursor-pointer shadow-sm"
             onClick={() => onImageClick(1)}
           >
             <img
@@ -152,7 +156,7 @@ export const ExperienceBentoGallery: React.FC<ExperienceBentoGalleryProps> = ({
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-            <div className="absolute top-4 right-4 z-10 w-8 h-8 border border-white/20 bg-black/60 flex items-center justify-center text-white/70 group-hover:text-white transition-all duration-300">
+            <div className="absolute top-4 right-4 z-10 w-8 h-8 border border-border bg-overlay-backdrop/60 flex items-center justify-center text-text-muted group-hover:text-text-primary transition-all duration-300">
               <Maximize2 size={14} />
             </div>
           </motion.div>
@@ -166,7 +170,7 @@ export const ExperienceBentoGallery: React.FC<ExperienceBentoGalleryProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.6, delay: 0.2, ease: EASE_SMOOTH }}
-          className="w-full group relative aspect-[16/8] sm:aspect-[21/9] overflow-hidden bg-neutral-950 border border-white/[0.08] hover:border-[#7C5CFF]/40 transition-colors duration-500 cursor-pointer"
+          className="w-full group relative aspect-[16/8] sm:aspect-[21/9] overflow-hidden bg-surface-subtle border border-border hover:border-primary/40 transition-colors duration-500 cursor-pointer shadow-sm"
           onClick={() => onImageClick(2)}
         >
           <img
@@ -177,7 +181,7 @@ export const ExperienceBentoGallery: React.FC<ExperienceBentoGalleryProps> = ({
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-          <div className="absolute top-4 right-4 z-10 w-8 h-8 border border-white/20 bg-black/60 flex items-center justify-center text-white/70 group-hover:text-white transition-all duration-300">
+          <div className="absolute top-4 right-4 z-10 w-8 h-8 border border-border bg-overlay-backdrop/60 flex items-center justify-center text-text-muted group-hover:text-text-primary transition-all duration-300">
             <Maximize2 size={14} />
           </div>
         </motion.div>

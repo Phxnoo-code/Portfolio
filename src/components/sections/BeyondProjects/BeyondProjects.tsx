@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/hooks/useLanguage';
 import { Section } from '../../layout/Section';
 import { Container } from '../../ui/Container';
 import { EXPERIENCES_DATA } from './experiencesData';
@@ -11,6 +12,7 @@ const EASE_SMOOTH: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const NOISE_TEXTURE_DATA_URI = `data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E`;
 
 export const BeyondProjects: React.FC = () => {
+  const { t } = useLanguage();
   const [lightboxItems, setLightboxItems] = useState<LightboxItem[]>([]);
   const [activeLightboxIndex, setActiveLightboxIndex] = useState<number | null>(null);
 
@@ -33,10 +35,10 @@ export const BeyondProjects: React.FC = () => {
       padding="none"
       background="default"
       withContainer={false}
-      className="relative py-16 sm:py-24 lg:py-32 border-t border-white/[0.06] bg-background w-full min-w-0 overflow-hidden"
+      className="relative py-16 sm:py-24 lg:py-32 border-t border-border-subtle bg-background w-full min-w-0 overflow-hidden"
     >
       {/* Ambient Backlight Continuation matching Portfolio Design System */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 select-none">
+      <div className="hidden dark:block absolute inset-0 pointer-events-none overflow-hidden z-0 select-none">
         <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,17,21,1)_0%,rgba(18,22,32,0.3)_50%,rgba(15,17,21,1)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_0%,rgba(124,92,255,0.02)_50%,transparent_100%)]" />
       </div>
@@ -60,7 +62,7 @@ export const BeyondProjects: React.FC = () => {
               transition={{ duration: 0.5, ease: EASE_SMOOTH }}
               className="text-xs font-mono uppercase tracking-[0.2em] text-primary font-semibold"
             >
-              — EXPERIENCES —
+              {t.experiences.eyebrow}
             </motion.p>
 
             {/* 2. Section Title */}
@@ -69,9 +71,9 @@ export const BeyondProjects: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.55, ease: EASE_SMOOTH, delay: 0.05 }}
-              className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-white uppercase leading-none"
+              className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-text-primary dark:text-white uppercase leading-none"
             >
-              Experiences & Storytelling
+              {t.experiences.title}
             </motion.h2>
 
             {/* 3. Short Description */}
@@ -82,7 +84,7 @@ export const BeyondProjects: React.FC = () => {
               transition={{ duration: 0.55, ease: EASE_SMOOTH, delay: 0.1 }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-xl font-sans"
             >
-              Documenting competitive hackathons, product exhibitions, and collaborative technology showcases through visual storytelling, architectural roles, and measurable outcomes.
+              {t.experiences.subtitle}
             </motion.p>
           </div>
 
@@ -91,7 +93,7 @@ export const BeyondProjects: React.FC = () => {
             {EXPERIENCES_DATA.map((item, index) => (
               <React.Fragment key={item.id}>
                 {index > 0 && (
-                  <div className="w-full border-t border-white/[0.08] pt-12 sm:pt-16" />
+                  <div className="w-full border-t border-border-subtle pt-12 sm:pt-16" />
                 )}
                 <ExperienceEditorialItem
                   experience={item}

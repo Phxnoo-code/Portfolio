@@ -9,3 +9,5 @@ export * from './Textarea';
 export * from './EmptyState';
 export * from './Loading';
 export * from './Image';
+export * from './ThemeToggle';
+export * from './LanguageToggle';

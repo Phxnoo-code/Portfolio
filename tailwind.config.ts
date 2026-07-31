@@ -43,14 +43,23 @@ const config: Config = {
         surface: {
           DEFAULT: 'hsl(var(--color-surface) / <alpha-value>)',
           hover: 'hsl(var(--color-surface-hover) / <alpha-value>)',
+          subtle: 'hsl(var(--color-surface-subtle) / <alpha-value>)',
         },
         border: {
           DEFAULT: 'hsl(var(--color-border) / <alpha-value>)',
+          subtle: 'hsl(var(--color-border-subtle) / <alpha-value>)',
           hover: 'hsl(var(--color-border-hover) / <alpha-value>)',
+        },
+        glass: {
+          bg: 'hsl(var(--color-glass-bg) / <alpha-value>)',
+        },
+        overlay: {
+          backdrop: 'hsl(var(--color-overlay-backdrop) / <alpha-value>)',
         },
         text: {
           primary: 'hsl(var(--color-text-primary) / <alpha-value>)',
           secondary: 'hsl(var(--color-text-secondary) / <alpha-value>)',
+          muted: 'hsl(var(--color-text-muted) / <alpha-value>)',
         },
         status: {
           success: 'hsl(var(--color-success) / <alpha-value>)',

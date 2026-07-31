@@ -10,8 +10,12 @@
   }
 
   html {
-    color-scheme: dark;
+    color-scheme: light;
     font-family: var(--font-sans);
+  }
+
+  html.dark {
+    color-scheme: dark;
   }
 
   body {
@@ -131,6 +135,11 @@
     width: 20px;
     height: 20px;
     display: inline-block;
+    filter: invert(1);
+  }
+
+  .dark .icon-framer {
+    filter: invert(0);
   }
 
   .icon-tailwind,
@@ -172,6 +181,11 @@
     width: 20px;
     height: 20px;
     display: inline-block;
+    filter: invert(1);
+  }
+
+  .dark .icon-php {
+    filter: invert(0);
   }
 
   .icon-python {
@@ -203,6 +217,11 @@
     width: 20px;
     height: 20px;
     display: inline-block;
+    filter: invert(1);
+  }
+
+  .dark .icon-mysql {
+    filter: invert(0);
   }
 
   .icon-postgresql {
@@ -234,6 +253,11 @@
     width: 20px;
     height: 20px;
     display: inline-block;
+    filter: invert(1);
+  }
+
+  .dark .icon-openai {
+    filter: invert(0);
   }
 
   .icon-gemini,
@@ -341,13 +365,17 @@
   }
 
   .icon-github {
-    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/github/dark.svg');
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/github/default.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     width: 20px;
     height: 20px;
     display: inline-block;
+  }
+
+  .dark .icon-github {
+    background-image: url('https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/github/dark.svg');
   }
 
   .icon-docker {

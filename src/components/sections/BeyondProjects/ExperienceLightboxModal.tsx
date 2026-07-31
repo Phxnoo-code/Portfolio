@@ -61,19 +61,19 @@ export const ExperienceLightboxModal: React.FC<ExperienceLightboxModalProps> = (
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
-          className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 sm:p-6 select-none"
+          className="fixed inset-0 z-[99999] flex items-center justify-center bg-overlay-backdrop/90 backdrop-blur-md p-4 sm:p-6 select-none"
           onClick={onClose}
         >
           {/* Soft purple ambient glow matching Credentials section */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#7C5CFF]/03 rounded-none blur-[100px] pointer-events-none animate-pulse" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-primary/05 rounded-none blur-[100px] pointer-events-none animate-pulse" />
 
-          {/* Close Button matching Credentials section */}
+          {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 sm:top-6 sm:right-6 text-white/50 hover:text-white transition-colors p-2.5 rounded-none bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.08] hover:border-white/[0.1] active:scale-95 z-30"
-            aria-label="Close preview"
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 text-white/50 hover:text-white transition-colors p-2.5 rounded-none bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.08] hover:border-white/[0.1] active:scale-95 z-10"
+            aria-label="Close modal"
           >
-            <X size={18} />
+            <X size={20} />
           </button>
 
           {/* Prev Navigation Arrow Button */}
@@ -83,7 +83,7 @@ export const ExperienceLightboxModal: React.FC<ExperienceLightboxModalProps> = (
                 e.stopPropagation();
                 onNavigate(currentIndex - 1);
               }}
-              className="absolute left-4 sm:left-8 z-30 p-2.5 rounded-none bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.08] hover:border-white/[0.1] text-white/50 hover:text-white transition-colors active:scale-95"
+              className="absolute left-4 sm:left-8 z-30 p-2.5 rounded-none bg-surface-subtle border border-border-subtle hover:bg-surface-hover text-text-muted hover:text-text-primary transition-colors active:scale-95"
               aria-label="Previous image"
             >
               <ChevronLeft size={20} />
@@ -97,7 +97,7 @@ export const ExperienceLightboxModal: React.FC<ExperienceLightboxModalProps> = (
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.96 }}
             transition={{ duration: 0.3, ease: EASE_SMOOTH }}
-            className="relative max-w-[95vw] max-h-[80vh] md:max-w-[75vw] rounded-none overflow-hidden border border-white/[0.08] shadow-[0_0_35px_rgba(124,92,255,0.06)] bg-neutral-950 flex items-center justify-center cursor-default"
+            className="relative max-w-[95vw] max-h-[80vh] md:max-w-[75vw] rounded-none overflow-hidden border border-border shadow-2xl bg-surface flex items-center justify-center cursor-default"
             onClick={(e) => e.stopPropagation()}
           >
             <img
@@ -115,7 +115,7 @@ export const ExperienceLightboxModal: React.FC<ExperienceLightboxModalProps> = (
                 e.stopPropagation();
                 onNavigate(currentIndex + 1);
               }}
-              className="absolute right-4 sm:right-8 z-30 p-2.5 rounded-none bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.08] hover:border-white/[0.1] text-white/50 hover:text-white transition-colors active:scale-95"
+              className="absolute right-4 sm:right-8 z-30 p-2.5 rounded-none bg-surface-subtle border border-border-subtle hover:bg-surface-hover text-text-muted hover:text-text-primary transition-colors active:scale-95"
               aria-label="Next image"
             >
               <ChevronRight size={20} />

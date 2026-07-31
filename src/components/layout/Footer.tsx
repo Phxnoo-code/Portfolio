@@ -1,17 +1,20 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUp, ArrowUpRight } from 'lucide-react';
+import { useLanguage } from '@/hooks/useLanguage';
 import { Container } from '../ui/Container';
 
 const EASE_SMOOTH: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export const Footer: React.FC = () => {
+  const { t } = useLanguage();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <footer className="w-full bg-[#080808] border-t border-white/[0.08] text-white pt-16 pb-12 relative overflow-hidden select-none">
+    <footer className="w-full bg-surface border-t border-border text-text-primary pt-16 pb-12 relative overflow-hidden select-none">
       <Container size="xl">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -25,60 +28,60 @@ export const Footer: React.FC = () => {
             
             {/* LEFT SIDE: SIGNATURE NAME, ROLE & DESCRIPTION */}
             <div className="flex flex-col space-y-3 max-w-md">
-              <span className="text-xs font-mono uppercase tracking-[0.2em] text-white/60 font-semibold">
-                Frontend Developer
+              <span className="text-xs font-mono uppercase tracking-[0.2em] text-text-muted dark:text-white/60 font-semibold">
+                {t.footer.role}
               </span>
 
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-white tracking-tight uppercase leading-none">
-                PHANOO NGAMCHALIAW
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-text-primary dark:text-white tracking-tight uppercase leading-none">
+                {t.footer.name}
               </h3>
 
-              <p className="text-xs sm:text-sm text-white/60 font-sans leading-relaxed pt-1">
-                Building modern web experiences through code, design, and automation.
+              <p className="text-xs sm:text-sm text-text-secondary dark:text-white/60 font-sans leading-relaxed pt-1">
+                {t.footer.description}
               </p>
             </div>
 
             {/* RIGHT SIDE: MINIMAL TEXT SOCIAL LINKS */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8 font-mono text-xs sm:text-sm">
               <a
-                href="https://github.com"
+                href="https://github.com/Phxnoo-code"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group text-white/70 hover:text-primary transition-colors duration-300 flex items-center gap-1.5"
+                className="group text-text-secondary dark:text-white/70 hover:text-primary transition-colors duration-300 flex items-center gap-1.5"
               >
-                <span>GitHub</span>
-                <ArrowUpRight size={14} className="text-white/40 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+                <span>{t.footer.github}</span>
+                <ArrowUpRight size={14} className="text-text-muted dark:text-white/40 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
               </a>
 
               <a
                 href="mailto:phanoo.ngam@bumail.net"
-                className="group text-white/70 hover:text-primary transition-colors duration-300 flex items-center gap-1.5"
+                className="group text-text-secondary dark:text-white/70 hover:text-primary transition-colors duration-300 flex items-center gap-1.5"
               >
-                <span>Email</span>
-                <ArrowUpRight size={14} className="text-white/40 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+                <span>{t.footer.email}</span>
+                <ArrowUpRight size={14} className="text-text-muted dark:text-white/40 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
               </a>
             </div>
           </div>
 
           {/* 2. BOTTOM FOOTER BAR WITH THIN DIVIDER LINE */}
-          <div className="pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
+          <div className="pt-8 border-t border-border-subtle flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
             {/* Left Copyright */}
-            <p className="text-white/40">
-              © {new Date().getFullYear()} Phanoo Ngamchaliaw
+            <p className="text-text-muted dark:text-white/40">
+              {t.footer.copyright}
             </p>
 
             {/* Center / Right Availability & Scroll-to-top */}
             <div className="flex items-center gap-6">
-              <div className="flex items-center gap-2 text-white/70">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span>Available for internship opportunities</span>
+              <div className="flex items-center gap-2 text-text-secondary dark:text-white/70">
+                <span className="w-1.5 h-1.5 rounded-full bg-status-success animate-pulse" />
+                <span>{t.footer.availableInternship}</span>
               </div>
 
               {/* Scroll to Top */}
               <button
                 onClick={scrollToTop}
                 aria-label="Scroll to top"
-                className="p-2 border border-white/10 hover:border-primary bg-white/[0.02] hover:bg-primary/10 text-white/60 hover:text-white transition-all duration-300 cursor-pointer"
+                className="p-2 border border-border hover:border-primary bg-surface-subtle hover:bg-primary/10 text-text-muted dark:text-white/60 hover:text-text-primary dark:hover:text-white transition-all duration-300 cursor-pointer"
               >
                 <ArrowUp size={14} />
               </button>

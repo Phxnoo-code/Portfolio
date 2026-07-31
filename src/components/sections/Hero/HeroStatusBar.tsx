@@ -50,7 +50,7 @@ export const HeroStatusBar: React.FC<HeroStatusBarProps> = ({ isIntroComplete = 
       initial={{ opacity: 0, y: 10 }}
       animate={isIntroComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
       transition={{ duration: 0.6, delay: 0.6, ease: EASE_EXPRESSIVE }}
-      className="w-full pt-6 border-t border-white/[0.06] relative z-20 overflow-hidden select-none"
+      className="w-full pt-6 border-t border-border-subtle relative z-20 overflow-hidden select-none"
     >
       {/* Edge Gradient Mask for Soft Infinite Marquee Blending */}
       <div className="w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
@@ -72,7 +72,7 @@ export const HeroStatusBar: React.FC<HeroStatusBarProps> = ({ isIntroComplete = 
               >
                 <Icon size={14} className="text-text-muted group-hover:text-primary transition-colors shrink-0" />
                 <span className="tracking-wide">{item.name}</span>
-                <span className="ml-4 text-border/60 text-[10px] select-none">•</span>
+                <span className="ml-4 text-border-subtle text-[10px] select-none">•</span>
               </div>
             );
           })}

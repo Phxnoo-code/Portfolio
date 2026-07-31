@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, CheckCircle2, AlertCircle, Mail, Github, MapPin, Send, Loader2 } from 'lucide-react';
+import { useLanguage } from '@/hooks/useLanguage';
 import { profileData } from '@/data/profile';
 import { sendContactMessage } from '@/services/contactService';
 import { Section } from '../layout/Section';
@@ -15,6 +16,7 @@ interface FormErrors {
 const EASE_SMOOTH: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export const Contact: React.FC = () => {
+  const { t } = useLanguage();
   const { email } = profileData;
 
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -29,19 +31,19 @@ export const Contact: React.FC = () => {
     const newErrors: FormErrors = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = 'Name is required.';
+      newErrors.name = t.contact.errors.nameRequired;
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = 'Email address is required.';
+      newErrors.email = t.contact.errors.emailRequired;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address.';
+      newErrors.email = t.contact.errors.emailInvalid;
     }
 
     if (!formData.message.trim()) {
-      newErrors.message = 'Message is required.';
+      newErrors.message = t.contact.errors.messageRequired;
     } else if (formData.message.trim().length < 10) {
-      newErrors.message = 'Message must be at least 10 characters long.';
+      newErrors.message = t.contact.errors.messageShort;
     }
 
     setErrors(newErrors);
@@ -69,7 +71,7 @@ export const Contact: React.FC = () => {
         setErrors({});
       }
     } catch (err: any) {
-      setServerError(err.message || 'Failed to send message. Please try again later.');
+      setServerError(err.message || t.contact.errors.serverFail);
     } finally {
       setIsSubmitting(false);
     }
@@ -81,14 +83,14 @@ export const Contact: React.FC = () => {
       padding="none"
       background="default"
       withContainer={false}
-      className="relative py-20 sm:py-28 lg:py-36 border-t border-white/[0.04] bg-background w-full min-w-0"
+      className="relative py-20 sm:py-28 lg:py-36 border-t border-border-subtle bg-background w-full min-w-0"
     >
 
       <Container size="xl" className="relative z-10">
         <div className="flex flex-col space-y-12 sm:space-y-16 lg:space-y-20 w-full">
 
-          {/* 1. EDITORIAL HEADER AREA */}
-          <div className="flex flex-col space-y-4 max-w-3xl text-left">
+          {/* Section Main Editorial Header */}
+          <div className="flex flex-col space-y-3 max-w-2xl text-left">
             <motion.p
               initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -96,34 +98,30 @@ export const Contact: React.FC = () => {
               transition={{ duration: 0.5, ease: EASE_SMOOTH }}
               className="text-xs font-mono uppercase tracking-[0.2em] text-primary font-semibold"
             >
-              — CONTACT —
+              {t.contact.eyebrow}
             </motion.p>
-
             <motion.h2
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.55, ease: EASE_SMOOTH, delay: 0.05 }}
-              className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-white leading-tight"
+              className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-text-primary dark:text-white uppercase leading-tight"
             >
-              Let's build something meaningful together.
+              {t.contact.title}
             </motion.h2>
-
             <motion.p
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.55, ease: EASE_SMOOTH, delay: 0.1 }}
-              className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-xl font-sans"
+              className="text-sm sm:text-base text-text-secondary dark:text-white/60 leading-relaxed font-sans"
             >
-              Open for frontend development, web application engineering, automation projects, and co-op / internship opportunities.
+              {t.contact.subtitle}
             </motion.p>
           </div>
 
-          {/* 2. TWO-COLUMN MAIN EDITORIAL CONTENT LAYOUT */}
+          {/* TWO-COLUMN MAIN CONTENT LAYOUT */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 w-full pt-4 items-start text-left">
-
-            {/* LEFT COLUMN: CONTACT INFORMATION & AVAILABILITY (5/12) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -134,60 +132,60 @@ export const Contact: React.FC = () => {
               {/* Contact Info Header */}
               <div className="space-y-6">
                 <span className="text-xs font-mono uppercase tracking-widest text-primary">
-                  CONTACT INFORMATION
+                  {t.contact.contactInfo}
                 </span>
 
                 <div className="space-y-5 font-sans">
                   {/* Email */}
                   <div className="flex items-start gap-4">
-                    <div className="w-9 h-9 border border-white/10 bg-white/[0.02] flex items-center justify-center text-primary shrink-0 mt-0.5">
+                    <div className="w-9 h-9 border border-border bg-surface-subtle flex items-center justify-center text-primary shrink-0 mt-0.5">
                       <Mail size={16} />
                     </div>
                     <div className="space-y-0.5">
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-white/50 block">
-                        Email Address
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-text-muted dark:text-white/40 block">
+                        {t.contact.emailAddress}
                       </span>
                       <a
                         href={`mailto:${email}`}
-                        className="text-sm sm:text-base font-mono font-medium text-white hover:text-primary transition-colors duration-300 flex items-center gap-1.5 group"
+                        className="text-sm sm:text-base font-mono font-medium text-text-primary dark:text-white hover:text-primary transition-colors duration-300 flex items-center gap-1.5 group"
                       >
                         <span>{email}</span>
-                        <ArrowUpRight size={14} className="text-white/50 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                        <ArrowUpRight size={14} className="text-text-muted dark:text-white/40 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                       </a>
                     </div>
                   </div>
 
                   {/* GitHub */}
                   <div className="flex items-start gap-4">
-                    <div className="w-9 h-9 border border-white/10 bg-white/[0.02] flex items-center justify-center text-primary shrink-0 mt-0.5">
+                    <div className="w-9 h-9 border border-border bg-surface-subtle flex items-center justify-center text-primary shrink-0 mt-0.5">
                       <Github size={16} />
                     </div>
                     <div className="space-y-0.5">
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-white/50 block">
-                        GitHub Profile
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-text-muted dark:text-white/40 block">
+                        {t.contact.githubProfile}
                       </span>
                       <a
-                        href="https://github.com"
+                        href="https://github.com/Phxnoo-code"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm sm:text-base font-mono font-medium text-white hover:text-primary transition-colors duration-300 flex items-center gap-1.5 group"
+                        className="text-sm sm:text-base font-mono font-medium text-text-primary dark:text-white hover:text-primary transition-colors duration-300 flex items-center gap-1.5 group"
                       >
                         <span>github.com</span>
-                        <ArrowUpRight size={14} className="text-white/50 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                        <ArrowUpRight size={14} className="text-text-muted dark:text-white/40 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                       </a>
                     </div>
                   </div>
 
                   {/* Location */}
                   <div className="flex items-start gap-4">
-                    <div className="w-9 h-9 border border-white/10 bg-white/[0.02] flex items-center justify-center text-primary shrink-0 mt-0.5">
+                    <div className="w-9 h-9 border border-border bg-surface-subtle flex items-center justify-center text-primary shrink-0 mt-0.5">
                       <MapPin size={16} />
                     </div>
                     <div className="space-y-0.5">
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-white/50 block">
-                        Location
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-text-muted dark:text-white/40 block">
+                        {t.contact.location}
                       </span>
-                      <span className="text-sm sm:text-base font-sans font-medium text-white">
+                      <span className="text-sm sm:text-base font-sans font-medium text-text-primary dark:text-white">
                         Thailand
                       </span>
                     </div>
@@ -196,28 +194,18 @@ export const Contact: React.FC = () => {
               </div>
 
               {/* Availability Status Block */}
-              <div className="pt-6 border-t border-white/[0.08] space-y-4">
+              <div className="pt-6 border-t border-border space-y-4">
                 <span className="text-xs font-mono uppercase tracking-widest text-primary block">
-                  AVAILABLE FOR
+                  {t.contact.availableFor}
                 </span>
 
-                <ul className="space-y-2 text-xs font-mono text-white/70">
-                  <li className="flex items-center gap-2">
-                    <span className="text-primary font-bold">•</span>
-                    <span>Frontend Development</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-primary font-bold">•</span>
-                    <span>Web Application Development</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-primary font-bold">•</span>
-                    <span>Automation & AI Integration</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-primary font-bold">•</span>
-                    <span>Internship Opportunities</span>
-                  </li>
+                <ul className="space-y-2 text-xs font-mono text-text-secondary dark:text-white/70">
+                  {t.contact.services.map((item: string) => (
+                    <li key={item} className="flex items-center gap-2">
+                      <span className="text-primary font-bold">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </motion.div>
@@ -231,7 +219,7 @@ export const Contact: React.FC = () => {
               className="lg:col-span-7 flex flex-col space-y-6"
             >
               <span className="text-xs font-mono uppercase tracking-widest text-primary">
-                GET IN TOUCH
+                {t.contact.getInTouch}
               </span>
 
               <AnimatePresence mode="wait">
@@ -242,27 +230,27 @@ export const Contact: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -12 }}
                     transition={{ duration: 0.4, ease: EASE_SMOOTH }}
-                    className="p-8 border border-white/10 bg-white/[0.02] space-y-6 text-left"
+                    className="p-8 border border-border bg-surface-subtle space-y-6 text-left"
                   >
-                    <div className="flex items-center gap-3 text-emerald-400 font-mono text-sm">
+                    <div className="flex items-center gap-3 text-emerald-500 font-mono text-sm">
                       <CheckCircle2 size={20} />
-                      <span className="font-semibold uppercase tracking-wider">Message Received</span>
+                      <span className="font-semibold uppercase tracking-wider">{t.contact.successMessage.badge}</span>
                     </div>
 
                     <div className="space-y-2">
-                      <h4 className="text-2xl font-display font-bold text-white uppercase">
-                        Thank You For Reaching Out
+                      <h4 className="text-2xl font-display font-bold text-text-primary dark:text-white uppercase">
+                        {t.contact.successMessage.title}
                       </h4>
-                      <p className="text-sm text-text-secondary leading-relaxed font-sans">
-                        Your message has been sent successfully. I will review your inquiry and get back to you shortly.
+                      <p className="text-sm text-text-secondary dark:text-white/60 leading-relaxed font-sans">
+                        {t.contact.successMessage.desc}
                       </p>
                     </div>
 
                     <button
                       onClick={() => setIsSubmitted(false)}
-                      className="px-5 py-2.5 border border-white/10 hover:border-[#7C5CFF] hover:bg-[#7C5CFF]/10 text-xs font-mono text-white transition-all duration-300 flex items-center gap-2 cursor-pointer"
+                      className="px-5 py-2.5 border border-border hover:border-primary hover:bg-primary/10 text-xs font-mono text-text-primary dark:text-white transition-all duration-300 flex items-center gap-2 cursor-pointer"
                     >
-                      <span>Send Another Message</span>
+                      <span>{t.contact.successMessage.sendAnother}</span>
                       <ArrowUpRight size={14} />
                     </button>
                   </motion.div>
@@ -281,13 +269,13 @@ export const Contact: React.FC = () => {
 
                     {/* Field 1: Name */}
                     <div className="relative space-y-1">
-                      <label htmlFor="contact-name" className="text-xs font-mono text-white/50 uppercase tracking-wider block">
-                        Your Name <span className="text-[#7C5CFF]">*</span>
+                      <label htmlFor="contact-name" className="text-xs font-mono text-text-primary dark:text-white/40 uppercase tracking-wider block">
+                        {t.contact.labels.name} <span className="text-primary">*</span>
                       </label>
                       <input
                         id="contact-name"
                         type="text"
-                        placeholder="John Doe"
+                        placeholder={t.contact.placeholders.name}
                         value={formData.name}
                         onFocus={() => setFocusedField('name')}
                         onBlur={() => setFocusedField(null)}
@@ -295,14 +283,14 @@ export const Contact: React.FC = () => {
                           setFormData({ ...formData, name: e.target.value });
                           if (errors.name) setErrors({ ...errors, name: undefined });
                         }}
-                        className="w-full bg-transparent border-b border-white/15 py-3 text-sm font-sans text-white placeholder:text-white/20 outline-none transition-colors duration-300"
+                        className="w-full bg-transparent border-b border-border py-3 text-sm font-sans text-text-primary dark:text-white placeholder:text-text-muted dark:placeholder:text-white/20 outline-none transition-colors duration-300"
                       />
-                      {/* Animated Purple Focus Line */}
+                      {/* Animated Focus Line */}
                       <motion.div
                         initial={false}
                         animate={{ scaleX: focusedField === 'name' ? 1 : 0 }}
                         transition={{ duration: 0.3, ease: EASE_SMOOTH }}
-                        className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#7C5CFF] origin-left pointer-events-none"
+                        className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-primary origin-left pointer-events-none"
                       />
                       {errors.name && (
                         <p className="text-xs font-mono text-rose-400 pt-1">{errors.name}</p>
@@ -311,13 +299,13 @@ export const Contact: React.FC = () => {
 
                     {/* Field 2: Email */}
                     <div className="relative space-y-1">
-                      <label htmlFor="contact-email" className="text-xs font-mono text-white/50 uppercase tracking-wider block">
-                        Your Email <span className="text-[#7C5CFF]">*</span>
+                      <label htmlFor="contact-email" className="text-xs font-mono text-text-primary dark:text-white/40 uppercase tracking-wider block">
+                        {t.contact.labels.email} <span className="text-primary">*</span>
                       </label>
                       <input
                         id="contact-email"
                         type="email"
-                        placeholder="john@example.com"
+                        placeholder={t.contact.placeholders.email}
                         value={formData.email}
                         onFocus={() => setFocusedField('email')}
                         onBlur={() => setFocusedField(null)}
@@ -325,13 +313,13 @@ export const Contact: React.FC = () => {
                           setFormData({ ...formData, email: e.target.value });
                           if (errors.email) setErrors({ ...errors, email: undefined });
                         }}
-                        className="w-full bg-transparent border-b border-white/15 py-3 text-sm font-sans text-white placeholder:text-white/20 outline-none transition-colors duration-300"
+                        className="w-full bg-transparent border-b border-border py-3 text-sm font-sans text-text-primary dark:text-white placeholder:text-text-muted dark:placeholder:text-white/20 outline-none transition-colors duration-300"
                       />
                       <motion.div
                         initial={false}
                         animate={{ scaleX: focusedField === 'email' ? 1 : 0 }}
                         transition={{ duration: 0.3, ease: EASE_SMOOTH }}
-                        className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#7C5CFF] origin-left pointer-events-none"
+                        className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-primary origin-left pointer-events-none"
                       />
                       {errors.email && (
                         <p className="text-xs font-mono text-rose-400 pt-1">{errors.email}</p>
@@ -340,13 +328,13 @@ export const Contact: React.FC = () => {
 
                     {/* Field 3: Message */}
                     <div className="relative space-y-1">
-                      <label htmlFor="contact-message" className="text-xs font-mono text-white/50 uppercase tracking-wider block">
-                        Your Message <span className="text-[#7C5CFF]">*</span>
+                      <label htmlFor="contact-message" className="text-xs font-mono text-text-primary dark:text-white/40 uppercase tracking-wider block">
+                        {t.contact.labels.message} <span className="text-primary">*</span>
                       </label>
                       <input
                         id="contact-message"
                         type="text"
-                        placeholder="Tell me about your project, inquiry, or opportunity..."
+                        placeholder={t.contact.placeholders.message}
                         value={formData.message}
                         onFocus={() => setFocusedField('message')}
                         onBlur={() => setFocusedField(null)}
@@ -354,13 +342,13 @@ export const Contact: React.FC = () => {
                           setFormData({ ...formData, message: e.target.value });
                           if (errors.message) setErrors({ ...errors, message: undefined });
                         }}
-                        className="w-full bg-transparent border-b border-white/15 py-3 text-sm font-sans text-white placeholder:text-white/20 outline-none transition-colors duration-300"
+                        className="w-full bg-transparent border-b border-border py-3 text-sm font-sans text-text-primary dark:text-white placeholder:text-text-muted dark:placeholder:text-white/20 outline-none transition-colors duration-300"
                       />
                       <motion.div
                         initial={false}
                         animate={{ scaleX: focusedField === 'message' ? 1 : 0 }}
                         transition={{ duration: 0.3, ease: EASE_SMOOTH }}
-                        className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#7C5CFF] origin-left pointer-events-none"
+                        className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-primary origin-left pointer-events-none"
                       />
                       {errors.message && (
                         <p className="text-xs font-mono text-rose-400 pt-1">{errors.message}</p>
@@ -372,17 +360,17 @@ export const Contact: React.FC = () => {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="group relative px-7 py-3.5 border border-[#7C5CFF]/50 bg-[#7C5CFF]/10 hover:bg-[#7C5CFF]/20 hover:border-[#7C5CFF] text-xs font-mono text-white uppercase tracking-wider transition-all duration-300 flex items-center gap-2.5 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_25px_rgba(124,92,255,0.15)] hover:shadow-[0_0_35px_rgba(124,92,255,0.3)]"
+                        className="group relative px-7 py-3.5 border border-primary/50 bg-primary/10 hover:bg-primary/20 hover:border-primary text-xs font-mono text-text-primary dark:text-white uppercase tracking-wider transition-all duration-300 flex items-center gap-2.5 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
                       >
                         {isSubmitting ? (
                           <>
-                            <Loader2 size={15} className="animate-spin text-[#7C5CFF]" />
-                            <span>Sending Message...</span>
+                            <Loader2 size={15} className="animate-spin text-primary" />
+                            <span>{t.contact.submittingBtn}</span>
                           </>
                         ) : (
                           <>
-                            <span>Send Message</span>
-                            <Send size={14} className="text-[#7C5CFF] group-hover:translate-x-1 transition-transform duration-300" />
+                            <span>{t.contact.submitBtn}</span>
+                            <Send size={14} className="text-primary group-hover:translate-x-1 transition-transform duration-300" />
                           </>
                         )}
                       </button>
