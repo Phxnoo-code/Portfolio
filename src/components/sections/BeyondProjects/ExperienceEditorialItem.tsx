@@ -19,22 +19,44 @@ export const ExperienceEditorialItem: React.FC<ExperienceEditorialItemProps> = (
   const { t } = useLanguage();
 
   const expKey = rawExperience.id as keyof typeof t.experiences.items;
-  const expTrans = t.experiences.items[expKey];
+  const expTrans = t.experiences.items[expKey] as Record<string, any> | undefined;
 
   const experience = {
     ...rawExperience,
+    category: expTrans?.category || rawExperience.category,
     title: expTrans?.title || rawExperience.title,
     tagline: expTrans?.tagline || rawExperience.tagline,
     role: expTrans?.role || rawExperience.role,
     team: expTrans?.team || rawExperience.team,
     story: expTrans?.story || rawExperience.story,
     contribution: expTrans?.contribution || rawExperience.contribution,
+    achievement: rawExperience.achievement
+      ? {
+          badge: expTrans?.badge || rawExperience.achievement.badge,
+          title: expTrans?.achievementTitle || rawExperience.achievement.title,
+          description: expTrans?.achievementDesc || rawExperience.achievement.description,
+        }
+      : undefined,
+    certificate: rawExperience.certificate
+      ? {
+          ...rawExperience.certificate,
+          title: expTrans?.certTitle || rawExperience.certificate.title,
+          issuer: expTrans?.certIssuer || rawExperience.certificate.issuer,
+        }
+      : undefined,
+    externalLink: rawExperience.externalLink
+      ? {
+          ...rawExperience.externalLink,
+          label: expTrans?.externalLink || rawExperience.externalLink.label,
+        }
+      : undefined,
     highlights: rawExperience.highlights.map((h, i) => ({
       ...h,
-      title: expTrans?.highlights[i]?.title || h.title,
-      description: expTrans?.highlights[i]?.desc || h.description,
+      title: expTrans?.highlights?.[i]?.title || h.title,
+      description: expTrans?.highlights?.[i]?.desc || h.description,
     })),
   };
+
   // Collect all images (hero + gallery + cert) for seamless lightbox cycling
   const allImages = [
     {
@@ -53,7 +75,7 @@ export const ExperienceEditorialItem: React.FC<ExperienceEditorialItemProps> = (
       ? [
           {
             url: experience.certificate.image,
-            caption: `${experience.certificate.title} — Issued by ${experience.certificate.issuer}`,
+            caption: `${experience.certificate.title} — ${t.experiences.issuedBy || 'Issued by'} ${experience.certificate.issuer}`,
             tag: 'OFFICIAL CERTIFICATE',
             title: experience.certificate.title,
           },
@@ -115,7 +137,7 @@ export const ExperienceEditorialItem: React.FC<ExperienceEditorialItemProps> = (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.6, delay: 0.05, ease: EASE_SMOOTH }}
-            className="text-base sm:text-lg text-text-secondary font-sans leading-relaxed max-w-3xl"
+            className="text-body-sm sm:text-body-md text-text-secondary font-sans leading-relaxed max-w-3xl"
           >
             {experience.tagline}
           </motion.p>
@@ -149,6 +171,9 @@ export const ExperienceEditorialItem: React.FC<ExperienceEditorialItemProps> = (
         <img
           src={experience.heroImage.url}
           alt={experience.heroImage.caption}
+          width={1200}
+          height={514}
+          decoding="async"
           className="w-full h-full object-cover transition-transform duration-[1000ms] ease-out group-hover:scale-[1.03]"
           loading="lazy"
         />
@@ -173,7 +198,7 @@ export const ExperienceEditorialItem: React.FC<ExperienceEditorialItemProps> = (
             <h4 className="text-xl sm:text-2xl font-display font-bold text-text-primary dark:text-white tracking-tight">
               The Journey & Challenge
             </h4>
-            <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-sans">
+            <p className="text-body-sm sm:text-body-md text-text-secondary leading-relaxed font-sans">
               {experience.story}
             </p>
           </div>
@@ -185,7 +210,7 @@ export const ExperienceEditorialItem: React.FC<ExperienceEditorialItemProps> = (
             <h4 className="text-xl sm:text-2xl font-display font-bold text-text-primary dark:text-white tracking-tight">
               My Role & Execution
             </h4>
-            <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-sans">
+            <p className="text-body-sm sm:text-body-md text-text-secondary leading-relaxed font-sans">
               {experience.contribution}
             </p>
           </div>
@@ -196,7 +221,7 @@ export const ExperienceEditorialItem: React.FC<ExperienceEditorialItemProps> = (
           {/* Role Card */}
           <div className="p-6 border border-border bg-surface space-y-3 shadow-sm">
             <span className="text-[10px] font-mono uppercase tracking-widest text-text-muted dark:text-white/40">
-              Role & Responsibility
+              {t.experiences.roleAndResponsibility || 'Role & Responsibility'}
             </span>
             <p className="text-base font-display font-bold text-text-primary dark:text-white">
               {experience.role}
@@ -209,7 +234,7 @@ export const ExperienceEditorialItem: React.FC<ExperienceEditorialItemProps> = (
           {/* Skills Tag Cloud */}
           <div className="p-6 border border-border bg-surface space-y-3 shadow-sm">
             <span className="text-[10px] font-mono uppercase tracking-widest text-text-muted dark:text-white/40">
-              Skills & Technologies Used
+              {t.experiences.skillsAndTech || 'Skills & Technologies Used'}
             </span>
             <div className="flex flex-wrap gap-2 pt-1">
               {experience.skills.map((skill) => (
@@ -280,7 +305,7 @@ export const ExperienceEditorialItem: React.FC<ExperienceEditorialItemProps> = (
                 <h5 className="text-base sm:text-lg font-display font-semibold text-text-primary dark:text-white leading-snug">
                   {item.title}
                 </h5>
-                <p className="text-xs text-text-secondary leading-relaxed font-sans pt-1">
+                <p className="text-body-sm sm:text-body-md text-text-secondary leading-relaxed font-sans pt-1">
                   {item.description}
                 </p>
               </div>

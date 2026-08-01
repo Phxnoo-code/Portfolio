@@ -53,23 +53,15 @@ export const Hero: React.FC<HeroProps> = ({ isIntroComplete = true }) => {
       {/* 3. Hero Content Layer (z-10) */}
       <motion.div
         initial={{
-          filter: 'blur(24px)',
-          opacity: 0.2,
-          scale: 1.02,
+          filter: 'blur(0px)',
+          opacity: 1,
+          scale: 1.0,
         }}
-        animate={
-          isIntroComplete
-            ? {
-              filter: 'blur(0px)',
-              opacity: 1,
-              scale: 1.0,
-            }
-            : {
-              filter: 'blur(24px)',
-              opacity: 0.2,
-              scale: 1.02,
-            }
-        }
+        animate={{
+          filter: 'blur(0px)',
+          opacity: 1,
+          scale: 1.0,
+        }}
         transition={{
           duration: 0.78,
           ease: EASE_CINEMATIC,

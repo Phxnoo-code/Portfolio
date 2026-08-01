@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Code2, Monitor, Server, Workflow, Bot, ArrowRight, X } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
@@ -24,6 +25,11 @@ export interface DetailContent {
 export const WhatIBuild: React.FC = () => {
   const { t } = useLanguage();
   const [activeDetailId, setActiveDetailId] = useState<string | null>(null);
+  const [mounted, setMounted] = useState<boolean>(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const capabilityDetails: Record<string, DetailContent> = {
     'digital-products-systems': {
@@ -37,7 +43,7 @@ export const WhatIBuild: React.FC = () => {
         title: step.title,
         desc: step.desc,
       })),
-      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'APIs', 'Databases', 'Docker'],
+      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'API', 'Databases', 'Docker'],
       relatedProjects: ['Portfolio Website', 'Barber Booking System'],
     },
     'interface-engineering': {
@@ -79,7 +85,7 @@ export const WhatIBuild: React.FC = () => {
         title: step.title,
         desc: step.desc,
       })),
-      technologies: ['n8n', 'Webhooks', 'APIs', 'Python', 'Docker', 'Automation Systems'],
+      technologies: ['n8n', 'Webhooks', 'API', 'Python', 'Docker', 'Automation Systems'],
       relatedProjects: ['LINE HR Bot', 'AI Workflow Integration'],
     },
     'ai-integration': {
@@ -93,7 +99,7 @@ export const WhatIBuild: React.FC = () => {
         title: step.title,
         desc: step.desc,
       })),
-      technologies: ['OpenAI API', 'Gemini API', 'Claude API', 'Python', 'TypeScript', 'APIs'],
+      technologies: ['OpenAI API', 'Gemini API', 'Claude API', 'Python', 'TypeScript', 'API'],
       relatedProjects: ['LINE HR Bot', 'AI Workflow Integration'],
     },
   };
@@ -230,7 +236,7 @@ export const WhatIBuild: React.FC = () => {
                     <h3 className="text-xl sm:text-2xl lg:text-3xl font-display font-bold text-text-primary tracking-tight leading-snug group-hover:text-primary transition-colors duration-300">
                       {t.whatIBuild.details['digital-products-systems'].title}
                     </h3>
-                    <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-normal">
+                    <p className="text-body-sm sm:text-body-md text-text-secondary leading-relaxed font-normal">
                       {t.whatIBuild.details['digital-products-systems'].philosophy}
                     </p>
                   </div>
@@ -309,120 +315,131 @@ export const WhatIBuild: React.FC = () => {
       </Container>
 
       {/* Compact Editorial Floating Glass Overlay */}
-      <AnimatePresence>
-        {activeDetailId && currentDetail && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
-            {/* Backdrop Blur & Dimmed Layer */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3, ease: EASE_SMOOTH }}
-              onClick={() => setActiveDetailId(null)}
-              className="absolute inset-0 bg-overlay-backdrop/75 backdrop-blur-xl"
-            />
+      {mounted &&
+        createPortal(
+          <AnimatePresence>
+            {activeDetailId && currentDetail && (
+              <div className="fixed inset-0 min-h-screen z-[9999] flex items-center justify-center p-4 sm:p-6">
+                {/* Backdrop Blur & Dimmed Layer */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3, ease: EASE_SMOOTH }}
+                  onClick={() => setActiveDetailId(null)}
+                  className="fixed inset-0 bg-overlay-backdrop/80 backdrop-blur-md"
+                />
 
-            {/* Compact Floating Glass Editorial Panel (max-w-[760px]) */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96, y: 15 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.96, y: 15 }}
-              transition={{ duration: 0.35, ease: EASE_SMOOTH }}
-              className="relative w-full max-w-[760px] max-h-[82vh] overflow-y-auto rounded-none bg-surface/96 border border-border shadow-2xl p-6 sm:p-8 space-y-6 sm:space-y-7 z-10 scrollbar-thin"
-            >
-              {/* Close Button Trigger */}
-              <button
-                onClick={() => setActiveDetailId(null)}
-                aria-label="Close details"
-                className="absolute top-5 right-5 text-text-muted hover:text-text-primary transition-colors duration-200 cursor-pointer p-1"
-              >
-                <X size={18} />
-              </button>
+                {/* Compact Floating Editorial Panel (max-w-[760px]) */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.96, y: 15 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.96, y: 15 }}
+                  transition={{ duration: 0.35, ease: EASE_SMOOTH }}
+                  className="relative w-full max-w-[760px] max-h-[90vh] overflow-y-auto rounded-2xl bg-surface border border-border shadow-2xl p-6 sm:p-8 space-y-6 sm:space-y-7 z-10 scrollbar-thin"
+                >
+                  {/* Close Button Trigger */}
+                  <button
+                    onClick={() => setActiveDetailId(null)}
+                    aria-label="Close details"
+                    className="absolute top-5 right-5 text-text-muted hover:text-text-primary bg-surface-subtle border border-border-subtle hover:bg-surface-hover transition-colors duration-200 cursor-pointer p-2 rounded-lg shadow-sm"
+                  >
+                    <X size={18} />
+                  </button>
 
-              {/* 1. Index & Large Display Title */}
-              <div className="space-y-1.5 pr-8">
-                <span className="text-xs font-mono text-primary font-semibold tracking-widest block">
-                  {currentDetail.indexNumber}
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-text-primary tracking-[-0.03em] leading-tight">
-                  {currentDetail.title}
-                </h3>
-              </div>
+                  {/* 1. Index & Large Display Title */}
+                  <div className="space-y-1.5 pr-8">
+                    <span className="text-xs font-mono text-primary font-semibold tracking-widest block">
+                      {currentDetail.indexNumber}
+                    </span>
+                    <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-text-primary tracking-[-0.03em] leading-tight">
+                      {currentDetail.title}
+                    </h3>
+                  </div>
 
-              {/* 2. Editorial Philosophy Lead Paragraph */}
-              <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-normal">
-                {currentDetail.philosophy}
-              </p>
+                  {/* 2. Editorial Philosophy Lead Paragraph */}
+                  <p className="text-body-sm sm:text-body-md text-text-secondary leading-relaxed font-normal">
+                    {currentDetail.philosophy}
+                  </p>
 
-              {/* 3. WHAT I FOCUS ON (Pure Typography Bullet Lines) */}
-              <div className="space-y-3 pt-4 border-t border-border-subtle">
-                <h4 className="text-[11px] font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
-                  {t.whatIBuild.modal.whatIFocusOn}
-                </h4>
-                <div className="space-y-2">
-                  {currentDetail.focusItems.map((item, idx) => (
-                    <p key={idx} className="text-xs sm:text-sm text-text-primary font-sans leading-relaxed flex items-start gap-2.5">
-                      <span className="text-primary font-mono text-xs pt-0.5">•</span>
-                      <span>{item}</span>
-                    </p>
-                  ))}
-                </div>
-              </div>
-
-              {/* 4. PROCESS (Clean Numbered Sequence) */}
-              <div className="space-y-3 pt-4 border-t border-border-subtle">
-                <h4 className="text-[11px] font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
-                  {t.whatIBuild.modal.process}
-                </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
-                  {currentDetail.processSteps.map((step) => (
-                    <div key={step.number} className="space-y-0.5">
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-xs font-mono text-primary font-semibold">{step.number} —</span>
-                        <h5 className="text-xs sm:text-sm font-display font-bold text-text-primary">{step.title}</h5>
-                      </div>
-                      <p className="text-[11px] sm:text-xs text-text-secondary leading-relaxed font-sans pl-6">
-                        {step.desc}
-                      </p>
+                  {/* 3. WHAT I FOCUS ON (Pure Typography Bullet Lines) */}
+                  <div className="space-y-3 pt-4 border-t border-border-subtle">
+                    <h4 className="text-[11px] font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
+                      {t.whatIBuild.modal.whatIFocusOn}
+                    </h4>
+                    <div className="space-y-2">
+                      {currentDetail.focusItems.map((item, idx) => (
+                        <p key={idx} className="text-body-sm sm:text-body-md text-text-primary font-sans leading-relaxed flex items-start gap-2.5">
+                          <span className="text-primary font-mono text-xs pt-0.5">•</span>
+                          <span>{item}</span>
+                        </p>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              </div>
+                  </div>
 
-              {/* 5. TECHNOLOGIES (Pure Inline Dot Stream) */}
-              <div className="space-y-2 pt-4 border-t border-border-subtle">
-                <h4 className="text-[11px] font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
-                  {t.whatIBuild.modal.technologies}
-                </h4>
-                <p className="text-xs font-mono text-text-secondary leading-relaxed">
-                  {currentDetail.technologies.join('  •  ')}
-                </p>
-              </div>
+                  {/* 4. PROCESS (Clean Numbered Sequence) */}
+                  <div className="space-y-3 pt-4 border-t border-border-subtle">
+                    <h4 className="text-[11px] font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
+                      {t.whatIBuild.modal.process}
+                    </h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
+                      {currentDetail.processSteps.map((step) => (
+                        <div key={step.number} className="space-y-0.5">
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-xs font-mono text-primary font-semibold">{step.number} —</span>
+                            <h5 className="text-xs sm:text-sm font-display font-bold text-text-primary">{step.title}</h5>
+                          </div>
+                          <p className="text-[11px] sm:text-xs text-text-secondary leading-relaxed font-sans pl-6">
+                            {step.desc}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
 
-              {/* 6. RELATED PROJECTS (Clean Minimal Text Links) */}
-              <div className="space-y-2 pt-4 border-t border-border-subtle">
-                <h4 className="text-[11px] font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
-                  {t.whatIBuild.modal.relatedProjects}
-                </h4>
-                <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs font-mono">
-                  {currentDetail.relatedProjects.map((proj) => (
-                    <a
-                      key={proj}
-                      href="#projects"
-                      onClick={() => setActiveDetailId(null)}
-                      className="text-text-primary hover:text-primary transition-colors flex items-center gap-1 group"
-                    >
-                      <span>{proj}</span>
-                      <ArrowRight size={11} className="group-hover:translate-x-1 transition-transform duration-200" />
-                    </a>
-                  ))}
-                </div>
-              </div>
+                  {/* 5. TECHNOLOGIES */}
+                  <div className="space-y-2.5 pt-4 border-t border-border-subtle">
+                    <h4 className="text-[11px] font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
+                      {t.whatIBuild.modal.technologies}
+                    </h4>
+                    <div className="flex flex-wrap items-center gap-2">
+                      {currentDetail.technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-2.5 py-1 text-xs font-mono rounded-md bg-surface-subtle border border-border-subtle text-text-secondary hover:bg-surface-hover transition-colors"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
 
-            </motion.div>
-          </div>
+                  {/* 6. RELATED PROJECTS (Clean Minimal Text Links) */}
+                  <div className="space-y-2.5 pt-4 border-t border-border-subtle">
+                    <h4 className="text-[11px] font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
+                      {t.whatIBuild.modal.relatedProjects}
+                    </h4>
+                    <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs font-mono">
+                      {currentDetail.relatedProjects.map((proj) => (
+                        <a
+                          key={proj}
+                          href="#projects"
+                          onClick={() => setActiveDetailId(null)}
+                          className="text-text-primary hover:text-primary transition-colors flex items-center gap-1 group"
+                        >
+                          <span>{proj}</span>
+                          <ArrowRight size={11} className="group-hover:translate-x-1 transition-transform duration-200" />
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+
+                </motion.div>
+              </div>
+            )}
+          </AnimatePresence>,
+          document.body
         )}
-      </AnimatePresence>
     </Section>
   );
 };

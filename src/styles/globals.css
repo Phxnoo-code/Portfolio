@@ -12,6 +12,7 @@
   html {
     color-scheme: light;
     font-family: var(--font-sans);
+    scrollbar-gutter: stable;
   }
 
   html.dark {
@@ -20,10 +21,10 @@
 
   body {
     font-family: var(--font-sans);
-    @apply bg-background text-text-primary font-sans antialiased overflow-x-hidden min-h-screen selection:bg-primary/25 selection:text-primary;
+    @apply bg-background text-text-primary antialiased overflow-x-hidden min-h-screen selection:bg-primary/25 selection:text-primary;
   }
 
-  /* Headings use Manrope text-primary with tight line-height, -0.03em to -0.05em tracking, and 700/800 weights */
+  /* Headings use var(--font-display) with tight line-height and font-extrabold */
   h1,
   h2,
   h3,
@@ -31,16 +32,16 @@
   h5,
   h6 {
     font-family: var(--font-display);
-    @apply text-text-primary font-display tracking-tight font-extrabold;
+    @apply text-text-primary tracking-tight font-extrabold;
   }
 
-  /* Body text uses Manrope text-secondary with 400 weight, comfortable line-height, and normal letter spacing */
+  /* Body text uses var(--font-sans) with comfortable line-height and normal letter spacing */
   p {
     font-family: var(--font-sans);
-    @apply text-text-secondary font-sans font-normal leading-relaxed;
+    @apply text-text-secondary font-normal leading-relaxed;
   }
 
-  /* Form controls inherit Manrope font family */
+  /* Form controls inherit var(--font-sans) */
   input, textarea, select, button {
     font-family: var(--font-sans);
   }

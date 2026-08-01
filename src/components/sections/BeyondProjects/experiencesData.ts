@@ -19,20 +19,20 @@ export const EXPERIENCES_DATA: ExperienceItem[] = [
       description: 'Achieved 3rd Place in the BU Empowering Hackathon 2026 as a two-person team by developing and presenting a LightGBM-based machine learning solution for the competition challenge.',
     },
     heroImage: {
-      url: '/images/experiences/ai-hackathon-01.jpg',
+      url: '/images/experiences/ai-hackathon-01.webp',
       caption: 'Hero Stage View — Live presentation of our working AI prototype to judges and university panel.',
     },
     gallery: [
       {
         id: 'ai-02',
-        url: '/images/experiences/ai-hackathon-02.jpg',
+        url: '/images/experiences/ai-hackathon-02.webp',
         caption: 'Team Collaboration — Data preparation and model experimentation session.',
         tag: 'COLLABORATION',
         aspectRatio: 'aspect-[4/3]',
       },
       {
         id: 'ai-03',
-        url: '/images/experiences/ai-hackathon-03.jpg',
+        url: '/images/experiences/ai-hackathon-03.webp',
         caption: 'Final Presentation — Presenting model architecture, approach, and results to judges.',
         tag: 'PRESENTATION',
         aspectRatio: 'aspect-[16/10]',
@@ -91,13 +91,13 @@ export const EXPERIENCES_DATA: ExperienceItem[] = [
       description: 'Presented the completed project at the university technology showcase, demonstrating its functionality and explaining the development process to visitors.',
     },
     heroImage: {
-      url: '/images/experiences/showcase-01.jpg',
+      url: '/images/experiences/showcase-01.webp',
       caption: 'Main Exhibition Booth — Welcoming visitors and showcasing our live digital applications.',
     },
     gallery: [
       {
         id: 'sc-02',
-        url: '/images/experiences/showcase-02.jpg',
+        url: '/images/experiences/showcase-02.webp',
         caption: 'Live Demo Interaction — Guiding event visitors through application features.',
         tag: 'USER INTERACTION',
         aspectRatio: 'aspect-[4/3]',
@@ -111,7 +111,7 @@ export const EXPERIENCES_DATA: ExperienceItem[] = [
       },
       {
         id: 'sc-04',
-        url: '/images/experiences/showcase-04.jpg',
+        url: '/images/experiences/showcase-04.webp',
         caption: 'Behind the Scenes — Team setup and device calibration before opening.',
         tag: 'BEHIND THE SCENES',
         aspectRatio: 'aspect-[4/3]',

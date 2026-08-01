@@ -27,7 +27,7 @@ const EASE_EXPRESSIVE: [number, number, number, number] = [0.16, 1, 0.3, 1];
  */
 export const Navbar: React.FC<NavbarProps> = ({
   activeSectionId = 'hero',
-  isIntroComplete = true,
+  isIntroComplete: _isIntroComplete = true,
 }) => {
   const { t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -46,8 +46,8 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <motion.header
-      initial={{ opacity: 0, y: -10, filter: 'blur(6px)' }}
-      animate={isIntroComplete ? { opacity: 1, y: 0, filter: 'blur(0px)' } : { opacity: 0, y: -10, filter: 'blur(6px)' }}
+      initial={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
       transition={{
         duration: 0.58,
         ease: EASE_EXPRESSIVE,
@@ -108,7 +108,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             className={`hidden sm:inline-flex items-center justify-center px-3.5 py-1.5 rounded-lg border border-border bg-surface hover:bg-surface-hover hover:border-border-hover transition-all duration-200 font-['Inter',sans-serif] text-[14px] lg:text-[15px] select-none ${
               activeSectionId === 'contact'
                 ? 'text-primary border-primary font-bold'
-                : 'text-text-primary hover:text-primary font-semibold'
+                : 'text-text-secondary hover:text-text-primary font-medium'
             }`}
           >
             {t.nav.contact}

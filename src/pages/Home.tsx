@@ -6,8 +6,9 @@ import { IntroOverlay } from '@/components/motion/IntroOverlay';
 import { useActiveSection } from '@/hooks';
 import { SECTION_LIST } from '@/constants/routes';
 
-// Dynamic lazy imports for portfolio sections
-const Hero = lazy(() => import('@/components/sections/Hero').then((m) => ({ default: m.Hero })));
+import { Hero } from '@/components/sections/Hero';
+
+// Dynamic lazy imports for below-the-fold portfolio sections
 const About = lazy(() => import('@/components/sections/About').then((m) => ({ default: m.About })));
 const WhatIBuild = lazy(() => import('@/components/sections/WhatIBuild').then((m) => ({ default: m.WhatIBuild })));
 const SelectedWork = lazy(() => import('@/components/sections/SelectedWork').then((m) => ({ default: m.SelectedWork })));

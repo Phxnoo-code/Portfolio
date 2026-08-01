@@ -31,14 +31,36 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="apple-touch-icon" href="/favicon.svg" />
 
-  <!-- Google Fonts - Inter, Manrope & JetBrains Mono -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet">
-  <script type="module" crossorigin src="/assets/index-DcGqQ2H_.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-K7sdi04A.css">
+  <!-- Preconnect & Asset Preload for Performance Optimization -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preload" as="image" type="image/webp" href="/images/hero/profile.webp" fetchpriority="high" />
+
+  <!-- Theme & Language Pre-render Anti-FOUC Initialization -->
+  <script>
+    (function () {
+      try {
+        var storedTheme = localStorage.getItem('portfolio-theme');
+        if (storedTheme === 'light') {
+          document.documentElement.classList.remove('dark');
+        } else {
+          document.documentElement.classList.add('dark');
+        }
+        var storedLang = localStorage.getItem('portfolio-language');
+        if (storedLang === 'en' || storedLang === 'th') {
+          document.documentElement.setAttribute('lang', storedLang);
+        } else {
+          document.documentElement.setAttribute('lang', 'en');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <script type="module" crossorigin src="/assets/index-hWTeogBw.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/vendor-motion-xCJ-oJGT.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-react-lvMgjDHh.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BuBVXQjk.js">
+  <link rel="stylesheet" crossorigin href="/assets/index-D3VoDq1m.css">
 </head>
 
 <body style="background-color: #030303;" class="bg-background text-text-primary antialiased selection:bg-primary/30 selection:text-primary">
@@ -54,7 +76,6 @@
       align-items: center;
       justify-content: center;
       padding: 24px;
-      font-family: 'Manrope', 'Inter', system-ui, -apple-system, sans-serif;
       user-select: none;
       overflow: hidden;
     ">

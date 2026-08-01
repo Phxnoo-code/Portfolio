@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { createPortal } from 'react-dom';
 import { ArrowRight, X } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
+import { projectsData } from '@/data/projects';
+import { ProjectCaseStudy } from '@/types/project';
 import { Section } from '../../layout/Section';
 import { Container } from '../../ui/Container';
 
@@ -11,113 +13,28 @@ const EASE_SMOOTH: [number, number, number, number] = [0.16, 1, 0.3, 1];
 // Shared ultra-fine noise texture matching Hero, About, What I Build & Skills sections
 const NOISE_TEXTURE_DATA_URI = `data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E`;
 
-export interface ProjectCaseStudy {
-  id: string;
-  number: string;
-  category: string;
-  title: string;
-  roles: string[];
-  shortDescription: string;
-  technologies: string[];
-  image: string;
-  overview: string;
-  problem: string;
-  solution: string;
-  keyFeatures: string[];
-  demoUrl?: string;
-  githubUrl?: string;
-  isImageRight: boolean;
-}
+export type { ProjectCaseStudy };
 
 export const SelectedWork: React.FC = () => {
   const { t } = useLanguage();
   const [activeCaseStudyId, setActiveCaseStudyId] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
 
-  const selectedProjects: ProjectCaseStudy[] = [
-    {
-      id: 'portfolio-website',
-      number: '01',
-      category: 'Digital Product',
-      title: t.projects.items['portfolio-website']?.title || 'Portfolio Website',
-      roles: ['Product Design', 'Frontend Development', 'Motion Design'],
-      shortDescription:
-        t.projects.items['portfolio-website']?.description ||
-        'A personal portfolio website designed and developed to showcase projects, skills, and experiences through modern UI and interactive motion.',
-      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vite'],
-      image: '/images/projects/portfolio.png',
-      overview:
-        'Designed and developed my personal portfolio website to showcase my projects, skills, and experience through a modern and interactive digital experience. The website focuses on clean layouts, clear content structure, and smooth animations to create an engaging user experience.',
-      problem:
-        'Many developer portfolios focus mainly on listing skills and projects but often lack a clear personal identity and meaningful presentation. I wanted to create a portfolio that communicates not only what I can build, but also how I think about design and user experience.',
-      solution:
-        'Created a custom portfolio experience using a dark minimalist design system, responsive layouts, and interactive animations. The website combines modern UI patterns, reusable components, and motion design to present projects in a more engaging and structured way.',
-      keyFeatures: [
-        'Responsive Portfolio Experience: Designed a responsive interface that adapts across different screen sizes.',
-        'Modern UI Design System: Built reusable components and consistent design patterns for the entire website.',
-        'Interactive Motion Design: Implemented smooth animations and transitions using Framer Motion.',
-        'Project Case Study Presentation: Created structured project sections to showcase process, technologies, and outcomes.',
-        'Modern Frontend Architecture: Built with React, TypeScript, and Vite using reusable components and maintainable structure.',
-      ],
-      demoUrl: 'https://phanoo-portfolio.vercel.app',
-      githubUrl: 'https://github.com/phanoo/portfolio',
-      isImageRight: true,
-    },
-    {
-      id: 'line-hr-assistant',
-      number: '02',
-      category: 'AI Automation',
-      title: t.projects.items['line-hr-assistant']?.title || 'LINE HR Assistant',
-      roles: ['System Integration', 'Workflow Automation', 'AI Integration'],
-      shortDescription:
-        t.projects.items['line-hr-assistant']?.description ||
-        'AI-powered HR assistant built on LINE that helps employees get answers to common HR questions while reducing repetitive HR support tasks through generative AI.',
-      technologies: ['LINE Messaging API', 'n8n', 'Google Gemini API', 'Webhooks'],
-      image: '/images/projects/chat_bot.png',
-      overview:
-        'An AI-powered HR assistant built on LINE that helps employees get answers to common HR questions. The system uses LINE Messaging API, webhooks, and n8n to automate the workflow, while Google Gemini generates responses based on user inquiries.',
-      problem:
-        'Employees often need to ask HR the same questions about company policies, onboarding information, and workplace guidelines. Handling these repetitive questions manually takes time and prevents HR teams from focusing on more important tasks.',
-      solution:
-        'Built an automated workflow where employee messages from LINE trigger a webhook connected to n8n. The workflow processes the request, sends the user inquiry to Google Gemini for response generation, and delivers the answer back through LINE.',
-      keyFeatures: [
-        'AI-powered HR Q&A: Provides automated answers for common HR questions and workplace information.',
-        'LINE Messaging Integration: Allows employees to communicate with the HR assistant directly through LINE.',
-        'Workflow Automation with n8n: Connects LINE, webhooks, and Gemini into an automated message processing workflow.',
-        'Gemini AI Integration: Uses Google Gemini to generate natural language responses based on user questions.',
-        'Webhook Event Processing: Receives LINE message events and triggers automated workflows.',
-      ],
-      githubUrl: 'https://github.com/phanoo/line-hr-assistant',
-      isImageRight: false,
-    },
-    {
-      id: 'barber-booking-system',
-      number: '03',
-      category: 'Business Website',
-      title: t.projects.items['barber-booking-system']?.title || 'Barber Booking System',
-      roles: ['Web Development', 'System Integration', 'WordPress Customization'],
-      shortDescription:
-        t.projects.items['barber-booking-system']?.description ||
-        'Developed a digital booking solution for barbershop businesses, improving appointment management and creating a smoother customer scheduling experience.',
-      technologies: ['WordPress', 'PHP', 'MySQL', 'JavaScript', 'Booking Plugin'],
-      image: '/images/projects/barber.png',
-      overview:
-        'Developed a digital booking solution for barbershop businesses, improving appointment management and creating a smoother customer scheduling experience.',
-      problem:
-        'Many small barbershops still manage appointments manually, which can lead to scheduling conflicts, unclear availability, and inefficient customer management.',
-      solution:
-        'Implemented a WordPress-based booking system with customized workflows, enabling customers to select services, schedule appointments, and allowing staff to manage bookings more efficiently.',
-      keyFeatures: [
-        'Online appointment booking system for customers',
-        'Service selection and booking information management',
-        'Appointment scheduling and calendar management',
-        'Responsive experience optimized for mobile users',
-      ],
-      demoUrl: 'https://example.com/barber-booking',
-      githubUrl: 'https://github.com/phanoo/barber-booking',
-      isImageRight: true,
-    },
-  ];
+  const selectedProjects: ProjectCaseStudy[] = projectsData.map((project) => {
+    const localeItem = t.projects.items[project.id as keyof typeof t.projects.items];
+    if (!localeItem) return project;
+    return {
+      ...project,
+      category: localeItem.category || project.category,
+      title: localeItem.title || project.title,
+      roles: localeItem.roles || project.roles,
+      shortDescription: localeItem.description || project.shortDescription,
+      overview: localeItem.overview || project.overview,
+      problem: localeItem.problem || project.problem,
+      solution: localeItem.solution || project.solution,
+      keyFeatures: localeItem.keyFeatures || project.keyFeatures,
+    };
+  });
 
   useEffect(() => {
     setMounted(true);
@@ -190,7 +107,7 @@ export const SelectedWork: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.5, delay: 0.12, ease: EASE_SMOOTH }}
-              className="text-sm sm:text-base text-text-secondary leading-relaxed font-normal pt-1"
+              className="text-body-sm sm:text-body-md text-text-secondary leading-relaxed font-normal pt-1"
             >
               {t.projects.subtitle}
             </motion.p>
@@ -250,7 +167,7 @@ export const SelectedWork: React.FC = () => {
                           <h3 className="text-xl sm:text-2xl lg:text-3xl font-display font-bold text-text-primary tracking-tight leading-tight group-hover:text-primary transition-colors duration-300">
                             {project.title}
                           </h3>
-                          <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-normal">
+                          <p className="text-body-sm sm:text-body-md text-text-secondary leading-relaxed font-normal">
                             {project.shortDescription}
                           </p>
                         </div>
@@ -259,7 +176,7 @@ export const SelectedWork: React.FC = () => {
                         <div className="space-y-4 pt-1">
                           <div className="space-y-1">
                             <span className="text-xs font-mono uppercase tracking-[0.2em] text-text-muted dark:text-text-muted/60 font-semibold block">
-                              ROLE
+                              {t.projects.modal?.role || 'ROLE'}
                             </span>
                             <p className="text-sm sm:text-base font-sans text-text-primary dark:text-text-primary/90 font-medium">
                               {project.roles.join('  •  ')}
@@ -268,7 +185,7 @@ export const SelectedWork: React.FC = () => {
 
                           <div className="space-y-1">
                             <span className="text-xs font-mono uppercase tracking-[0.2em] text-text-muted dark:text-text-muted/60 font-semibold block">
-                              TECHNOLOGY
+                              {t.projects.modal?.technology || 'TECHNOLOGY'}
                             </span>
                             <p className="text-xs sm:text-sm font-mono text-text-muted dark:text-text-muted/80 leading-relaxed">
                               {project.technologies.join('  •  ')}
@@ -322,6 +239,9 @@ export const SelectedWork: React.FC = () => {
                             <img
                               src={project.image}
                               alt={project.title}
+                              width={1200}
+                              height={750}
+                              decoding="async"
                               className="w-full h-full object-cover object-top group-hover/img:scale-[1.025] transition-transform duration-700 ease-out"
                               loading="lazy"
                             />
@@ -359,22 +279,22 @@ export const SelectedWork: React.FC = () => {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3, ease: EASE_SMOOTH }}
                 onClick={() => setActiveCaseStudyId(null)}
-                className="absolute inset-0 bg-overlay-backdrop/80 backdrop-blur-xl"
+                className="fixed inset-0 bg-overlay-backdrop/80 backdrop-blur-md"
               />
 
-              {/* Compact Floating Glass Editorial Panel (max-w-[780px], single-viewport desktop fit) */}
+              {/* Compact Floating Editorial Panel (max-w-[780px], single-viewport desktop fit) */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.96, y: 15 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.96, y: 15 }}
                 transition={{ duration: 0.35, ease: EASE_SMOOTH }}
-                className="relative w-full max-w-[780px] max-h-[84vh] overflow-y-auto rounded-none bg-surface/98 border border-border shadow-2xl p-6 sm:p-10 space-y-7 z-10 scrollbar-thin"
+                className="relative w-full max-w-[780px] max-h-[84vh] overflow-y-auto rounded-2xl bg-surface border border-border shadow-2xl p-6 sm:p-10 space-y-7 z-10 scrollbar-thin"
               >
                 {/* Close Button Trigger */}
                 <button
                   onClick={() => setActiveCaseStudyId(null)}
-                  aria-label="Close case study"
-                  className="absolute top-5 right-5 text-text-muted hover:text-text-primary transition-colors duration-200 cursor-pointer p-1"
+                  aria-label={t.projects.modal?.close || 'Close'}
+                  className="absolute top-5 right-5 text-text-muted hover:text-text-primary bg-surface-subtle border border-border-subtle hover:bg-surface-hover transition-colors duration-200 cursor-pointer p-2 rounded-lg shadow-sm"
                 >
                   <X size={18} />
                 </button>
@@ -393,9 +313,9 @@ export const SelectedWork: React.FC = () => {
                 {/* 2. OVERVIEW */}
                 <div className="space-y-2">
                   <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
-                    OVERVIEW
+                    {t.projects.modal?.overview || 'OVERVIEW'}
                   </h4>
-                  <p className="text-base sm:text-lg text-text-secondary leading-relaxed font-normal">
+                  <p className="text-body-sm sm:text-body-md text-text-secondary leading-relaxed font-normal">
                     {currentCaseStudy.overview}
                   </p>
                 </div>
@@ -403,9 +323,9 @@ export const SelectedWork: React.FC = () => {
                 {/* 3. PROBLEM */}
                 <div className="space-y-2 pt-4 border-t border-border-subtle">
                   <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
-                    PROBLEM
+                    {t.projects.modal?.problem || 'PROBLEM'}
                   </h4>
-                  <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-sans">
+                  <p className="text-body-sm sm:text-body-md text-text-secondary leading-relaxed font-sans">
                     {currentCaseStudy.problem}
                   </p>
                 </div>
@@ -413,9 +333,9 @@ export const SelectedWork: React.FC = () => {
                 {/* 4. SOLUTION */}
                 <div className="space-y-2 pt-4 border-t border-border-subtle">
                   <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
-                    SOLUTION
+                    {t.projects.modal?.solution || 'SOLUTION'}
                   </h4>
-                  <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-sans">
+                  <p className="text-body-sm sm:text-body-md text-text-secondary leading-relaxed font-sans">
                     {currentCaseStudy.solution}
                   </p>
                 </div>
@@ -423,9 +343,9 @@ export const SelectedWork: React.FC = () => {
                 {/* 5. MY ROLE */}
                 <div className="space-y-2 pt-4 border-t border-border-subtle">
                   <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
-                    MY ROLE
+                    {t.projects.modal?.myRole || 'MY ROLE'}
                   </h4>
-                  <p className="text-sm sm:text-base text-text-primary font-sans font-medium">
+                  <p className="text-body-sm sm:text-body-md text-text-primary font-sans font-medium">
                     {currentCaseStudy.roles.join('  •  ')}
                   </p>
                 </div>
@@ -433,11 +353,11 @@ export const SelectedWork: React.FC = () => {
                 {/* 6. KEY FEATURES */}
                 <div className="space-y-3 pt-4 border-t border-border-subtle">
                   <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
-                    KEY FEATURES
-                </h4>
+                    {t.projects.modal?.keyFeatures || 'KEY FEATURES'}
+                  </h4>
                   <div className="space-y-2">
                     {currentCaseStudy.keyFeatures.map((feature, idx) => (
-                      <p key={idx} className="text-sm sm:text-base text-text-primary font-sans leading-relaxed flex items-start gap-2.5">
+                      <p key={idx} className="text-body-sm sm:text-body-md text-text-primary font-sans leading-relaxed flex items-start gap-2.5">
                         <span className="text-primary font-mono text-sm pt-0.5">•</span>
                         <span>{feature}</span>
                       </p>
@@ -446,21 +366,28 @@ export const SelectedWork: React.FC = () => {
                 </div>
 
                 {/* 7. TECHNOLOGY */}
-                <div className="space-y-2 pt-4 border-t border-border-subtle">
+                <div className="space-y-2.5 pt-4 border-t border-border-subtle">
                   <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
-                    TECHNOLOGY
+                    {t.projects.modal?.technology || 'TECHNOLOGY'}
                   </h4>
-                  <p className="text-xs sm:text-sm font-mono text-text-secondary leading-relaxed">
-                    {currentCaseStudy.technologies.join('  •  ')}
-                  </p>
+                  <div className="flex flex-wrap items-center gap-2">
+                    {currentCaseStudy.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2.5 py-1 text-xs font-mono rounded-md bg-surface-subtle border border-border-subtle text-text-secondary hover:bg-surface-hover transition-colors"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
                 {/* 8. GALLERY PREVIEW (macOS Browser Frame) */}
                 <div className="space-y-3 pt-4 border-t border-border-subtle">
                   <h4 className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-text-muted font-semibold">
-                    GALLERY
+                    {t.projects.modal?.gallery || 'GALLERY'}
                   </h4>
-                  <div className="w-full rounded-xl border border-border overflow-hidden bg-surface shadow-xl">
+                  <div className="w-full rounded-xl border border-border overflow-hidden bg-surface shadow-md">
                     <div className="bg-surface-subtle border-b border-border-subtle px-3.5 py-2 flex items-center gap-1.5">
                       <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]/80 inline-block" />
                       <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]/80 inline-block" />

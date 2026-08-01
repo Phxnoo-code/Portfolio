@@ -11,25 +11,23 @@ export interface HeroContentProps {
 const EASE_EXPRESSIVE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const EASE_CINEMATIC: [number, number, number, number] = [0.25, 1, 0.35, 1];
 
-export const HeroContent: React.FC<HeroContentProps> = ({ isIntroComplete = true }) => {
+export const HeroContent: React.FC<HeroContentProps> = ({ isIntroComplete: _isIntroComplete = true }) => {
   const { t } = useLanguage();
 
   const getItemMotion = (stepIndex: number) => ({
-    initial: { opacity: 0, y: 14, filter: 'blur(4px)' },
-    animate: isIntroComplete
-      ? { opacity: 1, y: 0, filter: 'blur(0px)' }
-      : { opacity: 0, y: 14, filter: 'blur(4px)' },
+    initial: { opacity: 1, y: 0, filter: 'blur(0px)' },
+    animate: { opacity: 1, y: 0, filter: 'blur(0px)' },
     transition: {
       duration: 0.6,
-      delay: isIntroComplete ? (stepIndex - 1) * 0.08 : 0,
+      delay: (stepIndex - 1) * 0.05,
       ease: EASE_EXPRESSIVE,
     },
   });
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      animate={isIntroComplete ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+      initial={{ opacity: 1, x: 0 }}
+      animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.75, ease: EASE_CINEMATIC }}
       className="lg:col-span-7 flex flex-col justify-center space-y-6 lg:space-y-7 max-w-3xl relative"
     >

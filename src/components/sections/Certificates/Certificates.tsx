@@ -91,6 +91,9 @@ export const Certificates: React.FC = () => {
                       <img
                         src={item.image}
                         alt={item.title}
+                        width={800}
+                        height={500}
+                        decoding="async"
                         className={`w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02] ${item.imagePosition || 'object-center'}`}
                         loading="lazy"
                       />

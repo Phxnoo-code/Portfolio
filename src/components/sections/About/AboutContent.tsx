@@ -66,7 +66,7 @@ export const AboutContent: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.5, delay: 0.1, ease: EASE_SMOOTH }}
-          className="text-base sm:text-lg text-text-secondary leading-relaxed font-normal w-full max-w-2xl break-words pt-1"
+          className="text-body-sm sm:text-body-md text-text-secondary leading-relaxed font-normal w-full max-w-2xl break-words pt-1"
         >
           {t.about.shortIntro}
         </motion.p>

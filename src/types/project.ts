@@ -13,3 +13,22 @@ export interface Project {
   demoUrl?: string;
   featured: boolean;
 }
+
+export interface ProjectCaseStudy {
+  id: string;
+  number: string;
+  category: string;
+  title: string;
+  roles: string[];
+  shortDescription: string;
+  technologies: string[];
+  image: string;
+  overview: string;
+  problem: string;
+  solution: string;
+  keyFeatures: string[];
+  demoUrl?: string;
+  githubUrl?: string;
+  isImageRight: boolean;
+}
+

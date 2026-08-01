@@ -58,7 +58,7 @@ export const AboutCards: React.FC = () => {
                   {card.title}
                 </h4>
               </div>
-              <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-sans">
+              <p className="text-body-sm sm:text-body-md text-text-secondary leading-relaxed font-sans">
                 {card.description}
               </p>
             </div>

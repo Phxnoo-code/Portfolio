@@ -12,13 +12,13 @@ const EASE_CINEMATIC: [number, number, number, number] = [0.25, 1, 0.35, 1];
  * HeroPortrait Component - Editorial Integrated Portrait
  * Natural portrait visual size (max-w 600px, aspect 4/5) with seamless background blending.
  */
-export const HeroPortrait: React.FC<HeroPortraitProps> = ({ isIntroComplete = true }) => {
+export const HeroPortrait: React.FC<HeroPortraitProps> = ({ isIntroComplete: _isIntroComplete = true }) => {
   const { name, avatar } = profileData;
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.96 }}
-      animate={isIntroComplete ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.96 }}
+      initial={{ opacity: 1, scale: 1 }}
+      animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.85, ease: EASE_CINEMATIC }}
       className="
       lg:col-span-5 
@@ -42,14 +42,20 @@ export const HeroPortrait: React.FC<HeroPortraitProps> = ({ isIntroComplete = tr
 
         {/* Editorial Integrated Portrait Image with Multi-Stop Bottom Dissolve & Edge Light Blend */}
         <img
-          src={avatar || '/images/hero/profile.png'}
+          src={avatar || '/images/hero/profile.webp'}
           alt={name}
+          width={800}
+          height={1000}
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
           className="
+          absolute
+          inset-0
           w-full 
           h-full 
           object-cover 
           object-top 
-          relative 
           z-10
           scale-105
           lg:scale-110

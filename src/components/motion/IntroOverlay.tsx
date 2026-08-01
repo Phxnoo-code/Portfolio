@@ -65,7 +65,7 @@ export const IntroOverlay: React.FC<IntroOverlayProps> = ({
     document.body.style.touchAction = 'none';
 
     let animationFrameId: number;
-    const duration = 3800; // 3.8 seconds total duration for a cinematic feel
+    const duration = 1800; // 1.8 seconds optimized duration for fast LCP & initial page load speed
     const startTimestamp = performance.now();
 
     const animateProgress = (now: number) => {
@@ -80,7 +80,7 @@ export const IntroOverlay: React.FC<IntroOverlayProps> = ({
         setPhase('reveal-overlay');
         setTimeout(() => {
           finishIntro();
-        }, 900); // 900ms exit fade and scale transition
+        }, 400); // 400ms exit fade transition
       }
     };
 

@@ -9,7 +9,7 @@ export const profileData: Profile = {
   bio: 'I create modern web applications and digital experiences that combine reliable functionality with thoughtful visual design.',
   description:
     'I\'m a fourth-year Information Technology student focused on building modern web applications, system integrations, and practical digital solutions through technology and design.',
-  avatar: '/images/hero/profile.png',
+  avatar: '/images/hero/profile.webp',
   location: 'Bangkok',
   email: 'phanoo.ngam@bumail.net',
   availability: 'Available for Internship / Co-op',

@@ -82,7 +82,7 @@ export const BeyondProjects: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.55, ease: EASE_SMOOTH, delay: 0.1 }}
-              className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-xl font-sans"
+              className="text-body-sm sm:text-body-md text-text-secondary leading-relaxed max-w-xl font-sans"
             >
               {t.experiences.subtitle}
             </motion.p>

@@ -114,7 +114,7 @@ export const Contact: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.55, ease: EASE_SMOOTH, delay: 0.1 }}
-              className="text-sm sm:text-base text-text-secondary dark:text-white/60 leading-relaxed font-sans"
+              className="text-body-sm sm:text-body-md text-text-secondary dark:text-white/60 leading-relaxed font-sans"
             >
               {t.contact.subtitle}
             </motion.p>
@@ -241,7 +241,7 @@ export const Contact: React.FC = () => {
                       <h4 className="text-2xl font-display font-bold text-text-primary dark:text-white uppercase">
                         {t.contact.successMessage.title}
                       </h4>
-                      <p className="text-sm text-text-secondary dark:text-white/60 leading-relaxed font-sans">
+                      <p className="text-body-sm sm:text-body-md text-text-secondary dark:text-white/60 leading-relaxed font-sans">
                         {t.contact.successMessage.desc}
                       </p>
                     </div>

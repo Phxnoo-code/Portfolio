@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react';
+import { THEME_STORAGE_KEY, DEFAULT_THEME } from '@/constants/theme';
 
 export type Theme = 'dark' | 'light';
 
 export function useTheme() {
   const [theme, setTheme] = useState<Theme>(() => {
     if (typeof window !== 'undefined') {
-      const storedTheme = localStorage.getItem('portfolio-theme') as Theme | null;
-      if (storedTheme) return storedTheme;
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      const storedTheme = localStorage.getItem(THEME_STORAGE_KEY) as Theme | null;
+      if (storedTheme === 'dark' || storedTheme === 'light') {
+        return storedTheme;
+      }
     }
-    return 'dark';
+    return DEFAULT_THEME; // Default is Dark on first visit
   });
 
   useEffect(() => {
@@ -19,7 +21,7 @@ export function useTheme() {
     } else {
       root.classList.remove('dark');
     }
-    localStorage.setItem('portfolio-theme', theme);
+    localStorage.setItem(THEME_STORAGE_KEY, theme);
   }, [theme]);
 
   const toggleTheme = () => {
